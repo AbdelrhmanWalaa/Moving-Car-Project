@@ -362,9 +362,9 @@ EN_DIO_Error_T DIO_read(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 * u
     It first checks if the given pin number is valid or not, and if it's not valid, it returns an error.
     If the pin number is valid, it writes the value to the specified port using the WRITE_BIT macro.
     If the given value is not a valid digital value, the function returns an error.
-    @param u8_a_pinNumber The number of the pin to write to. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
-    @param en_a_portNumber The port number to write to. (PORT_A, PORT_B, PORT_C or PORT_D)
-    @param u8_a_value The digital value to write (either DIO_U8_PIN_HIGH or DIO_U8_PIN_LOW).
+    @param[in] u8_a_pinNumber The number of the pin to write to. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+    @param[in] en_a_portNumber The port number to write to. (PORT_A, PORT_B, PORT_C or PORT_D)
+    @param[in] u8_a_value The digital value to write (either DIO_U8_PIN_HIGH or DIO_U8_PIN_LOW).
     @return EN_DIO_Error_T Returns DIO_OK if the write is successful, DIO_ERROR otherwise.
     */
 EN_DIO_Error_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8_a_value);
@@ -375,8 +375,8 @@ EN_DIO_Error_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8
  *
  * This function toggles the state of a pin in the specified port.
  *
- * @param u8_a_pinNumber The pin number to toggle. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
- * @param en_a_portNumber The port to which the pin belongs. (PORT_A, PORT_B, PORT_C or PORT_D)
+ * @param[in] u8_a_pinNumber The pin number to toggle. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ * @param[in] en_a_portNumber The port to which the pin belongs. (PORT_A, PORT_B, PORT_C or PORT_D)
  * @return EN_DIO_Error_T Returns DIO_OK on success or DIO_ERROR if an error occurred.
  */
 EN_DIO_Error_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber);
