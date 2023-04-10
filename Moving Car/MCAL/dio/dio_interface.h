@@ -22,9 +22,279 @@
 /* ***************************************************************************************************************** */
 /* DIO Macros/Enums **/
 
+/* DIO Pins */
+#define DIO_U8_PIN_0 0
+#define DIO_U8_PIN_1 1
+#define DIO_U8_PIN_2 2
+#define DIO_U8_PIN_3 3
+#define DIO_U8_PIN_4 4
+#define DIO_U8_PIN_5 5
+#define DIO_U8_PIN_6 6
+#define DIO_U8_PIN_7 7
+
+
 /* DIO Pin value as low = 0 or high = 1 */
 #define DIO_U8_PIN_LOW     0
 #define DIO_U8_PIN_HIGH    1
+
+/* Bit Masking */
+#pragma region Bit Masking Macros
+#define DIO_NO_MASK  					    0xFF
+#define DIO_MASK_BITS_0 					0x1
+#define DIO_MASK_BITS_0_1 					0x3
+#define DIO_MASK_BITS_0_1_2 				0x7
+#define DIO_MASK_BITS_0_1_2_3 				0xF
+#define DIO_MASK_BITS_0_1_2_3_4 			0x1F
+#define DIO_MASK_BITS_0_1_2_3_4_5 			0x3F
+#define DIO_MASK_BITS_0_1_2_3_4_5_6 		0x7F
+#define DIO_MASK_BITS_0_1_2_3_4_5_7 		0xBF
+#define DIO_MASK_BITS_0_1_2_3_4_6 			0x5F
+#define DIO_MASK_BITS_0_1_2_3_4_6_7 		0xDF
+#define DIO_MASK_BITS_0_1_2_3_4_7 			0x9F
+#define DIO_MASK_BITS_0_1_2_3_5 			0x2F
+#define DIO_MASK_BITS_0_1_2_3_5_6 			0x6F
+#define DIO_MASK_BITS_0_1_2_3_5_6_7 		0xEF
+#define DIO_MASK_BITS_0_1_2_3_5_7 			0xAF
+#define DIO_MASK_BITS_0_1_2_3_6 			0x4F
+#define DIO_MASK_BITS_0_1_2_3_6_7 			0xCF
+#define DIO_MASK_BITS_0_1_2_3_7 			0x8F
+#define DIO_MASK_BITS_0_1_2_4 				0x17
+#define DIO_MASK_BITS_0_1_2_4_5 			0x37
+#define DIO_MASK_BITS_0_1_2_4_5_6 			0x77
+#define DIO_MASK_BITS_0_1_2_4_5_6_7 		0xF7
+#define DIO_MASK_BITS_0_1_2_4_5_7 			0xB7
+#define DIO_MASK_BITS_0_1_2_4_6 			0x57
+#define DIO_MASK_BITS_0_1_2_4_6_7 			0xD7
+#define DIO_MASK_BITS_0_1_2_4_7 			0x97
+#define DIO_MASK_BITS_0_1_2_5 				0x27
+#define DIO_MASK_BITS_0_1_2_5_6 			0x67
+#define DIO_MASK_BITS_0_1_2_5_6_7 			0xE7
+#define DIO_MASK_BITS_0_1_2_5_7 			0xA7
+#define DIO_MASK_BITS_0_1_2_6 				0x47
+#define DIO_MASK_BITS_0_1_2_6_7 			0xC7
+#define DIO_MASK_BITS_0_1_2_7 				0x87
+#define DIO_MASK_BITS_0_1_3 				0xB
+#define DIO_MASK_BITS_0_1_3_4 				0x1B
+#define DIO_MASK_BITS_0_1_3_4_5 			0x3B
+#define DIO_MASK_BITS_0_1_3_4_5_6 			0x7B
+#define DIO_MASK_BITS_0_1_3_4_5_6_7 		0xFB
+#define DIO_MASK_BITS_0_1_3_4_5_7 			0xBB
+#define DIO_MASK_BITS_0_1_3_4_6 			0x5B
+#define DIO_MASK_BITS_0_1_3_4_6_7 			0xDB
+#define DIO_MASK_BITS_0_1_3_4_7 			0x9B
+#define DIO_MASK_BITS_0_1_3_5 				0x2B
+#define DIO_MASK_BITS_0_1_3_5_6 			0x6B
+#define DIO_MASK_BITS_0_1_3_5_6_7 			0xEB
+#define DIO_MASK_BITS_0_1_3_5_7 			0xAB
+#define DIO_MASK_BITS_0_1_3_6 				0x4B
+#define DIO_MASK_BITS_0_1_3_6_7 			0xCB
+#define DIO_MASK_BITS_0_1_3_7 				0x8B
+#define DIO_MASK_BITS_0_1_4 				0x13
+#define DIO_MASK_BITS_0_1_4_5 				0x33
+#define DIO_MASK_BITS_0_1_4_5_6 			0x73
+#define DIO_MASK_BITS_0_1_4_5_6_7 			0xF3
+#define DIO_MASK_BITS_0_1_4_5_7 			0xB3
+#define DIO_MASK_BITS_0_1_4_6 				0x53
+#define DIO_MASK_BITS_0_1_4_6_7 			0xD3
+#define DIO_MASK_BITS_0_1_4_7 				0x93
+#define DIO_MASK_BITS_0_1_5 				0x23
+#define DIO_MASK_BITS_0_1_5_6 				0x63
+#define DIO_MASK_BITS_0_1_5_6_7 			0xE3
+#define DIO_MASK_BITS_0_1_5_7 				0xA3
+#define DIO_MASK_BITS_0_1_6 				0x43
+#define DIO_MASK_BITS_0_1_6_7 				0xC3
+#define DIO_MASK_BITS_0_1_7 				0x83
+#define DIO_MASK_BITS_0_2 					0x5
+#define DIO_MASK_BITS_0_2_3 				0xD
+#define DIO_MASK_BITS_0_2_3_4 				0x1D
+#define DIO_MASK_BITS_0_2_3_4_5 			0x3D
+#define DIO_MASK_BITS_0_2_3_4_5_6 			0x7D
+#define DIO_MASK_BITS_0_2_3_4_5_6_7 		0xFD
+#define DIO_MASK_BITS_0_2_3_4_5_7 			0xBD
+#define DIO_MASK_BITS_0_2_3_4_6 			0x5D
+#define DIO_MASK_BITS_0_2_3_4_6_7 			0xDD
+#define DIO_MASK_BITS_0_2_3_4_7 			0x9D
+#define DIO_MASK_BITS_0_2_3_5 				0x2D
+#define DIO_MASK_BITS_0_2_3_5_6 			0x6D
+#define DIO_MASK_BITS_0_2_3_5_6_7 			0xED
+#define DIO_MASK_BITS_0_2_3_5_7 			0xAD
+#define DIO_MASK_BITS_0_2_3_6 				0x4D
+#define DIO_MASK_BITS_0_2_3_6_7 			0xCD
+#define DIO_MASK_BITS_0_2_3_7 				0x8D
+#define DIO_MASK_BITS_0_2_4 				0x15
+#define DIO_MASK_BITS_0_2_4_5 				0x35
+#define DIO_MASK_BITS_0_2_4_5_6 			0x75
+#define DIO_MASK_BITS_0_2_4_5_6_7 			0xF5
+#define DIO_MASK_BITS_0_2_4_5_7 			0xB5
+#define DIO_MASK_BITS_0_2_4_6 				0x55
+#define DIO_MASK_BITS_0_2_4_6_7 			0xD5
+#define DIO_MASK_BITS_0_2_4_7 				0x95
+#define DIO_MASK_BITS_0_2_5 				0x25
+#define DIO_MASK_BITS_0_2_5_6 				0x65
+#define DIO_MASK_BITS_0_2_5_6_7 			0xE5
+#define DIO_MASK_BITS_0_2_5_7 				0xA5
+#define DIO_MASK_BITS_0_2_6 				0x45
+#define DIO_MASK_BITS_0_2_6_7 				0xC5
+#define DIO_MASK_BITS_0_2_7 				0x85
+#define DIO_MASK_BITS_0_3 					0x9
+#define DIO_MASK_BITS_0_3_4 				0x19
+#define DIO_MASK_BITS_0_3_4_5 				0x39
+#define DIO_MASK_BITS_0_3_4_5_6 			0x79
+#define DIO_MASK_BITS_0_3_4_5_6_7 			0xF9
+#define DIO_MASK_BITS_0_3_4_5_7 			0xB9
+#define DIO_MASK_BITS_0_3_4_6 				0x59
+#define DIO_MASK_BITS_0_3_4_6_7 			0xD9
+#define DIO_MASK_BITS_0_3_4_7 				0x99
+#define DIO_MASK_BITS_0_3_5 				0x29
+#define DIO_MASK_BITS_0_3_5_6 				0x69
+#define DIO_MASK_BITS_0_3_5_6_7 			0xE9
+#define DIO_MASK_BITS_0_3_5_7 				0xA9
+#define DIO_MASK_BITS_0_3_6 				0x49
+#define DIO_MASK_BITS_0_3_6_7 				0xC9
+#define DIO_MASK_BITS_0_3_7 				0x89
+#define DIO_MASK_BITS_0_4 					0x11
+#define DIO_MASK_BITS_0_4_5 				0x31
+#define DIO_MASK_BITS_0_4_5_6 				0x71
+#define DIO_MASK_BITS_0_4_5_6_7 			0xF1
+#define DIO_MASK_BITS_0_4_5_7 				0xB1
+#define DIO_MASK_BITS_0_4_6 				0x51
+#define DIO_MASK_BITS_0_4_6_7 				0xD1
+#define DIO_MASK_BITS_0_4_7 				0x91
+#define DIO_MASK_BITS_0_5 					0x21
+#define DIO_MASK_BITS_0_5_6 				0x61
+#define DIO_MASK_BITS_0_5_6_7 				0xE1
+#define DIO_MASK_BITS_0_5_7 				0xA1
+#define DIO_MASK_BITS_0_6 					0x41
+#define DIO_MASK_BITS_0_6_7 				0xC1
+#define DIO_MASK_BITS_0_7 					0x81
+#define DIO_MASK_BITS_1 					0x2
+#define DIO_MASK_BITS_1_2 					0x6
+#define DIO_MASK_BITS_1_2_3 				0xE
+#define DIO_MASK_BITS_1_2_3_4 				0x1E
+#define DIO_MASK_BITS_1_2_3_4_5 			0x3E
+#define DIO_MASK_BITS_1_2_3_4_5_6 			0x7E
+#define DIO_MASK_BITS_1_2_3_4_5_6_7 		0xFE
+#define DIO_MASK_BITS_1_2_3_4_5_7 			0xBE
+#define DIO_MASK_BITS_1_2_3_4_6 			0x5E
+#define DIO_MASK_BITS_1_2_3_4_6_7 			0xDE
+#define DIO_MASK_BITS_1_2_3_4_7 			0x9E
+#define DIO_MASK_BITS_1_2_3_5 				0x2E
+#define DIO_MASK_BITS_1_2_3_5_6 			0x6E
+#define DIO_MASK_BITS_1_2_3_5_6_7 			0xEE
+#define DIO_MASK_BITS_1_2_3_5_7 			0xAE
+#define DIO_MASK_BITS_1_2_3_6 				0x4E
+#define DIO_MASK_BITS_1_2_3_6_7 			0xCE
+#define DIO_MASK_BITS_1_2_3_7 				0x8E
+#define DIO_MASK_BITS_1_2_4 				0x16
+#define DIO_MASK_BITS_1_2_4_5 				0x36
+#define DIO_MASK_BITS_1_2_4_5_6 			0x76
+#define DIO_MASK_BITS_1_2_4_5_6_7 			0xF6
+#define DIO_MASK_BITS_1_2_4_5_7 			0xB6
+#define DIO_MASK_BITS_1_2_4_6 				0x56
+#define DIO_MASK_BITS_1_2_4_6_7 			0xD6
+#define DIO_MASK_BITS_1_2_4_7 				0x96
+#define DIO_MASK_BITS_1_2_5 				0x26
+#define DIO_MASK_BITS_1_2_5_6 				0x66
+#define DIO_MASK_BITS_1_2_5_6_7 			0xE6
+#define DIO_MASK_BITS_1_2_5_7 				0xA6
+#define DIO_MASK_BITS_1_2_6 				0x46
+#define DIO_MASK_BITS_1_2_6_7 				0xC6
+#define DIO_MASK_BITS_1_2_7 				0x86
+#define DIO_MASK_BITS_1_3 					0xA
+#define DIO_MASK_BITS_1_3_4 				0x1A
+#define DIO_MASK_BITS_1_3_4_5 				0x3A
+#define DIO_MASK_BITS_1_3_4_5_6 			0x7A
+#define DIO_MASK_BITS_1_3_4_5_6_7 			0xFA
+#define DIO_MASK_BITS_1_3_4_5_7 			0xBA
+#define DIO_MASK_BITS_1_3_4_6 				0x5A
+#define DIO_MASK_BITS_1_3_4_6_7 			0xDA
+#define DIO_MASK_BITS_1_3_4_7 				0x9A
+#define DIO_MASK_BITS_1_3_5 				0x2A
+#define DIO_MASK_BITS_1_3_5_6 				0x6A
+#define DIO_MASK_BITS_1_3_5_6_7 			0xEA
+#define DIO_MASK_BITS_1_3_5_7 				0xAA
+#define DIO_MASK_BITS_1_3_6 				0x4A
+#define DIO_MASK_BITS_1_3_6_7 				0xCA
+#define DIO_MASK_BITS_1_3_7 				0x8A
+#define DIO_MASK_BITS_1_4 					0x12
+#define DIO_MASK_BITS_1_4_5 				0x32
+#define DIO_MASK_BITS_1_4_5_6 				0x72
+#define DIO_MASK_BITS_1_4_5_6_7 			0xF2
+#define DIO_MASK_BITS_1_4_5_7 				0xB2
+#define DIO_MASK_BITS_1_4_6 				0x52
+#define DIO_MASK_BITS_1_4_6_7 				0xD2
+#define DIO_MASK_BITS_1_4_7 				0x92
+#define DIO_MASK_BITS_1_5 					0x22
+#define DIO_MASK_BITS_1_5_6 				0x62
+#define DIO_MASK_BITS_1_5_6_7 				0xE2
+#define DIO_MASK_BITS_1_5_7 				0xA2
+#define DIO_MASK_BITS_1_6 					0x42
+#define DIO_MASK_BITS_1_6_7 				0xC2
+#define DIO_MASK_BITS_1_7 					0x82
+#define DIO_MASK_BITS_2 					0x4
+#define DIO_MASK_BITS_2_3 					0xC
+#define DIO_MASK_BITS_2_3_4 				0x1C
+#define DIO_MASK_BITS_2_3_4_5 				0x3C
+#define DIO_MASK_BITS_2_3_4_5_6 			0x7C
+#define DIO_MASK_BITS_2_3_4_5_6_7 			0xFC
+#define DIO_MASK_BITS_2_3_4_5_7 			0xBC
+#define DIO_MASK_BITS_2_3_4_6 				0x5C
+#define DIO_MASK_BITS_2_3_4_6_7 			0xDC
+#define DIO_MASK_BITS_2_3_4_7 				0x9C
+#define DIO_MASK_BITS_2_3_5 				0x2C
+#define DIO_MASK_BITS_2_3_5_6 				0x6C
+#define DIO_MASK_BITS_2_3_5_6_7 			0xEC
+#define DIO_MASK_BITS_2_3_5_7 				0xAC
+#define DIO_MASK_BITS_2_3_6 				0x4C
+#define DIO_MASK_BITS_2_3_6_7 				0xCC
+#define DIO_MASK_BITS_2_3_7 				0x8C
+#define DIO_MASK_BITS_2_4 					0x14
+#define DIO_MASK_BITS_2_4_5 				0x34
+#define DIO_MASK_BITS_2_4_5_6 				0x74
+#define DIO_MASK_BITS_2_4_5_6_7 			0xF4
+#define DIO_MASK_BITS_2_4_5_7 				0xB4
+#define DIO_MASK_BITS_2_4_6 				0x54
+#define DIO_MASK_BITS_2_4_6_7 				0xD4
+#define DIO_MASK_BITS_2_4_7 				0x94
+#define DIO_MASK_BITS_2_5 					0x24
+#define DIO_MASK_BITS_2_5_6 				0x64
+#define DIO_MASK_BITS_2_5_6_7 				0xE4
+#define DIO_MASK_BITS_2_5_7 				0xA4
+#define DIO_MASK_BITS_2_6 					0x44
+#define DIO_MASK_BITS_2_6_7 				0xC4
+#define DIO_MASK_BITS_2_7 					0x84
+#define DIO_MASK_BITS_3 					0x8
+#define DIO_MASK_BITS_3_4 					0x18
+#define DIO_MASK_BITS_3_4_5 				0x38
+#define DIO_MASK_BITS_3_4_5_6 				0x78
+#define DIO_MASK_BITS_3_4_5_6_7 			0xF8
+#define DIO_MASK_BITS_3_4_5_7 				0xB8
+#define DIO_MASK_BITS_3_4_6 				0x58
+#define DIO_MASK_BITS_3_4_6_7 				0xD8
+#define DIO_MASK_BITS_3_4_7 				0x98
+#define DIO_MASK_BITS_3_5 					0x28
+#define DIO_MASK_BITS_3_5_6 				0x68
+#define DIO_MASK_BITS_3_5_6_7 				0xE8
+#define DIO_MASK_BITS_3_5_7 				0xA8
+#define DIO_MASK_BITS_3_6 					0x48
+#define DIO_MASK_BITS_3_6_7 				0xC8
+#define DIO_MASK_BITS_3_7 					0x88
+#define DIO_MASK_BITS_4 					0x10
+#define DIO_MASK_BITS_4_5 					0x30
+#define DIO_MASK_BITS_4_5_6 				0x70
+#define DIO_MASK_BITS_4_5_6_7 				0xF0
+#define DIO_MASK_BITS_4_5_7 				0xB0
+#define DIO_MASK_BITS_4_6 					0x50
+#define DIO_MASK_BITS_4_6_7 				0xD0
+#define DIO_MASK_BITS_4_7 					0x90
+#define DIO_MASK_BITS_5 					0x20
+#define DIO_MASK_BITS_5_6 					0x60
+#define DIO_MASK_BITS_5_6_7 				0xE0
+#define DIO_MASK_BITS_5_7 					0xA0
+#define DIO_MASK_BITS_6 					0x40
+#define DIO_MASK_BITS_6_7 					0xC0
+#define DIO_MASK_BITS_7 					0x80
+#pragma endregion
 
 // DIO PORT names enum
 typedef enum EN_DIO_PORT_T
@@ -57,9 +327,9 @@ typedef enum EN_DIO_Error_T
  * This function initializes a pin of the Digital Input/Output (DIO) interface with the given direction.
  * It sets the Data Direction Register (DDR) of the port to the given direction for the specified pin.
  *
- * @param[in] u8_a_pinNumber The pin number of the DIO interface to initialize (0 to 7)
+ * @param[in] u8_a_pinNumber The pin number of the DIO interface to initialize (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  * @param[in] en_a_portNumber The port number of the DIO interface to initialize (PORT_A, PORT_B, PORT_C or PORT_D)
- * @param[in] en_a_direction The direction to set for the pin (INPUT or OUTPUT)
+ * @param[in] en_a_direction The direction to set for the pin (DIO_IN or DIO_OUT)
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_Error otherwise)
@@ -74,7 +344,7 @@ EN_DIO_Error_T DIO_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, EN_DIO
  * the value of the specified pin as a 0 or 1 in the u8_a_value parameter. The pin number and port number
  * must be valid and in range for the DIO interface to function correctly.
  *
- * @param[in] u8_a_pinNumber The pin number to read from the port (0 to 7)
+ * @param[in] u8_a_pinNumber The pin number to read from the port (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  * @param[in] en_a_portNumber The port number of the DIO interface to read from (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[out] u8_a_value Pointer to an unsigned 8-bit integer where the value of the pin will be stored
  *
@@ -89,7 +359,7 @@ EN_DIO_Error_T DIO_read(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 * u
     It first checks if the given pin number is valid or not, and if it's not valid, it returns an error.
     If the pin number is valid, it writes the value to the specified port using the WRITE_BIT macro.
     If the given value is not a valid digital value, the function returns an error.
-    @param u8_a_pinNumber The number of the pin to write to.
+    @param u8_a_pinNumber The number of the pin to write to. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
     @param en_a_portNumber The port number to write to. (PORT_A, PORT_B, PORT_C or PORT_D)
     @param u8_a_value The digital value to write (either DIO_U8_PIN_HIGH or DIO_U8_PIN_LOW).
     @return EN_DIO_Error_T Returns DIO_OK if the write is successful, DIO_Error otherwise.
@@ -102,7 +372,7 @@ EN_DIO_Error_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8
  *
  * This function toggles the state of a pin in the specified port.
  *
- * @param u8_a_pinNumber The pin number to toggle.
+ * @param u8_a_pinNumber The pin number to toggle. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  * @param en_a_portNumber The port to which the pin belongs. (PORT_A, PORT_B, PORT_C or PORT_D)
  * @return EN_DIO_Error_T Returns DIO_OK on success or DIO_Error if an error occurred.
  */
@@ -122,7 +392,7 @@ EN_DIO_Error_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber);
  *
  * @param[in] en_a_portNumber The port number of the DIO interface to initialize (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] en_a_dir The direction to set for the port (INPUT or OUTPUT)
- * @param[in] u8_a_mask The mask to use when setting the DDR of the port
+ * @param[in] u8_a_mask The mask to use when setting the DDR of the port  (DIO_NO_MASK, DIO_MASK_BITS_n..)
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_Error otherwise)
@@ -138,13 +408,13 @@ EN_DIO_Error_T DIO_portInit(EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en
  * are configured as outputs.
  *
  * @param[in] en_a_portNumber The port number of the DIO interface to write to (PORT_A, PORT_B, PORT_C or PORT_D)
- * @param[in] u8_a_byte The byte value to write to the port
- * @param[in] u8_a_mask The mask to use when setting the PORT of the port
+ * @param[in] u8_a_pinValue The byte value to write to the port  (DIO_U8_PIN_LOW, DIO_U8_PIN_HIGH)
+ * @param[in] u8_a_mask The mask to use when setting the PORT of the port (DIO_NO_MASK, DIO_MASK_BITS_n..)
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_Error otherwise)
  */
-EN_DIO_Error_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_byte, u8 u8_a_mask);
+EN_DIO_Error_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_pinValue, u8 u8_a_mask);
 
 /**
  * @brief Toggles the state of the pins of a port of the DIO interface
@@ -155,7 +425,7 @@ EN_DIO_Error_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_byte, u8 u8_
  * are configured as outputs.
  *
  * @param[in] en_a_portNumber The port number of the DIO interface to toggle (PORT_A, PORT_B, PORT_C or PORT_D)
- * @param[in] u8_a_mask The mask to use when toggling the PORT of the port
+ * @param[in] u8_a_mask The mask to use when toggling the PORT of the port (DIO_NO_MASK, DIO_MASK_BITS_n..)
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_Error otherwise)
