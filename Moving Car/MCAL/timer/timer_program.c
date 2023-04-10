@@ -8,9 +8,9 @@
  */
 
 /* MCAL */
-#include "TMR_Private.h"
-#include "TMR_Config.h"
-#include "TMR_Interface.h"
+#include "timer_private.h"
+#include "timer_config.h"
+#include "timer_interface.h"
 
 /*******************************************************************************************************************************************************************/
 /* Declaration and Initialization */

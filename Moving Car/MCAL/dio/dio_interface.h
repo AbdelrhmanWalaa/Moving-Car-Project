@@ -14,8 +14,8 @@
 /* DIO Includes */
 
 /* SRVL */
-#include "../../SRVL/STD_TYPES/STD_TYPES.h"
-#include "../../SRVL/BIT_MATH/BIT_MATH.h"
+#include "../../LIB/bit_math.h"
+#include "../../LIB/std.h"
 
 /*******************************************************************************************************************************************************************/
 /* DIO Macros */

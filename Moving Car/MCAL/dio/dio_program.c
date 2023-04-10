@@ -1,8 +1,8 @@
 /*
  * DIO_Program.c
  *
- *     Created on: Mar 31, 2021
- *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
+ *     Created on: Apr 10, 2023
+ *         Author: Hossam Elwahsh - https://github.com/HossamElwahsh
  *    Description: This file contains all Digital Input Output (DIO) functions' implementation.
  *  MCU Datasheet: AVR ATmega32 - https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
  */

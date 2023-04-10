@@ -14,13 +14,13 @@
 /*******************************************************************************************************************************************************************/
 /* DCM Includes */
 
-/* SRVL */
-#include "../../SRVL/STD_TYPES/STD_TYPES.h"
-#include "../../SRVL/BIT_MATH/BIT_MATH.h"
+/* LIB */
+#include "../../LIB/std.h"
+#include "../../LIB/bit_math.h"
 
 /* MCAL */
-#include "../../MCAL/DIO_Driver/DIO_Interface.h"
-#include "../../MCAL/TMR_Driver/TMR_Interface.h"
+#include "../../MCAL/dio/DIO_Interface.h"
+#include "../../MCAL/timer/TMR_Interface.h"
 
 /*******************************************************************************************************************************************************************/
 /* DCM Macros */
