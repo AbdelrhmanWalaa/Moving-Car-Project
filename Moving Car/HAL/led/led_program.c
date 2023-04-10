@@ -1,120 +1,100 @@
 /*
- * LED_Program.c
+ * led_program.c
  *
- *   Created on: Nov 20, 2022
- *       Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
+ *   Created on: Apr 10, 2023
+ *       Author: Hossam Elwahsh - https://github.com/HossamElwahsh
  *  Description: This file contains all Light Emitting Diode (LED) functions' implementation.
  */
 
 /* HAL */
-#include "LED_Config.h"
 #include "LED_Interface.h"
 
-/*******************************************************************************************************************************************************************/
-/*
- Name: LED_u8SetLEDPin
- Input: u8 LedId and u8 Operation
- Output: u8 Error or No Error
- Description: Function to switch LED on, off, or toggle.
-*/
-u8 LED_u8SetLEDPin ( u8 Cpy_u8LEDId, u8 Cpy_u8Operation )
-{
-	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_OK;
-		
-	/* Check 1: LEDId and Operation are in the valid range */
-	if ( ( Cpy_u8Operation <= LED_U8_TOGGLE ) && ( Cpy_u8LEDId <= LED_U8_7 ) )
-	{
-		/* Check 1.1: Required Operation */
-		switch ( Cpy_u8Operation )
-		{
-			case LED_U8_ON:
-				/* Check 1.1.1: Required LEDId */
-				switch ( Cpy_u8LEDId )
-				{
-					case LED_U8_0: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_0_PIN, DIO_U8_PIN_HIGH ); break;
-					case LED_U8_1: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_1_PIN, DIO_U8_PIN_HIGH );	break;
-					case LED_U8_2: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_2_PIN, DIO_U8_PIN_HIGH );	break;
-					case LED_U8_3: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_3_PIN, DIO_U8_PIN_HIGH );	break;
-					case LED_U8_4: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_4_PIN, DIO_U8_PIN_HIGH );	break;
-					case LED_U8_5: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_5_PIN, DIO_U8_PIN_HIGH );	break;
-					case LED_U8_6: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_6_PIN, DIO_U8_PIN_HIGH );	break;
-					case LED_U8_7: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_7_PIN, DIO_U8_PIN_HIGH );	break;
-				}				
-			break;
-			
-			case LED_U8_OFF:
-				/* Check 1.1.2: Required LEDId */
-				switch ( Cpy_u8LEDId )
-				{
-					case LED_U8_0: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_0_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_1: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_1_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_2: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_2_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_3: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_3_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_4: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_4_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_5: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_5_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_6: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_6_PIN, DIO_U8_PIN_LOW ); break;
-					case LED_U8_7: DIO_u8SetPinValue( LED_U8_PORT, LED_U8_7_PIN, DIO_U8_PIN_LOW ); break;
-				}				
-			break;
-			
-			case LED_U8_TOGGLE:
-				/* Check 1.1.3: Required LEDId */
-				switch ( Cpy_u8LEDId )
-				{
-					case LED_U8_0: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_0_PIN ); break;
-					case LED_U8_1: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_1_PIN ); break;
-					case LED_U8_2: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_2_PIN ); break;
-					case LED_U8_3: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_3_PIN ); break;
-					case LED_U8_4: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_4_PIN ); break;
-					case LED_U8_5: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_5_PIN ); break;
-					case LED_U8_6: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_6_PIN ); break;
-					case LED_U8_7: DIO_u8TogglePinValue( LED_U8_PORT, LED_U8_7_PIN ); break;
-				}
-			break;
-		}
-	}
-	/* Check 2: LEDId or Operation is not in the valid range */
-	else
-	{
-		/* Update error state = NOK, wrong LEDId or Operation! */
-		Loc_u8ErrorState = STD_NOK;
-	}
-		
-	return Loc_u8ErrorState;
+/* ******************************************************************** */
+/* LED Prototypes                                                       */
+/* ******************************************************************** */
+
+/**
+ * @brief Initializes a single LED pin as output
+ *
+ * This function initializes a single LED pin as output.
+ *
+ * @param[in] en_a_ledPort The port where the LED is located (PORT_A, PORT_B, PORT_C or PORT_D)
+ * @param[in] u8_a_ledPin The pin number of the LED (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ *
+ * @return EN_LED_ERROR_t Returns LED_OK if the LED was initialized successfully,
+ * LED_ERROR otherwise.
+ */
+EN_LED_ERROR_t LED_init(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
+    EN_DIO_Error_T dioError = DIO_init(u8_a_ledPin, en_a_ledPort, DIO_OUT);
+    return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
-/*******************************************************************************************************************************************************************/
-/*
- Name: LED_u8SetLEDPort
- Input: u8 Operation
- Output: u8 Error or No Error
- Description: Function to switch LEDs on, off, or toggle.
-*/
-u8 LED_u8SetLEDPort( u8 Cpy_u8Operation )
-{
-	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_OK;
-		
-	/* Check 1: Operation is in the valid range */
-	if ( Cpy_u8Operation <= LED_U8_TOGGLE )
-	{
-		/* Check 1.1: Required Operation */
-		switch ( Cpy_u8Operation )
-		{
-			case LED_U8_ON    : DIO_u8SetPortValue   ( LED_U8_PORT, DIO_U8_PORT_HIGH ); break;
-			case LED_U8_OFF   : DIO_u8SetPortValue   ( LED_U8_PORT, DIO_U8_PORT_LOW  ); break;
-			case LED_U8_TOGGLE: DIO_u8TogglePortValue( LED_U8_PORT );					break;
-		}
-	}
-	/* Check 2: Operation is not in the valid range */
-	else
-	{
-		/* Update error state = NOK, wrong Operation! */
-		Loc_u8ErrorState = STD_NOK;
-	}
-		
-	return Loc_u8ErrorState;
+/**
+ * Turn on an LED connected to a specific pin on a specific port.
+ *
+ * @param[in] en_a_ledPort The port where the LED is connected. (PORT_A, PORT_B, PORT_C, or PORT_D)
+ * @param[in] u8_a_ledPin The pin number where the LED is connected. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ * @return The status of the LED operation, either LED_OK or LED_ERROR.
+ */
+EN_LED_ERROR_t LED_on(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
+    EN_DIO_Error_T dioError = DIO_write(u8_a_ledPin, en_a_ledPort, DIO_U8_PIN_HIGH);
+    return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
-/*******************************************************************************************************************************************************************/
+/**
+ * @brief Turns off an LED on a specific port and pin.
+ *
+ * @param[in] en_a_ledPort the port of the LED to turn off (PORT_A, PORT_B, PORT_C, or PORT_D)
+ * @param[in] u8_a_ledPin the pin number of the LED to turn off (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ * @return EN_LED_ERROR_t LED_OK if successful, or LED_ERROR if there was an error.
+ */
+EN_LED_ERROR_t LED_off(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
+EN_DIO_Error_T dioError = DIO_write(u8_a_ledPin, en_a_ledPort, DIO_U8_PIN_LOW);
+return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
+}
+
+
+/* ******************************************************************** */
+/* LED ARRAYS Prototypes                                                */
+/* ******************************************************************** */
+
+/**
+ * @brief Initializes a group of LEDs connected to a specific port and pins with
+ *        a specified mask as outputs.
+ *
+ * @param [in]en_a_ledPort The port to which the LEDs are connected.
+ * @param [in]u8_a_mask The mask to set the direction of the specified pins.
+ *
+ * @return EN_LED_ERROR_t Returns LED_OK if the operation is successful, and
+ *         LED_ERROR if the operation fails.
+ */
+EN_LED_ERROR_t LED_arrayInit(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
+    EN_DIO_Error_T dioError = DIO_portInit(en_a_ledPort, DIO_OUT, u8_a_mask);
+    return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
+}
+
+/**
+ * @brief Turns on the specified LED pins by setting the corresponding bits in the specified LED port to high.
+ *
+ * @param [in]en_a_ledPort The LED port to turn on the LED pins from (PORT_A, PORT_B, PORT_C or PORT_D).
+ * @param [in]u8_a_mask The bit mask specifying which LED pins to turn on. (DIO_NO_MASK, DIO_MASK_BITS_n..)
+ * @return EN_LED_ERROR_t Returns LED_OK if the LED pins were successfully turned on,
+ *         or LED_ERROR if there was an error in turning on the LED pins.
+ */
+EN_LED_ERROR_t LED_arrayOn(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
+    EN_DIO_Error_T dioError = DIO_portWrite(en_a_ledPort, DIO_U8_PORT_HIGH, u8_a_mask);
+    return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
+}
+
+/**
+ * @brief Turns off the specified LED pins by setting the corresponding bits in the specified LED port to low.
+ *
+ * @param [in]en_a_ledPort The LED port to turn off the LED pins from (PORT_A, PORT_B, PORT_C or PORT_D).
+ * @param [in]u8_a_mask The bit mask specifying which LED pins to turn off.  (DIO_NO_MASK, DIO_MASK_BITS_n..)
+ * @return EN_LED_ERROR_t Returns LED_OK if the LED pins were successfully turned off, or LED_ERROR if there
+ *         was an error in turning off the LED pins.
+ */
+EN_LED_ERROR_t LED_arrayOff(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask){
+    EN_DIO_Error_T dioError = DIO_portWrite(en_a_ledPort, DIO_U8_PORT_LOW, u8_a_mask);
+    return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
+}
