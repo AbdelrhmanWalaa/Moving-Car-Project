@@ -28,7 +28,7 @@ u8 Glb_u8DCMDirection = DCM_U8_CLOCKWISE_DIRECTION;
 u8 DCM_u8RotateDCMInOneDirection ( u16 Cpy_u16RotateSpeed )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 		
 	/* Check 1: RotateSpeed is in the valid range */
 	if ( Cpy_u16RotateSpeed <= DCM_U16_TOP_SPEED )
@@ -52,7 +52,7 @@ u8 DCM_u8RotateDCMInOneDirection ( u16 Cpy_u16RotateSpeed )
 	else
 	{
 		/* Update error state = NOK, wrong RotateSpeed! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -68,7 +68,7 @@ u8 DCM_u8RotateDCMInOneDirection ( u16 Cpy_u16RotateSpeed )
 u8 DCM_u8RotateDCMInTwoDirections( u8 Cpy_u8RotateDirection, u16 Cpy_u16RotateSpeed )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: RotateDirection and RotateSpeed are in the valid range */
 	if ( ( Cpy_u8RotateDirection <= DCM_U8_COUNTER_CLOCKWISE_DIRECTION ) && ( Cpy_u16RotateSpeed <= DCM_U16_TOP_SPEED ) )
@@ -121,7 +121,7 @@ u8 DCM_u8RotateDCMInTwoDirections( u8 Cpy_u8RotateDirection, u16 Cpy_u16RotateSp
 	else
 	{
 		/* Update error state = NOK, wrong RotateDirection or RotateSpeed! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -154,7 +154,7 @@ vd DCM_vdChangeDCMDirection( void )
 u8 DCM_u8SetDutyCycleOfPWM ( u16 Cpy_u16DutyCycleValue )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: DutyCycleValue is in the valid range */
 	if ( Cpy_u16DutyCycleValue <= DCM_U16_TOP_SPEED )
@@ -181,7 +181,7 @@ u8 DCM_u8SetDutyCycleOfPWM ( u16 Cpy_u16DutyCycleValue )
 	else
 	{
 		/* Update error state = NOK, wrong DutyCycleValue! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 	
 	return Loc_u8ErrorState;
@@ -197,7 +197,7 @@ u8 DCM_u8SetDutyCycleOfPWM ( u16 Cpy_u16DutyCycleValue )
 u8 DCM_u8GetDutyCycleOfPWM ( u8 *Cpy_pu8ReturnedDutyCycleValue )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: Pointer is not equal to NULL */
 	if ( Cpy_pu8ReturnedDutyCycleValue != NULL )
@@ -233,7 +233,7 @@ u8 DCM_u8GetDutyCycleOfPWM ( u8 *Cpy_pu8ReturnedDutyCycleValue )
 	else
 	{
 		/* Update error state = NOK, Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 		
 	return Loc_u8ErrorState;

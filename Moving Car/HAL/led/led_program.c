@@ -20,7 +20,7 @@
 u8 LED_u8SetLEDPin ( u8 Cpy_u8LEDId, u8 Cpy_u8Operation )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 		
 	/* Check 1: LEDId and Operation are in the valid range */
 	if ( ( Cpy_u8Operation <= LED_U8_TOGGLE ) && ( Cpy_u8LEDId <= LED_U8_7 ) )
@@ -78,7 +78,7 @@ u8 LED_u8SetLEDPin ( u8 Cpy_u8LEDId, u8 Cpy_u8Operation )
 	else
 	{
 		/* Update error state = NOK, wrong LEDId or Operation! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 		
 	return Loc_u8ErrorState;
@@ -94,7 +94,7 @@ u8 LED_u8SetLEDPin ( u8 Cpy_u8LEDId, u8 Cpy_u8Operation )
 u8 LED_u8SetLEDPort( u8 Cpy_u8Operation )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 		
 	/* Check 1: Operation is in the valid range */
 	if ( Cpy_u8Operation <= LED_U8_TOGGLE )
@@ -111,7 +111,7 @@ u8 LED_u8SetLEDPort( u8 Cpy_u8Operation )
 	else
 	{
 		/* Update error state = NOK, wrong Operation! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 		
 	return Loc_u8ErrorState;

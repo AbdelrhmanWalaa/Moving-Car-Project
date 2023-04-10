@@ -356,7 +356,7 @@ vd TMR_vdTMR2Initialization  ( void )
 u8 TMR_u8EnableTMR		     ( u8 Cpy_u8TimerId )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range */
 	if ( Cpy_u8TimerId <= TMR_U8_TMR2 )
@@ -478,7 +478,7 @@ u8 TMR_u8EnableTMR		     ( u8 Cpy_u8TimerId )
 	else
 	{
 		/* Update error state = NOK, wrong TimertId! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -494,7 +494,7 @@ u8 TMR_u8EnableTMR		     ( u8 Cpy_u8TimerId )
 u8 TMR_u8DisableTMR		     ( u8 Cpy_u8TimerId )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range */
 	if ( Cpy_u8TimerId <= TMR_U8_TMR2 )
@@ -578,7 +578,7 @@ u8 TMR_u8DisableTMR		     ( u8 Cpy_u8TimerId )
 	else
 	{
 		/* Update error state = NOK, wrong TimertId! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -594,7 +594,7 @@ u8 TMR_u8DisableTMR		     ( u8 Cpy_u8TimerId )
 u8 TMR_u8EnableTMRInterrupt  ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy_u8InterruptType )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId, ChannelId and InterruptType are in the valid range */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) && ( Cpy_u8InterruptType <= TMR_U8_COMP_INTERRUPT ) )
@@ -645,7 +645,7 @@ u8 TMR_u8EnableTMRInterrupt  ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cp
 	else
 	{
 		/* Update error state = NOK, wrong TimertId, ChannelId or InterruptType! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -661,7 +661,7 @@ u8 TMR_u8EnableTMRInterrupt  ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cp
 u8 TMR_u8DisableTMRInterrupt ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy_u8InterruptType )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId, ChannelId and InterruptType are in the valid range */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) && ( Cpy_u8InterruptType <= TMR_U8_COMP_INTERRUPT ) )
@@ -712,7 +712,7 @@ u8 TMR_u8DisableTMRInterrupt ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cp
 	else
 	{
 		/* Update error state = NOK, wrong TimertId, ChannelId or InterruptType! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -728,7 +728,7 @@ u8 TMR_u8DisableTMRInterrupt ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cp
 u8 TMR_u8EnableCOMPPin	     ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy_u8COMPMode )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId, ChannelId and COMPMode are in the valid range */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) && ( Cpy_u8COMPMode <= TMR_U8_SET_OCR_PIN ) )
@@ -789,7 +789,7 @@ u8 TMR_u8EnableCOMPPin	     ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy
 	else
 	{
 		/* Update error state = NOK, wrong TimertId, ChannelId or COMPMode! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 	
 	return Loc_u8ErrorState;
@@ -805,7 +805,7 @@ u8 TMR_u8EnableCOMPPin	     ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy
 u8 TMR_u8DisableCOMPPin		 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId )
 {	 
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId and ChannelId are in the valid range */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) )
@@ -832,7 +832,7 @@ u8 TMR_u8DisableCOMPPin		 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId )
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or COMPMode! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 	
 	return Loc_u8ErrorState;
@@ -848,7 +848,7 @@ u8 TMR_u8DisableCOMPPin		 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId )
 u8 TMR_u8GetNumberOfOVF		 ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedNumberOfOVF )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range, and Pointer is not equal to NULL */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_pu16ReturnedNumberOfOVF != NULL ) )
@@ -865,7 +865,7 @@ u8 TMR_u8GetNumberOfOVF		 ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedNumberOfOVF )
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -881,7 +881,7 @@ u8 TMR_u8GetNumberOfOVF		 ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedNumberOfOVF )
 u8 TMR_u8GetOVFFlagStatus    ( u8 Cpy_u8TimerId, u8 *Cpy_pu8ReturnedFlagStatus )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range, and Pointer is not equal to NULL */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_pu8ReturnedFlagStatus != NULL ) )
@@ -898,7 +898,7 @@ u8 TMR_u8GetOVFFlagStatus    ( u8 Cpy_u8TimerId, u8 *Cpy_pu8ReturnedFlagStatus )
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -914,7 +914,7 @@ u8 TMR_u8GetOVFFlagStatus    ( u8 Cpy_u8TimerId, u8 *Cpy_pu8ReturnedFlagStatus )
 u8 TMR_u8ClearOVFFlag	     ( u8 Cpy_u8TimerId )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range */
 	if ( Cpy_u8TimerId <= TMR_U8_TMR2 )
@@ -931,7 +931,7 @@ u8 TMR_u8ClearOVFFlag	     ( u8 Cpy_u8TimerId )
 	else
 	{
 		/* Update error state = NOK, wrong TimertId! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -948,7 +948,7 @@ u8 TMR_u8ClearOVFFlag	     ( u8 Cpy_u8TimerId )
 u8 TMR_u8OVFSetCallBack	     ( u8 Cpy_u8TimerId, void ( *Cpy_pfOVFInterruptAction ) ( void ) )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range, and Pointer to Function is not equal to NULL */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_pfOVFInterruptAction != NULL ) )
@@ -960,7 +960,7 @@ u8 TMR_u8OVFSetCallBack	     ( u8 Cpy_u8TimerId, void ( *Cpy_pfOVFInterruptActio
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or Pointer to Function is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -977,7 +977,7 @@ u8 TMR_u8OVFSetCallBack	     ( u8 Cpy_u8TimerId, void ( *Cpy_pfOVFInterruptActio
 u8 TMR_u8COMPSetCallBack	 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, void ( *Cpy_pfCOMPInterruptAction ) ( void ) )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId and ChannelId are in the valid range, and Pointer to Function is not equal to NULL */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) && ( Cpy_pfCOMPInterruptAction != NULL ) )
@@ -997,7 +997,7 @@ u8 TMR_u8COMPSetCallBack	 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, void ( *
 	else
 	{
 		/* Update error state = NOK, wrong TimertId, ChannelId, or Pointer to Function is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -1013,7 +1013,7 @@ u8 TMR_u8COMPSetCallBack	 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, void ( *
 u8 TMR_u8GetCounterValue     ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedCounterValue )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId is in the valid range, and Pointer is not equal to NULL */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_pu16ReturnedCounterValue != NULL ) )
@@ -1030,7 +1030,7 @@ u8 TMR_u8GetCounterValue     ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedCounterVal
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -1046,7 +1046,7 @@ u8 TMR_u8GetCounterValue     ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedCounterVal
 u8 TMR_u8SetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 Cpy_u16CompareMatchValue )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId and Timer1ChannelId are in the valid range */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) )
@@ -1073,7 +1073,7 @@ u8 TMR_u8SetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 C
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or ChannelId! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -1089,7 +1089,7 @@ u8 TMR_u8SetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 C
 u8 TMR_u8GetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 *Cpy_pu16ReturnedCompareMatchValue )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: TimertId and Timer1ChannelId are in the valid range, and Pointer is not equal to NULL */
 	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_u8Timer1ChannelId <= TMR_U8_TMR_1_CHANNEL_B ) && ( Cpy_pu16ReturnedCompareMatchValue != NULL ) )
@@ -1116,7 +1116,7 @@ u8 TMR_u8GetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 *
 	else
 	{
 		/* Update error state = NOK, wrong TimertId or ChannelId, or Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
@@ -1144,7 +1144,7 @@ vd TMR_vdSetInputCaptureValue( u16 Cpy_u16InputCaptureValue )
 u8 TMR_u8GetInputCaptureValue( u16 *Cpy_pu16ReturnedInputCaptureValue )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: Pointer is not equal to NULL */
 	if ( Cpy_pu16ReturnedInputCaptureValue != NULL )
@@ -1155,7 +1155,7 @@ u8 TMR_u8GetInputCaptureValue( u16 *Cpy_pu16ReturnedInputCaptureValue )
 	else
 	{
 		/* Update error state = NOK, Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 
 	return Loc_u8ErrorState;
