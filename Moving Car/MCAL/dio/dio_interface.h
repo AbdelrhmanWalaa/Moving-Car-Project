@@ -29,14 +29,14 @@
 // DIO PORT names enum
 typedef enum EN_DIO_PORT_T
 {
-    A, B, C, D
+    PORT_A, PORT_B, PORT_C, PORT_D
 }EN_DIO_PORT_T;
 
 // DIO Direction enum
 typedef enum EN_DIO_DIRECTION_T
 {
-    IN = 0,
-    OUT = 1
+    DIO_IN = 0,
+    DIO_OUT = 1
 }EN_DIO_DIRECTION_T;
 
 typedef enum EN_DIO_Error_T
@@ -58,7 +58,7 @@ typedef enum EN_DIO_Error_T
  * It sets the Data Direction Register (DDR) of the port to the given direction for the specified pin.
  *
  * @param[in] u8_a_pinNumber The pin number of the DIO interface to initialize (0 to 7)
- * @param[in] en_a_portNumber The port number of the DIO interface to initialize (A, B, C or D)
+ * @param[in] en_a_portNumber The port number of the DIO interface to initialize (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] en_a_direction The direction to set for the pin (INPUT or OUTPUT)
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
@@ -75,7 +75,7 @@ EN_DIO_Error_T DIO_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, EN_DIO
  * must be valid and in range for the DIO interface to function correctly.
  *
  * @param[in] u8_a_pinNumber The pin number to read from the port (0 to 7)
- * @param[in] en_a_portNumber The port number of the DIO interface to read from (A, B, C or D)
+ * @param[in] en_a_portNumber The port number of the DIO interface to read from (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[out] u8_a_value Pointer to an unsigned 8-bit integer where the value of the pin will be stored
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
@@ -90,7 +90,7 @@ EN_DIO_Error_T DIO_read(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 * u
     If the pin number is valid, it writes the value to the specified port using the WRITE_BIT macro.
     If the given value is not a valid digital value, the function returns an error.
     @param u8_a_pinNumber The number of the pin to write to.
-    @param en_a_portNumber The port number to write to.
+    @param en_a_portNumber The port number to write to. (PORT_A, PORT_B, PORT_C or PORT_D)
     @param u8_a_value The digital value to write (either DIO_U8_PIN_HIGH or DIO_U8_PIN_LOW).
     @return EN_DIO_Error_T Returns DIO_OK if the write is successful, DIO_Error otherwise.
     */
@@ -103,7 +103,7 @@ EN_DIO_Error_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8
  * This function toggles the state of a pin in the specified port.
  *
  * @param u8_a_pinNumber The pin number to toggle.
- * @param en_a_portNumber The port to which the pin belongs.
+ * @param en_a_portNumber The port to which the pin belongs. (PORT_A, PORT_B, PORT_C or PORT_D)
  * @return EN_DIO_Error_T Returns DIO_OK on success or DIO_Error if an error occurred.
  */
 EN_DIO_Error_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber);
@@ -120,7 +120,7 @@ EN_DIO_Error_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber);
  * off any bits that are not specified in the mask parameter. The DDR determines whether the corresponding
  * pins of the port are inputs or outputs.
  *
- * @param[in] en_a_portNumber The port number of the DIO interface to initialize (A, B, C or D)
+ * @param[in] en_a_portNumber The port number of the DIO interface to initialize (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] en_a_dir The direction to set for the port (INPUT or OUTPUT)
  * @param[in] u8_a_mask The mask to use when setting the DDR of the port
  *
@@ -137,7 +137,7 @@ EN_DIO_Error_T DIO_portInit(EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en
  * specified in the mask parameter. The PORT determines the state of the corresponding pins of the port that
  * are configured as outputs.
  *
- * @param[in] en_a_portNumber The port number of the DIO interface to write to (A, B, C or D)
+ * @param[in] en_a_portNumber The port number of the DIO interface to write to (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] u8_a_byte The byte value to write to the port
  * @param[in] u8_a_mask The mask to use when setting the PORT of the port
  *
@@ -154,7 +154,7 @@ EN_DIO_Error_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_byte, u8 u8_
  * to the bits set in the mask. The PORT determines the state of the corresponding pins of the port that
  * are configured as outputs.
  *
- * @param[in] en_a_portNumber The port number of the DIO interface to toggle (A, B, C or D)
+ * @param[in] en_a_portNumber The port number of the DIO interface to toggle (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] u8_a_mask The mask to use when toggling the PORT of the port
  *
  * @return An EN_DIO_Error_T value indicating the success or failure of the operation
