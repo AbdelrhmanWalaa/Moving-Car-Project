@@ -79,3 +79,5 @@ gen
 #User Specific Files
 *.atsuo
 
+# CMake
+cmake-build-debug/
