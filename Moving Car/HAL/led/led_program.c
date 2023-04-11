@@ -25,7 +25,7 @@
  * LED_ERROR otherwise.
  */
 EN_LED_ERROR_t LED_init(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
-    EN_DIO_Error_T dioError = DIO_init(u8_a_ledPin, en_a_ledPort, DIO_OUT);
+    EN_DIO_ERROR_T dioError = DIO_init(u8_a_ledPin, en_a_ledPort, DIO_OUT);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
@@ -37,7 +37,7 @@ EN_LED_ERROR_t LED_init(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
  * @return The status of the LED operation, either LED_OK or LED_ERROR.
  */
 EN_LED_ERROR_t LED_on(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
-    EN_DIO_Error_T dioError = DIO_write(u8_a_ledPin, en_a_ledPort, DIO_U8_PIN_HIGH);
+    EN_DIO_ERROR_T dioError = DIO_write(u8_a_ledPin, en_a_ledPort, DIO_U8_PIN_HIGH);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
@@ -49,7 +49,7 @@ EN_LED_ERROR_t LED_on(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
  * @return EN_LED_ERROR_t LED_OK if successful, or LED_ERROR if there was an error.
  */
 EN_LED_ERROR_t LED_off(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
-EN_DIO_Error_T dioError = DIO_write(u8_a_ledPin, en_a_ledPort, DIO_U8_PIN_LOW);
+EN_DIO_ERROR_T dioError = DIO_write(u8_a_ledPin, en_a_ledPort, DIO_U8_PIN_LOW);
 return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
@@ -69,7 +69,7 @@ return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
  *         LED_ERROR if the operation fails.
  */
 EN_LED_ERROR_t LED_arrayInit(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
-    EN_DIO_Error_T dioError = DIO_portInit(en_a_ledPort, DIO_OUT, u8_a_mask);
+    EN_DIO_ERROR_T dioError = DIO_portInit(en_a_ledPort, DIO_OUT, u8_a_mask);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
@@ -82,7 +82,7 @@ EN_LED_ERROR_t LED_arrayInit(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
  *         or LED_ERROR if there was an error in turning on the LED pins.
  */
 EN_LED_ERROR_t LED_arrayOn(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
-    EN_DIO_Error_T dioError = DIO_portWrite(en_a_ledPort, DIO_U8_PORT_HIGH, u8_a_mask);
+    EN_DIO_ERROR_T dioError = DIO_portWrite(en_a_ledPort, DIO_U8_PORT_HIGH, u8_a_mask);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
@@ -95,6 +95,6 @@ EN_LED_ERROR_t LED_arrayOn(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
  *         was an error in turning off the LED pins.
  */
 EN_LED_ERROR_t LED_arrayOff(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask){
-    EN_DIO_Error_T dioError = DIO_portWrite(en_a_ledPort, DIO_U8_PORT_LOW, u8_a_mask);
+    EN_DIO_ERROR_T dioError = DIO_portWrite(en_a_ledPort, DIO_U8_PORT_LOW, u8_a_mask);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }

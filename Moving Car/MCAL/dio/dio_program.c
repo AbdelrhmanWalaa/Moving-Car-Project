@@ -26,10 +26,10 @@
  * @param[in] en_a_portNumber The port number of the DIO interface to initialize (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] en_a_direction The direction to set for the pin (DIO_IN or DIO_OUT)
  *
- * @return An EN_DIO_Error_T value indicating the success or failure of the operation
+ * @return An EN_DIO_ERROR_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_ERROR otherwise)
  */
-EN_DIO_Error_T DIO_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en_a_direction) {
+EN_DIO_ERROR_T DIO_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en_a_direction) {
 
     if(u8_a_pinNumber > DIO_MAX_PIN_NO || u8_a_pinNumber < DIO_MIN_PIN_NO) return DIO_ERROR;
 
@@ -95,10 +95,10 @@ EN_DIO_Error_T DIO_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, EN_DIO
  * @param[in] en_a_portNumber The port number of the DIO interface to read from (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[out] u8_a_value Pointer to an unsigned 8-bit integer where the value of the pin will be stored
  *
- * @return An EN_DIO_Error_T value indicating the success or failure of the operation
+ * @return An EN_DIO_ERROR_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_ERROR otherwise)
  */
-EN_DIO_Error_T DIO_read(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 * u8_a_value) {
+EN_DIO_ERROR_T DIO_read(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 * u8_a_value) {
     if(u8_a_pinNumber > DIO_MAX_PIN_NO || u8_a_pinNumber < DIO_MIN_PIN_NO) return DIO_ERROR;
 
     switch (en_a_portNumber) {
@@ -133,9 +133,9 @@ EN_DIO_Error_T DIO_read(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 * u
  * @param[in] en_a_portNumber The port number to write to. (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] u8_a_value The digital value to write (either DIO_U8_PIN_HIGH or DIO_U8_PIN_LOW).
  *
- * @return EN_DIO_Error_T Returns DIO_OK if the write is successful, DIO_ERROR otherwise.
+ * @return EN_DIO_ERROR_T Returns DIO_OK if the write is successful, DIO_ERROR otherwise.
     */
-EN_DIO_Error_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8_a_value) {
+EN_DIO_ERROR_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8_a_value) {
     if(u8_a_pinNumber > DIO_MAX_PIN_NO || u8_a_pinNumber < DIO_MIN_PIN_NO) return DIO_ERROR;
     switch (en_a_portNumber) {
         case PORT_A:
@@ -185,13 +185,13 @@ EN_DIO_Error_T DIO_write(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber, u8 u8
  *
  * @param[in] u8_a_pinNumber The pin number to toggle. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  * @param[in] en_a_portNumber The port to which the pin belongs. (PORT_A, PORT_B, PORT_C or PORT_D)
- * @return EN_DIO_Error_T Returns DIO_OK on success or DIO_ERROR if an error occurred.
+ * @return EN_DIO_ERROR_T Returns DIO_OK on success or DIO_ERROR if an error occurred.
  */
-EN_DIO_Error_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber){
+EN_DIO_ERROR_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber){
     if(u8_a_pinNumber > DIO_MAX_PIN_NO || u8_a_pinNumber < DIO_MIN_PIN_NO) return DIO_ERROR;
 
     u8 *val = DIO_U8_PIN_LOW;
-    EN_DIO_Error_T res = DIO_read(u8_a_pinNumber, en_a_portNumber, val);
+    EN_DIO_ERROR_T res = DIO_read(u8_a_pinNumber, en_a_portNumber, val);
     if (res == DIO_OK) {
         // toggle bit
         *val = ((*val) == DIO_U8_PIN_LOW) ? DIO_U8_PIN_HIGH : DIO_U8_PIN_LOW;
@@ -215,10 +215,10 @@ EN_DIO_Error_T DIO_toggle(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber){
  * @param[in] en_a_dir The direction to set for the port (INPUT or OUTPUT)
  * @param[in] u8_a_mask The mask to use when setting the DDR of the port (DIO_NO_MASK, DIO_MASK_BITS_n..)
  *
- * @return An EN_DIO_Error_T value indicating the success or failure of the operation
+ * @return An EN_DIO_ERROR_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_ERROR otherwise)
  */
-EN_DIO_Error_T DIO_portInit(EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en_a_dir, u8 u8_a_mask) {
+EN_DIO_ERROR_T DIO_portInit(EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en_a_dir, u8 u8_a_mask) {
     if(u8_a_mask == 0) u8_a_mask = 0xFF;
 
     // output only masked u8_a_byte u8_a_value (used karnaugh map to calculate expression)
@@ -253,10 +253,10 @@ EN_DIO_Error_T DIO_portInit(EN_DIO_PORT_T en_a_portNumber, EN_DIO_DIRECTION_T en
  * @param[in] u8_a_portValue The byte value to write to port (DIO_U8_PORT_LOW, DIO_U8_PORT_HIGH)
  * @param[in] u8_a_mask The mask to use when setting the PORT of the port (DIO_NO_MASK, DIO_MASK_BITS_n..)
  *
- * @return An EN_DIO_Error_T value indicating the success or failure of the operation
+ * @return An EN_DIO_ERROR_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_ERROR otherwise)
  */
-EN_DIO_Error_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_portValue, u8 u8_a_mask) {
+EN_DIO_ERROR_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_portValue, u8 u8_a_mask) {
     if(u8_a_mask == 0) u8_a_mask = 0xFF;
 
     // output only masked u8_a_portValue u8_a_value (used karnaugh map to calculate expression)
@@ -290,10 +290,10 @@ EN_DIO_Error_T DIO_portWrite(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_portValue, u
  * @param[in] en_a_portNumber The port number of the DIO interface to toggle (PORT_A, PORT_B, PORT_C or PORT_D)
  * @param[in] u8_a_mask The mask to use when toggling the PORT of the port (DIO_NO_MASK, DIO_MASK_BITS_n..)
  *
- * @return An EN_DIO_Error_T value indicating the success or failure of the operation
+ * @return An EN_DIO_ERROR_T value indicating the success or failure of the operation
  *         (DIO_OK if the operation succeeded, DIO_ERROR otherwise)
  */
-EN_DIO_Error_T DIO_portToggle(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_mask)
+EN_DIO_ERROR_T DIO_portToggle(EN_DIO_PORT_T en_a_portNumber, u8 u8_a_mask)
 {
     if(u8_a_mask == 0) u8_a_mask = 0xFF;
     switch (en_a_portNumber) {
