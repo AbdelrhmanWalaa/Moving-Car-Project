@@ -40,7 +40,16 @@
 #define DIO_U8_PORT_LOW     0x00
 #define DIO_U8_PORT_HIGH    0xFF
 
-/* Bit Masking */
+/**
+ * @brief Defines masks for selecting certain bits in a byte.
+ *
+ * This pragma region contains pre-defined mask values for selecting specific bits in a byte, where DIO_NO_MASK selects
+ * all bits in the byte, and DIO_MASK_BITS_0, DIO_MASK_BITS_0_1, and so on, select a specific number of bits in the
+ * byte, starting from the 0th bit. The mask values can be used with bitwise AND operations to extract the selected
+ * bits from a byte.
+ *
+ * @note The values defined in this region assume that a byte is 8 bits wide.
+ */
 #pragma region Bit Masking Macros
 #define DIO_NO_MASK  					    0xFF
 #define DIO_MASK_BITS_0 					0x1
@@ -299,26 +308,43 @@
 #define DIO_MASK_BITS_7 					0x80
 #pragma endregion
 
-// DIO PORT names enum
+/**
+ * @brief Enumeration of possible DIO ports
+ */
 typedef enum EN_DIO_PORT_T
 {
-    PORT_A, PORT_B, PORT_C, PORT_D
+    PORT_A, /*!< Port A */
+    PORT_B, /*!< Port B */
+    PORT_C, /*!< Port C */
+    PORT_D  /*!< Port D */
 }EN_DIO_PORT_T;
 
-// DIO Direction enum
+/**
+ * @brief Enumeration for DIO direction.
+ *
+ * This enumeration defines the available directions for a Digital Input/Output (DIO) pin.
+ *
+ * @note This enumeration is used as input to the DIO driver functions for setting the pin direction.
+ */
 typedef enum EN_DIO_DIRECTION_T
 {
-    DIO_IN = 0,
-    DIO_OUT = 1
-}EN_DIO_DIRECTION_T;
+    DIO_IN = 0,     /**< Input direction */
+    DIO_OUT = 1     /**< Output direction */
+} EN_DIO_DIRECTION_T;
 
+/**
+ * @brief Enumeration of DIO error codes
+ *
+ * This enumeration defines the possible error codes that can be returned by
+ * functions in the DIO driver.
+ *
+ */
 typedef enum EN_DIO_ERROR_T
 {
-    DIO_OK = 1,
-    DIO_ERROR = 2
-}EN_DIO_ERROR_T;
+    DIO_OK,     /**< Operation completed successfully */
+    DIO_ERROR   /**< An error occurred during the operation */
+} EN_DIO_ERROR_T;
 
-/* ****************************************************************************************************************** */
 
 /* ******************************************************** */
 /*                 DIO PINS Functions                      **/
