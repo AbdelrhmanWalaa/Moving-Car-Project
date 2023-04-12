@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2023-04-12T07:29:55.060Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="CYy02XOX5hISBKcg73rz" version="21.1.2" type="device">
+<mxfile host="Electron" modified="2023-04-12T07:45:25.045Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="-Jr545km-2kOzEkbnZcf" version="21.1.2" type="device">
   <diagram name="Page-1" id="7oLeeqB4X83rpsUO6XK-">
-    <mxGraphModel dx="2012" dy="712" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3267" dy="1466" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -863,8 +863,15 @@
             <mxPoint x="862" y="1586" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="MiLEQ-yQkrviwAs_aEzq-48" value="Pin/Port Check" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fontSize=16;fontColor=#333333;fillColor=#f5f5f5;strokeColor=#666666;fontFamily=Calibri;" vertex="1" parent="1">
-          <mxGeometry x="-209" y="43" width="200" height="241" as="geometry" />
+        <mxCell id="MiLEQ-yQkrviwAs_aEzq-48" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Pin/Port Check&lt;/font&gt;" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fontSize=16;fontFamily=Calibri;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="-209" y="171" width="200" height="241" as="geometry">
+            <mxRectangle x="-207" y="152.5" width="134" height="31" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MiLEQ-yQkrviwAs_aEzq-109" value="" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="MiLEQ-yQkrviwAs_aEzq-48" source="MiLEQ-yQkrviwAs_aEzq-51" target="MiLEQ-yQkrviwAs_aEzq-53">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="143" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="" Function="EN_DIO_Error_T DIO_init(uint8_t pinNumber, EN_DIO_PORT_T portNumber, EN_DIO_DIRECTION_T direction);" tags="Flowchart" id="MiLEQ-yQkrviwAs_aEzq-51">
           <mxCell style="vsdxID=210;fillColor=#fff2cc;shape=stencil(UzV2Ls5ILEhVNTIoLinKz04tz0wpyVA1dlE1MsrMy0gtyiwBslSNXVWNndPyi1LTi/JL81Ig/IJEkEoQKze/DGRCBUSfAUiHkUElhGcK4bpBVOZk5iGpNEVVikeloQHZpsK0YlWLz1QgA+HFtMycHEgIIcujBwlQCBKcxq4A);strokeColor=#d6b656;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=1;html=1;whiteSpace=wrap;fontFamily=Calibri;" vertex="1" parent="MiLEQ-yQkrviwAs_aEzq-48">
@@ -872,23 +879,15 @@
           </mxCell>
         </UserObject>
         <mxCell id="MiLEQ-yQkrviwAs_aEzq-52" value="&lt;div style=&quot;font-size: 1px&quot;&gt;&lt;p style=&quot;text-align:center;margin-left:0;margin-right:0;margin-top:0px;margin-bottom:0px;text-indent:0;vertical-align:middle;direction:ltr;&quot;&gt;&lt;font style=&quot;font-size: 11.29px; direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&quot;&gt;pinNumber&lt;br&gt;is in range&lt;br&gt;0 .. 7&lt;br&gt;&lt;/font&gt;&lt;/p&gt;&lt;/div&gt;" style="text;vsdxID=210;fillColor=none;gradientColor=none;strokeColor=none;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=1;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;overflow=width;;html=1;fontColor=#000000;fontFamily=Calibri;" vertex="1" parent="MiLEQ-yQkrviwAs_aEzq-51">
-          <mxGeometry x="8.93" y="7.66" width="89.27" height="50.01" as="geometry" />
+          <mxGeometry x="10.93" y="13.66" width="89.27" height="50.01" as="geometry" />
         </mxCell>
-        <UserObject label="" tags="Connector" id="MiLEQ-yQkrviwAs_aEzq-55">
-          <mxCell style="vsdxID=217;edgeStyle=none;startArrow=none;endArrow=block;startSize=5;endSize=5;spacingTop=0;spacingBottom=0;spacingLeft=0;spacingRight=0;verticalAlign=middle;html=1;labelBackgroundColor=#ffffff;rounded=1;exitX=0.498;exitY=1.001;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5046728971962616;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontColor=#000000;fontFamily=Calibri;" edge="1" parent="MiLEQ-yQkrviwAs_aEzq-48" source="MiLEQ-yQkrviwAs_aEzq-51" target="MiLEQ-yQkrviwAs_aEzq-53">
-            <mxGeometry relative="1" as="geometry">
-              <mxPoint x="12" y="-1" as="offset" />
-              <Array as="points" />
-            </mxGeometry>
-          </mxCell>
-        </UserObject>
         <UserObject label="" Function="EN_DIO_Error_T DIO_init(uint8_t pinNumber, EN_DIO_PORT_T portNumber, EN_DIO_DIRECTION_T direction);" tags="Flowchart" id="MiLEQ-yQkrviwAs_aEzq-53">
           <mxCell style="vsdxID=216;fillColor=#fff2cc;shape=stencil(UzV2Ls5ILEhVNTIoLinKz04tz0wpyVA1dlE1MsrMy0gtyiwBslSNXVWNndPyi1LTi/JL81Ig/IJEkEoQKze/DGRCBUSfAUiHkUElhGcK4bpBVOZk5iGpNEVVikeloQHZpsK0YlWLz1QgA+HFtMycHEgIIcujBwlQCBKcxq4A);strokeColor=#d6b656;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=1;html=1;whiteSpace=wrap;fontFamily=Calibri;" vertex="1" parent="MiLEQ-yQkrviwAs_aEzq-48">
-            <mxGeometry x="45.5" y="147" width="107" height="66" as="geometry" />
+            <mxGeometry x="46.5" y="145.5" width="107" height="66" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="MiLEQ-yQkrviwAs_aEzq-54" value="&lt;div style=&quot;font-size: 1px&quot;&gt;&lt;p style=&quot;text-align:center;margin-left:0;margin-right:0;margin-top:0px;margin-bottom:0px;text-indent:0;vertical-align:middle;direction:ltr;&quot;&gt;&lt;font style=&quot;font-size: 11.29px; direction: ltr; letter-spacing: 0px; line-height: 120%; opacity: 1;&quot;&gt;portNumber&amp;nbsp;&lt;br&gt;is in range&lt;br&gt;A .. D&lt;br&gt;&lt;/font&gt;&lt;/p&gt;&lt;/div&gt;" style="text;vsdxID=216;fillColor=none;gradientColor=none;strokeColor=none;spacingTop=-1;spacingBottom=-1;spacingLeft=-1;spacingRight=-1;points=[[1,0.5,0],[0.5,0,0],[0.5,0,0]];labelBackgroundColor=none;rounded=1;html=1;whiteSpace=wrap;verticalAlign=middle;align=center;overflow=width;;html=1;fontColor=#000000;fontFamily=Calibri;" vertex="1" parent="MiLEQ-yQkrviwAs_aEzq-53">
-          <mxGeometry x="8.93" y="7.66" width="89.27" height="50.01" as="geometry" />
+          <mxGeometry x="10.93" y="11.66" width="89.27" height="50.01" as="geometry" />
         </mxCell>
         <mxCell id="MiLEQ-yQkrviwAs_aEzq-89" style="edgeStyle=none;curved=1;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;startSize=8;endSize=8;fontFamily=Calibri;" edge="1" parent="1" source="MiLEQ-yQkrviwAs_aEzq-56" target="Cari82qWPhB8FJyJu9n--80">
           <mxGeometry relative="1" as="geometry" />
