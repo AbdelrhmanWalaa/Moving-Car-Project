@@ -34,8 +34,8 @@ typedef enum EN_LED_ERROR_t
  *
  * This function initializes a single LED pin as output.
  *
- * @param[in] en_a_ledPort The port where the LED is located (PORT_A, PORT_B, PORT_C or PORT_D)
- * @param[in] u8_a_ledPin The pin number of the LED (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ * @param [in]en_a_ledPort The port where the LED is located (PORT_A, PORT_B, PORT_C or PORT_D)
+ * @param [in]u8_a_ledPin The pin number of the LED (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  *
  * @return EN_LED_ERROR_t Returns LED_OK if the LED was initialized successfully,
  * LED_ERROR otherwise.
@@ -45,8 +45,8 @@ EN_LED_ERROR_t LED_init(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin);
 /**
  * Turn on an LED connected to a specific pin on a specific port.
  *
- * @param[in] en_a_ledPort The port where the LED is connected. (PORT_A, PORT_B, PORT_C, or PORT_D)
- * @param[in] u8_a_ledPin The pin number where the LED is connected. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ * @param [in]en_a_ledPort The port where the LED is connected. (PORT_A, PORT_B, PORT_C, or PORT_D)
+ * @param [in]u8_a_ledPin The pin number where the LED is connected. (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  * @return The status of the LED operation, either LED_OK or LED_ERROR.
  */
 EN_LED_ERROR_t LED_on(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin);
@@ -54,8 +54,8 @@ EN_LED_ERROR_t LED_on(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin);
 /**
  * @brief Turns off an LED on a specific port and pin.
  *
- * @param[in] en_a_ledPort the port of the LED to turn off (PORT_A, PORT_B, PORT_C, or PORT_D)
- * @param[in] u8_a_ledPin the pin number of the LED to turn off (DIO_U8_PIN_0 to DIO_U8_PIN_7)
+ * @param [in]en_a_ledPort the port of the LED to turn off (PORT_A, PORT_B, PORT_C, or PORT_D)
+ * @param [in]u8_a_ledPin the pin number of the LED to turn off (DIO_U8_PIN_0 to DIO_U8_PIN_7)
  * @return EN_LED_ERROR_t LED_OK if successful, or LED_ERROR if there was an error.
  */
 EN_LED_ERROR_t LED_off(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin);
