@@ -20,7 +20,7 @@
 u8 BTN_u8GetBTNState( u8 Cpy_u8BTNId, u8 *Cpy_pu8ReturnedBTNState )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: BTNId is in the valid range, and Pointer is not equal to NULL */
 	if ( ( Cpy_u8BTNId <= BTN_U8_8 ) && ( Cpy_pu8ReturnedBTNState != NULL ) )
@@ -42,7 +42,7 @@ u8 BTN_u8GetBTNState( u8 Cpy_u8BTNId, u8 *Cpy_pu8ReturnedBTNState )
 	else
 	{
 		/* Update error state = NOK, wrong BTNId or Pointer is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 		
 	return Loc_u8ErrorState;

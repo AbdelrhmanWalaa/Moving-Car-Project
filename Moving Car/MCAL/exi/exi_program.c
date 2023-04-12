@@ -8,8 +8,8 @@
  */
  
 /* MCAL */
-#include "EXI_Private.h"
-#include "EXI_Interface.h"
+#include "exi_private.h"
+#include "exi_interface.h"
 
 /*******************************************************************************************************************************************************************/
 
@@ -29,7 +29,7 @@ static void ( *Glb_ApfINTInterrupstAction[3] ) ( void ) = { NULL, NULL, NULL };
 u8 EXI_u8EnablePIE     ( u8 Cpy_u8InterruptId, u8 Cpy_u8SenseControl )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: InterruptId and the Sense Control are in the valid range */
 	if ( ( Cpy_u8InterruptId <= EXI_U8_INT2 ) && ( Cpy_u8SenseControl <= EXI_U8_SENSE_RISING_EDGE ) )
@@ -83,7 +83,7 @@ u8 EXI_u8EnablePIE     ( u8 Cpy_u8InterruptId, u8 Cpy_u8SenseControl )
 	else
 	{
 		/* Update error state = NOK, wrong InterruptId or Sense Control! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 	
 	return Loc_u8ErrorState;
@@ -99,7 +99,7 @@ u8 EXI_u8EnablePIE     ( u8 Cpy_u8InterruptId, u8 Cpy_u8SenseControl )
 u8 EXI_u8DisablePIE    ( u8 Cpy_u8InterruptId )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 	
 	/* Check 1: InterruptId is in the valid range */
 	if ( Cpy_u8InterruptId <= EXI_U8_INT2 )
@@ -116,7 +116,7 @@ u8 EXI_u8DisablePIE    ( u8 Cpy_u8InterruptId )
 	else
 	{
 		/* Update error state = NOK, wrong InterruptId! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 	
 	return Loc_u8ErrorState;
@@ -133,7 +133,7 @@ u8 EXI_u8DisablePIE    ( u8 Cpy_u8InterruptId )
 u8 EXI_u8INTSetCallBack( u8 Cpy_u8InterruptId, void ( *Cpy_pfINTInterruptAction ) ( void ) )
 {
 	/* Define local variable to set the error state = OK */
-	u8 Loc_u8ErrorState = STD_TYPES_OK;
+	u8 Loc_u8ErrorState = STD_OK;
 
 	/* Check 1: InterruptId is in the valid range, and Pointer to Function is not equal to NULL */
 	if( ( Cpy_u8InterruptId <= EXI_U8_INT2 ) && ( Cpy_pfINTInterruptAction != NULL ) )
@@ -145,7 +145,7 @@ u8 EXI_u8INTSetCallBack( u8 Cpy_u8InterruptId, void ( *Cpy_pfINTInterruptAction 
 	else
 	{
 		/* Update error state = NOK, wrong InterruptId, or Pointer to Function is NULL! */
-		Loc_u8ErrorState = STD_TYPES_NOK;
+		Loc_u8ErrorState = STD_NOK;
 	}
 	
 	return Loc_u8ErrorState;
