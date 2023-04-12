@@ -67,7 +67,6 @@ EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable)
  */
 
 
-
 EN_TMR_ERROR_T TMR_tmr0Delay(u16 u16_a_interval)
 {
 	if (u16_a_interval > MAX_TIMER_DELAY)
@@ -102,11 +101,108 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 u16_a_interval)
 		while (u16_g_overflowNumbers > u16_g_overflowTicks)
 		{
 			while ((TMR_U8_TIFR_REG & (1 << 0)) == 0);
-			TMR_U8_TIFR_REG |= (1 << 0);
-			u16_g_overflowTicks++;
+			TMR_U8_TIFR_REG |= (1 << 0); +
+				u16_g_overflowTicks++;
 		}
 		/*stop the timer*/
 		TMR_tmr0Stop();
 	}
 	return TIMER_OK;
+}
+
+/***************************************************************************************************/
+/**
+ * @brief Start the timer by setting the desired prescaler.
+ *
+ * This function set the prescaler for timer_0.
+ * @param[in] u16 u16_a_prescaler value to set the desired prescaler.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+
+EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler)
+{
+	switch (u16_a_prescaler)
+	{
+	case 1:
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
+		SET_BIT(TMR_U8_TCCR0_REG, CS00);
+		break;
+	case 8:
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS00);
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
+		SET_BIT(TMR_U8_TCCR0_REG, CS01);
+		break;
+	case 64:
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
+		SET_BIT(TMR_U8_TCCR0_REG, CS01);
+		SET_BIT(TMR_U8_TCCR0_REG, CS00);
+		break;
+	case 256:
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS00);
+		SET_BIT(TMR_U8_TCCR0_REG, CS02);
+		break;
+	case 1024:
+		CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
+		SET_BIT(TMR_U8_TCCR0_REG, CS02);
+		SET_BIT(TMR_U8_TCCR0_REG, CS00);
+		break;
+	default:
+		return TIMER_ERROR;
+		break;
+	}
+	return TIMER_OK;
+
+}
+/**************************************************************************************************/
+/**
+ * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.
+ *
+ * This function Clear the prescaler for timer_0.
+ * @param[in] void.
+ *
+ * @return void
+ */
+
+
+void TMR_tmr0Stop(void)
+{
+	/* Stop the timer by clearing the prescaler*/
+	CLEARE_BIT(TMR_U8_TCCR0_REG, CS00);
+	CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
+	CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
+}
+/**************************************************************************************************/
+/**
+ * @brief timer compare match mode.
+ *
+ * This function set the compare value for timer_0.
+ * @param[in] u8 u8_a_outCompValue value at which the matching will occur.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue)
+{
+	if (u8_a_outCompValue > MAX_COUNTS)
+	{
+		return TIMER_ERROR;
+	}
+	else
+	{
+		/*load the out compare value with the OCR0*/
+		TMR_U8_OCR0_REG = u8_a_outCompValue;
+		/*initial value for the timer/counter register.*/
+		TMR_U8_TCNT0_REG = 0x00;
+		/* select the CTC mode for the timer0.*/
+		CLEARE_BIT(TMR_U8_TCCR0_REG, WGM00);
+		SET_BIT(TMR_U8_TCCR0_REG, WGM01);
+		/*must be set for the non_PWM mode;*/
+		SET_BIT(TMR_U8_TCCR0_REG, FOC0);
+	}
+	return TIMER_OK;
+
 }
