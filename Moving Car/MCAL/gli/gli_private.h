@@ -1,5 +1,5 @@
 /*
- * GLI_Private.h
+ * gli_private.h
  *
  *     Created on: Apr 25, 2021
  *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa

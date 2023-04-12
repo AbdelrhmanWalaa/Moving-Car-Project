@@ -1,5 +1,5 @@
 /*
- * GLI_Program.c
+ * gli_program.c
  *
  *     Created on: Apr 25, 2021
  *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
@@ -12,25 +12,19 @@
 #include "gli_interface.h"
 
 /*******************************************************************************************************************************************************************/
-/*
- Name: GLI_vdEnableGIE
- Input: void
- Output: void
- Description: Function to set I bit in SREG, to enable the Global Interrupt Enable (GIE).
-*/
-vd GLI_vdEnableGIE ( void )
+/**
+ * @brief The function enables the global interrupt enable bit.
+ */
+vd GLI_enableGIE ( void )
 {
 	SET_BIT( GLI_U8_SREG_REG, GLI_U8_I_BIT );
 }
 
 /*******************************************************************************************************************************************************************/
-/*
- Name: GLI_vdDisableGIE
- Input: void
- Output: void
- Description: Function to clear I bit in SREG, to disable the Global Interrupt Enable (GIE).
-*/
-vd GLI_vdDisableGIE( void )
+/**
+ * @brief The function disables the global interrupt enable bit.
+ */
+vd GLI_disableGIE( void )
 {
 	CLR_BIT( GLI_U8_SREG_REG, GLI_U8_I_BIT );
 }

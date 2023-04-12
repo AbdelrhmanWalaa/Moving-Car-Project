@@ -1,5 +1,5 @@
 /*
- * GLI_Interface.h
+ * gli_interface.h
  *
  *     Created on: Apr 25, 2021
  *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
@@ -20,8 +20,8 @@
 /*******************************************************************************************************************************************************************/
 /* GLI Functions' Prototypes */
 
-vd GLI_vdEnableGIE ( void );
-vd GLI_vdDisableGIE( void );
+vd GLI_enableGIE ( void );
+vd GLI_disableGIE( void );
 
 /*******************************************************************************************************************************************************************/
 
