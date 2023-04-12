@@ -3,21 +3,23 @@
  *
  *     Created on: Apr 25, 2021
  *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
- *    Description: This file contains all External Interrupt (EXI) functions' implementation, and ISR functions' prototypes and implementation.
- *  MCU Datasheet: AVR ATmega32 - https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
+ *    Description: This file contains all External Interrupt (EXI) functions' implementation,
+ *                  and ISR functions' prototypes and implementation.
+ *  MCU Datasheet: AVR ATmega32
+ *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
  */
  
 /* MCAL */
 #include "exi_private.h"
 #include "exi_interface.h"
 
-/*******************************************************************************************************************************************************************/
 /* Declaration and Initialization */
 
-/* Global Array of 3 Pointers to Functions ( because we have 3 External Interrupts ), these functions ( in APP Layer ) which those 3 Pointers will hold their addresses; are having void input arguments and void return type. */
+/* Global Array of 3 Pointers to Functions ( because we have 3 External Interrupts ),
+ * these functions ( in APP Layer ) which those 3 Pointers will hold their addresses;
+ * are having void input arguments and void return type. */
 static void ( *void_gs_apfInterrupstAction[3] ) ( void ) = { NULL, NULL, NULL };
 
-/*******************************************************************************************************************************************************************/
 /**
  * @brief The function enables a specific external interrupt with a specified sense control.
  * 
@@ -93,7 +95,6 @@ u8 EXI_enablePIE	 ( u8 u8_a_interruptId, u8 u8_a_senseControl )
 	return u8_l_errorState;
 }
 
-/*******************************************************************************************************************************************************************/
 /**
  * @brief The function disables a specified external interrupt.
  * 
@@ -130,7 +131,6 @@ u8 EXI_disablePIE    ( u8 u8_a_interruptId )
 	return u8_l_errorState;
 }
 
-/*******************************************************************************************************************************************************************/
 /**
  * @brief function sets a callback function for a specific interrupt and returns an error state.
  * 
@@ -149,7 +149,9 @@ u8 EXI_intSetCallBack( u8 u8_a_interruptId, void ( *pf_a_interruptAction ) ( voi
 	/* Check 1: InterruptId is in the valid range, and Pointer to Function is not equal to NULL */
 	if( ( u8_a_interruptId <= EXI_U8_INT2 ) && ( pf_a_interruptAction != NULL ) )
 	{
-		/* Store the passed address of function ( in APP Layer ) through pointer to function ( INTInterruptAction ) into Global Array of Pointers to Functions ( INTInterruptsAction ) in the passed index ( InterruptId ). */
+		/* Store the passed address of function ( in APP Layer ) through pointer to function
+		 * ( INTInterruptAction ) into Global Array of Pointers to Functions ( INTInterruptsAction )
+		 * in the passed index ( InterruptId ). */
 		void_gs_apfInterrupstAction[u8_a_interruptId] = pf_a_interruptAction;
 	}
 	/* Check 2: InterruptId is not in the valid range, or Pointer to Function is equal to NULL */
@@ -162,16 +164,26 @@ u8 EXI_intSetCallBack( u8 u8_a_interruptId, void ( *pf_a_interruptAction ) ( voi
 	return u8_l_errorState;
 }
 
-/*******************************************************************************************************************************************************************/
 
-/* ISR functions' prototypes of External Interrupt Request 0 ( INT0 ), External Interrupt Request 1 ( INT1 ), and External Interrupt Request 2 ( INT2 ) respectively */
+/**
+ * ISR function prototypes for External Interrupt Request 0 ( INT0 )
+ * */
 void __vector_1( void )		__attribute__((signal));
+
+/**
+ * ISR function prototypes for External Interrupt Request 1 ( INT1 )
+ * */
 void __vector_2( void )		__attribute__((signal));
+
+/**
+ * ISR function prototypes for External Interrupt Request 2 ( INT2 )
+ * */
 void __vector_3( void )		__attribute__((signal));
 
-/*******************************************************************************************************************************************************************/
 
-/* ISR function implementation of INT0 */
+/**
+ * ISR function implementation of INT0
+ * */
 void __vector_1( void )
 {
 	/* Check: INT0 index of the Global Array is not equal to NULL */
@@ -182,9 +194,9 @@ void __vector_1( void )
 	}	
 }
 
-/*******************************************************************************************************************************************************************/
-
-/* ISR function implementation of INT1 */
+/**
+ * ISR function implementation of INT1
+ * */
 void __vector_2( void )
 {
 	/* Check: INT1 index of the Global Array is not equal to NULL */
@@ -195,9 +207,10 @@ void __vector_2( void )
 	}	
 }
 
-/*******************************************************************************************************************************************************************/
 
-/* ISR function implementation of INT2 */
+/**
+ * ISR function implementation of INT2
+ * */
 void __vector_3( void )
 {
 	/* Check: INT2 index of the Global Array is not equal to NULL */
@@ -207,5 +220,3 @@ void __vector_3( void )
 		void_gs_apfInterrupstAction[EXI_U8_INT2]();
 	}	
 }
-
-/*******************************************************************************************************************************************************************/
