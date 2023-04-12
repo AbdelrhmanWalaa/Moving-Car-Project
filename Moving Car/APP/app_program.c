@@ -6,6 +6,10 @@
  *  Description: This file contains all Application (APP) functions' implementation.
  */ 
 
+/* APP */
+#include "app_config.h"
+#include "app_interface.h"
+
 /*******************************************************************************************************************************************************************/
 /* Declaration and Initialization */
 
@@ -43,7 +47,9 @@ void APP_startProgram  ( void )
 		switch( u8_gs_appMode )
 		{
 			case APP_CAR_STOP:
+			
 				// stop Car
+				
 				break;
 				
 			case APP_CAR_START:

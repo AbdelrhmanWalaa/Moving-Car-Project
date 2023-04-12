@@ -34,10 +34,10 @@
 /*******************************************************************************************************************************************************************/
 /* EXI Functions' Prototypes */
 
-u8 EXI_u8EnablePIE     ( u8 Cpy_u8InterruptId, u8 Cpy_u8SenseControl );
-u8 EXI_u8DisablePIE    ( u8 Cpy_u8InterruptId );
+u8 EXI_enablePIE	 ( u8 u8_a_interruptId, u8 u8_a_senseControl );
+u8 EXI_disablePIE    ( u8 u8_a_interruptId );
 
-u8 EXI_u8INTSetCallBack( u8 Cpy_u8InterruptId, void ( *Cpy_pfINTInterruptAction ) ( void ) );
+u8 EXI_intSetCallBack( u8 u8_a_interruptId, void ( *pf_a_interruptAction ) ( void ) );
 
 /*******************************************************************************************************************************************************************/
 
