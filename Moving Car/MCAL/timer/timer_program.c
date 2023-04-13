@@ -20,6 +20,11 @@
 u16 u16_g_overflowNumbers = 0;
 u16 u16_g_overflowTicks = 0;
 
+u16 u16_g_overflow2Ticks = 0;
+u16 u16_g_overflow2Numbers = 0;
+
+void (*Glb_ApfOVFInterruptsAction)(void) = NULL;
+
 /*******************************************************************************************************************************************************************/
 /* ***************************************************************************************************************** */
 
@@ -274,29 +279,20 @@ EN_TMR_ERROR_T TMR_tmr2Delay(u16 u16_a_interval)
 		{
 			/*just on overflow is required*/
 			TMR_U8_TCNT2_REG = (u8)((MAX_DELAY - d64_a_delay) / TICK_TIME);
-			u16_g_overflowNumbers = 1;
+			u16_g_overflow2Numbers = 1;
 		}
 		else if (d64_a_delay == MAX_DELAY)
 		{
 			TMR_U8_TCNT2_REG = 0x00;
-			u16_g_overflowNumbers = 1;
+			u16_g_overflow2Numbers = 1;
 		}
 		else
 		{
 			u16_g_overflowNumbers = ceil(d64_a_delay / MAX_DELAY);
             TMR_U8_TCNT2_REG = (u8)((MAX_COUNTS) - ((d64_a_delay - (MAX_DELAY * (u16_g_overflowNumbers - 1.0))) / TICK_TIME)); // in decimal  (0 - 255)
 		}
-		u16_g_overflowTicks = 0;
+		u16_g_overflow2Ticks = 0;
 		TMR_tmr2Start(1024);
-		/*Polling the overflowNumbers and the overflow flag bit*/
-		while (u16_g_overflowNumbers > u16_g_overflowTicks)
-		{
-			while ((TMR_U8_TIFR_REG & (1 << TMR_U8_TOV2_BIT)) == 0);
-			TMR_U8_TIFR_REG |= (1 << TMR_U8_TOV2_BIT);
-			u16_g_overflowTicks++;
-		}
-		/*stop the timer*/
-		TMR_tmr2Stop();
 	}
 	return TIMER_OK;
 }
@@ -551,34 +547,45 @@ EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle)
 /*******************************************************************************************************************************************************************/
 /*
  Name: TMR_u8OVFSetCallBack
- Input: u8 TimerId and Pointer to function OVFInterruptAction taking void and returning void
- Output: u8 Error or No Error
+ Input: Pointer to function OVFInterruptAction taking void and returning void
+ Output: EN_TMR_ERROR_T Error or No Error
  Description: Function to receive an address of a function ( in APP Layer ) to be called back in ISR function of the passed Timer ( TimerId ),
 			  the address is passed through a pointer to function ( OVFInterruptAction ), and then pass this address to ISR function.
 */
 
-/*
-u8 TMR_u8OVFSetCallBack	     ( u8 Cpy_u8TimerId, void ( *Cpy_pfOVFInterruptAction ) ( void ) )
-{
-	// Define local variable to set the error state = OK
-	u8 Loc_u8ErrorState = STD_OK;
 
-	// Check 1: TimertId is in the valid range, and Pointer to Function is not equal to NULL
-	if ( ( Cpy_u8TimerId <= TMR_U8_TMR2 ) && ( Cpy_pfOVFInterruptAction != NULL ) )
+EN_TMR_ERROR_T TMR_u8OVFSetCallBack(void (*Cpy_pfOVFInterruptAction) (void))
+{
+	// Check if the Pointer to Function is not equal to NULL 
+	if (Cpy_pfOVFInterruptAction != NULL)
 	{
-		// Store the passed address of function ( in APP Layer ) through pointer to function ( OVFInterruptAction ) into Global Array of Pointers to Functions ( OVFInterruptsAction ) in the passed index ( TimerId ).
-		Glb_ApfOVFInterruptsAction[Cpy_u8TimerId] = Cpy_pfOVFInterruptAction;
+		// Store the passed address of function ( in APP Layer ) through pointer to function ( OVFInterruptAction ) into Global Array of Pointers to Functions ( OVFInterruptsAction ) in the passed index ( TimerId ). 
+		Glb_ApfOVFInterruptsAction = Cpy_pfOVFInterruptAction;
+		return TIMER_OK;
 	}
-	// Check 2: TimertId is not in the valid range, or Pointer to Function is equal to NULL
 	else
 	{
-		// Update error state = NOK, wrong TimertId or Pointer to Function is NULL!
-		Loc_u8ErrorState = STD_NOK;
+		return TIMER_ERROR;
 	}
 
-	return Loc_u8ErrorState;
 }
-*/
+
+
+ISR(TIMER2_OVF_vect)
+{
+	u16_g_overflow2Ticks++;
+	TMR_U8_TCNT2_REG = u8_g_tmr2InitialVal;
+	if (u16_g_overflow2Numbers > u16_g_overflow2Ticks)
+	{
+		u16_g_overflow2Ticks = 0;
+		TMR_tmr2Stop();
+		if (Glb_ApfOVFInterruptsAction != NULL)
+			Glb_ApfOVFInterruptsAction();
+	}
+
+}
+
+
 /*******************************************************************************************************************************************************************/
 /*******************************************************************************************************************************************************************/
 /*******************************************************************************************************************************************************************/
