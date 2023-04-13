@@ -37,7 +37,7 @@
 
 u8 BTN_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber);
 
-u8 BTN_getBtnState(u8 Cpy_u8BTNId, u8 *Cpy_pu8ReturnedBTNState);
+u8 BTN_getBtnState(u8 u8_a_btnId, u8 *u8ptr_a_returnedBtnState);
 
 /*******************************************************************************************************************************************************************/
 
