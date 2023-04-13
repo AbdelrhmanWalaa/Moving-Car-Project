@@ -1,121 +1,40 @@
 /*
- * DCM_Config.h
+ * DCM_Interface.h
  *
- *   Created on: Nov 20, 2022
- *       Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
+ *     Created on: Apr 11, 2023
+ *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy
  *  Description: This file contains all Direct Current Motor (DCM) pre-build configurations, through which user can configure before using the DCM peripheral.
- *    Datasheet: https://datasheetspdf.com/pdf/917207/KYSAN/RF-300CA-11440/1
- *    Model No.: RF-300CA-11440 - DCM
+ *		MCU Datasheet: AVR ATmega32
+ *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
  */
+
 
 #ifndef DCM_CONFIG_H_
 #define DCM_CONFIG_H_
 
-/*******************************************************************************************************************************************************************/
-/* ATmega32(L) interfacing with DCM: */
-/*
-								One-Direction Mode											Two-Direction Mode
-				 --------------                   ----------				 --------------                   ----------
-				|   ATmega32   |                 |   DCM    |				|   ATmega32   |                 |   DCM    |
-				|              |                 |          |				|              |                 |          |
-				| 	 (OCR0) PB4|---------------->|Ctrl Pin  |				| 	 (OC1B) PD4|---------------->|CW        |
-				 -------------- 				  ----------				| 	 (OC1A) PD5|---------------->|CCW       |
-				                   					 						 --------------                   ----------
- */
-
-/*******************************************************************************************************************************************************************/
-/* DCM Configurations' Definitions */
-
-/* DCM Modes of Rotation */
-#define DCM_U8_NORMAL_MODE				0
-#define DCM_U8_SPEED_MODE				1
-
-/* DCM Modes of Rotation Direction */
-#define DCM_U8_ONE_DIR_MODE				0
-#define DCM_U8_TWO_DIR_MODE				1
-
-/* End of Configurations' Definitions */
-
-/*******************************************************************************************************************************************************************/
-/* DCM Configurations */
-
-/* DCM Mode of Rotation */
-/* Options: DCM_U8_NORMAL_MODE
- *			DCM_U8_SPEED_MODE
- */
-#define DCM_U8_ROT_MODE_SELECT			DCM_U8_NORMAL_MODE
-
-/* DCM Mode of Rotation Direction */
-/* Options: DCM_U8_ONE_DIR_MODE
- *			DCM_U8_TWO_DIR_MODE
- */
-#define DCM_U8_DIR_MODE_SELECT			DCM_U8_ONE_DIR_MODE
-
-/* DCM Port */
-/* Options: 0 // PORT A
-			1 // PORT B
-			2 // PORT C
-			3 // PORT D
- */
-#define DCM_U8_CTRL_PORT				0
-
-/********************************************/
-
-/*
- * One-Direction Mode Configurations 
- */
-
-/* DCM One-Direction Mode Ctrl Pin */
-/* Options: 0 // DIO_U8_PIN0			// Normal mode only.
- *			1 // DIO_U8_PIN1			// Normal mode only.
- *			2 // DIO_U8_PIN2			// Normal mode only.
- *			3 // DIO_U8_PIN3			// Both Normal and Speed modes, Can generate PWM using TMR0 ( In case PORTB is selected ).
- *			4 // DIO_U8_PIN4			// Both Normal and Speed modes. Can generate PWM using TMR1 channel B ( In case PORTD is selected ).
- *			5 // DIO_U8_PIN5			// Both Normal and Speed modes. Can generate PWM using TMR1 channel A ( In case PORTD is selected ).
- *			6 // DIO_U8_PIN6			// Normal mode only.
- *			7 // DIO_U8_PIN7			// Both Normal and Speed modes. Can generate PWM using TMR2 ( In case PORTD is selected ).
- */
-#define DCM_U8_CTRL_PIN					0
-
-/* DCM One-Direction TMR ( In case Speed Mode is selected ) */
-/* Options: TMR_U8_TMR0
- *			TMR_U8_TMR2
- */
-#define DCM_U8_ONE_DIR_TMR				TMR_U8_TMR0
-
-/* End of One-Direction Mode Configurations */
-
-/********************************************/
-
-/*
- * Two-Direction Mode Configurations 
- */
-
-/* DCM Two-Direction Mode Ctrl Pins */
-/* Options: 0 // DIO_U8_PIN0			// Normal mode only.
- *			1 // DIO_U8_PIN1			// Normal mode only.
- *			2 // DIO_U8_PIN2			// Normal mode only.
- *			3 // DIO_U8_PIN3			// Both Normal and Speed modes, Can generate PWM using TMR0 ( In case PORTB is selected ).
- *			4 // DIO_U8_PIN4			// Both Normal and Speed modes. Can generate PWM using TMR1 channel B ( In case PORTD is selected ).
- *			5 // DIO_U8_PIN5			// Both Normal and Speed modes. Can generate PWM using TMR1 channel A ( In case PORTD is selected ).
- *			6 // DIO_U8_PIN6			// Normal mode only.
- *			7 // DIO_U8_PIN7			// Both Normal and Speed modes. Can generate PWM using TMR2 ( In case PORTD is selected ).
- */
-#define DCM_U8_CW_CTRL_PIN				0
-#define DCM_U8_CCW_CTRL_PIN				1
-
-/* DCM Two-Direction TMR ( In case Speed Mode is selected ) */
-#define DCM_U8_TWO_DIR_TMR				TMR_U8_TMR1
-
-/* DCM Ctrl Channels of TMR1 connected to DCM ( In case Speed Mode is selected ) */
-/* Options: TMR_U8_NO_CHANNEL
- *		    TMR_U8_TMR_1_CHANNEL_A
- *		    TMR_U8_TMR_1_CHANNEL_B
- */
-#define DCM_U8_CW_CTRL_CHANNEL			TMR_U8_NO_CHANNEL
-#define DCM_U8_CCW_CTRL_CHANNEL			TMR_U8_NO_CHANNEL
-
-/* End of Two-Direction Mode Configurations */
+ /*******************************************************************************************************************************************************************/
+ /* ATmega32(L) interfacing with DCM: */
+ /*
+								 One-Dirction Mode											Two-Dirction Mode
+				  --------------                   ----------				 --------------                   ----------
+				 |   ATmega32   |                 |   DCM    |				|   ATmega32   |                 |   DCM    |
+				 |              |                 |          |				|              |                 |          |
+				 | 	 (OCR0) PB4|---------------->|Ctrl Pin  |				| 	 (OC1B) PD4|---------------->|CW        |
+				  -------------- 				  ----------				| 	 (OC1A) PD5|---------------->|CCW       |
+																			  --------------                   ----------
+  */
+  /********************* Motor_0 Configurations ***********************/
+#define	    MOT0_EN_PIN_NUMBER_0				4
+#define		MOT0_EN_PIN_NUMBER_1				5	
+#define		MOT0_PWM_PIN_NUMBER					0
+#define		MOT0_EN_PORT_NUMBER					PORT_C
+#define		MOT0_PWM_PORT_NUMBER				PORT_C
+ /********************* Motor_1 Configurations ***********************/
+#define	    MOT1_EN_PIN_NUMBER_0				6
+#define		MOT1_EN_PIN_NUMBER_1				7
+#define		MOT1_PWM_PIN_NUMBER					1
+#define		MOT1_EN_PORT_NUMBER					PORT_C
+#define		MOT1_PWM_PORT_NUMBER				PORT_C
 
 /* End of Configurations */
 
