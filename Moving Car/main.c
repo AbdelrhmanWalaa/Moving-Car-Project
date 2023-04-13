@@ -6,8 +6,8 @@
  *  Description: Embedded C application controlling a four-driving wheel robot, and moving it in a rectangular shape.
  */
 
-/* APP */
-#include "APP/app_interface.h"
+/* Main */
+#include "main.h"
 
 int main(void)
 {
