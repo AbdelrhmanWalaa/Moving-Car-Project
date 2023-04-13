@@ -142,15 +142,6 @@
     <Compile Include="APP\app_interface.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="HAL\btn\btn_config.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="HAL\btn\btn_interface.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="HAL\btn\btn_program.c">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="HAL\dcm\dcm_config.h">
       <SubType>compile</SubType>
     </Compile>
@@ -176,6 +167,9 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\dio\dio_config.h">
@@ -225,7 +219,6 @@
     <Folder Include="APP" />
     <Folder Include="HAL\dcm" />
     <Folder Include="HAL\led" />
-    <Folder Include="HAL\btn" />
     <Folder Include="MCAL" />
     <Folder Include="HAL" />
     <Folder Include="MCAL\dio" />

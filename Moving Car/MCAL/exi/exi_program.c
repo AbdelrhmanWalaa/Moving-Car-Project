@@ -23,11 +23,10 @@ static void ( *void_gs_apfInterrupstAction[3] ) ( void ) = { NULL, NULL, NULL };
 /**
  * @brief The function enables a specific external interrupt with a specified sense control.
  * 
- * @param[in] u8_a_interruptId This is an input parameter of type u8 (unsigned 8-bit integer) that
- * specifies the interrupt ID. It can have one of three values: EXI_U8_INT0, EXI_U8_INT1, or
- * EXI_U8_INT2, which correspond to external interrupt,
- * @param[in] u8_a_senseControl This parameter is used to specify the sense control of the external
- * interrupt. It can take one of the following values:
+ * @param[in] u8_a_interruptId This is an input parameter of type u8 (unsigned 8-bit integer) that specifies the interrupt ID.
+ * 			  It can have one of three values: EXI_U8_INT0, EXI_U8_INT1, or EXI_U8_INT2, which correspond to external interrupt,
+ * @param[in] u8_a_senseControl This parameter is used to specify the sense control of the external interrupt.
+ * 			  It can take one of the following values:
  * 
  * @return a u8 value which represents the error state. If the function executes successfully, it will
  * return STD_OK (0). If there is an error, it will return STD_NOK (1).
@@ -98,12 +97,12 @@ u8 EXI_enablePIE	 ( u8 u8_a_interruptId, u8 u8_a_senseControl )
 /**
  * @brief The function disables a specified external interrupt.
  * 
- * @param[in] u8_a_interruptId The ID of the interrupt to be disabled. It should be a value between 0 and
- * 2, where 0 represents INT0, 1 represents INT1, and 2 represents INT2.
+ * @param[in] u8_a_interruptId The ID of the interrupt to be disabled. It should be a value between 0 and 2,
+ * 			  where 0 represents INT0, 1 represents INT1, and 2 represents INT2.
  * 
- * @return a variable of type u8, which represents the error state of the function. It will return
- * STD_OK if the function executed successfully, and STD_NOK if there was an error (i.e. the interrupt
- * ID is not in the valid range).
+ * @return a variable of type u8, which represents the error state of the function. It will return 
+ * 		   STD_OK if the function executed successfully, and STD_NOK if there was an error (i.e. the interrupt
+ * 		   ID is not in the valid range).
  */
 u8 EXI_disablePIE    ( u8 u8_a_interruptId )
 {
@@ -134,10 +133,8 @@ u8 EXI_disablePIE    ( u8 u8_a_interruptId )
 /**
  * @brief function sets a callback function for a specific interrupt and returns an error state.
  * 
- * @param[in] u8_a_interruptId An unsigned 8-bit integer representing the ID of the interrupt. It should be
- * in the range of 0 to 2, inclusive.
- * @param[in] pf_a_interruptAction A pointer to a function that will be executed when the specified
- * interrupt occurs.
+ * @param[in] u8_a_interruptId An unsigned 8-bit integer representing the ID of the interrupt. It should be in the range of 0 to 2, inclusive.
+ * @param[in] pf_a_interruptAction A pointer to a function that will be executed when the specified interrupt occurs.
  * 
  * @return a u8 value which represents the error state. It can be either STD_OK (0) or STD_NOK (1).
  */

@@ -4,8 +4,7 @@
   *     Created on: Apr 11, 2023
   *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy
   *    Description: This file contains all Direct Current Motor (DCM) functions' prototypes and definitions (Macros) to avoid magic numbers.
-  *		MCU Datasheet: AVR ATmega32
-  *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
+  *		MCU Datasheet: AVR ATmega32 - https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
   */
 
 #ifndef DCM_INTERFACE_H_
