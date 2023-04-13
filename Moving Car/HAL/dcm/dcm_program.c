@@ -15,7 +15,7 @@
 #include "dcm_config.h"
 #include "dcm_interface.h"
 
-/*******************************************************************************************************************************************************************/
+/* ***********************************************************************************************/
 /* Declaration and Initialization */
 
 
@@ -27,7 +27,7 @@ ST_DCM_g_Config_t ST_g_carMotors[2] =
 EN_DCM_FLAG DCM_g_stopFlag = FALSE;
 
 
-/*******************************************************************************************************************************************************************/
+/* ***********************************************************************************************/
 
 EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig)
 {
@@ -50,11 +50,11 @@ EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig)
 		}
 
 	}
-    TMR_ovfSetCallback(DCM_updateStopFlag);
+    TIMER_ovfSetCallback(DCM_updateStopFlag);
     return DCM_OK;
 }
 
-/*******************************************************************************************************************************************************************/
+/* ***********************************************************************************************/
 EN_DCM_ERROR_T DCM_changeDCMDirection(ST_DCM_g_Config_t* DCM_a_ptrToConfig, EN_DCM_MOTORSIDE DCM_a_motorNum)
 {
 	if (DCM_a_ptrToConfig == NULL)
@@ -71,14 +71,14 @@ EN_DCM_ERROR_T DCM_changeDCMDirection(ST_DCM_g_Config_t* DCM_a_ptrToConfig, EN_D
 	}
 	return DCM_OK;
 }
-/****************************************************************************************************************************************/
+/* ***********************************************************************************************/
 
 void DCM_vdStopDCM(void)
 {
 	DIO_write(0, PORT_B, DIO_U8_PIN_LOW);
 }
 
-/************************************************************************************************************************************/
+/* ***********************************************************************************************/
 
 EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
 {
@@ -94,21 +94,21 @@ EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
 		while (DCM_g_stopFlag != TRUE)
 		{
 			DIO_write(0, PORT_B, DIO_U8_PIN_HIGH);
-			TMR_tmr2Delay(u16_onTime);
+			TIMER_timer2Delay(u16_onTime);
 			DIO_write(0, PORT_B, DIO_U8_PIN_LOW);
-			TMR_tmr2Delay(u16_offTime);
+			TIMER_timer2Delay(u16_offTime);
 		}
 		DCM_g_stopFlag = FALSE;
 	}
     return DCM_OK;
 }
 
-/****************************************************************************************************************************************/
+/* ***********************************************************************************************/
 void DCM_updateStopFlag(void)
 {
 	DCM_g_stopFlag = TRUE;
 }
-/****************************************************************************************************************************************/
+/* ***********************************************************************************************/
 
 EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed)
 {
@@ -117,4 +117,4 @@ EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed)
 	DCM_changeDCMDirection(ST_g_carMotors, MOTOR_RIGHT);
     return DCM_OK;
 }
-/****************************************************************************************************************************************/
+/* ***********************************************************************************************/

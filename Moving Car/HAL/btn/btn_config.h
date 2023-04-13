@@ -1,7 +1,7 @@
 /*
  * BTN_Config.h
  *
- *   Created on: Nov 20, 2022
+ *   Created on: Apr 11, 2023
  *       Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
  *  Description: This file contains all Button (BTN) pre-build configurations, through which user can configure before using the BTN peripheral.
  */
@@ -9,7 +9,7 @@
 #ifndef BTN_CONFIG_H_
 #define BTN_CONFIG_H_
 
-/*******************************************************************************************************************************************************************/
+/* ***********************************************************************************************/
 /* BTN(s) Configurations */
 
 /* The Port connected to BTN(s) */
@@ -41,6 +41,6 @@
 
 /* End of Configurations */
 
-/*******************************************************************************************************************************************************************/
+/* ***********************************************************************************************/
 
 #endif /* BTN_CONFIG_H_ */

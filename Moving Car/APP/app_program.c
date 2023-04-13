@@ -31,7 +31,7 @@ void APP_initialization(void) {
     EXI_intSetCallBack(EXI_U8_INT1, &APP_startCar);
     EXI_enablePIE(EXI_U8_INT1, EXI_U8_SENSE_FALLING_EDGE);
 
-    TMR_tmr0NormalModeInit(DISABLED);
+    TIMER_timer0NormalModeInit(DISABLED);
 }
 
 
@@ -49,7 +49,7 @@ void APP_startProgram(void) {
             case APP_CAR_START:
 
                 // delay 1 sec.
-                TMR_tmr0Delay(1000);
+                TIMER_timer0Delay(1000);
                 // start Car
 
                 if (u8_gs_appMode != APP_CAR_STOP) {
@@ -72,13 +72,13 @@ void APP_startProgram(void) {
 
                 LED_arrayOn(PORT_A, DIO_MASK_BITS_2);
                 // delay 0.5 sec.
-                TMR_tmr0Delay(500);
+                TIMER_timer0Delay(500);
 
                 // rotate 90 degrees
-                TMR_tmr0Delay(620);
+                TIMER_timer0Delay(620);
 
                 // delay 0.5 sec.
-                TMR_tmr0Delay(500);
+                TIMER_timer0Delay(500);
 
                 if (u8_gs_appMode != APP_CAR_STOP) {
                     u8_gs_appMode = APP_CAR_MOVE_FWD_SD;
@@ -90,7 +90,7 @@ void APP_startProgram(void) {
                 LED_arrayOn(PORT_A, DIO_MASK_BITS_1);
 
                 // move fwd for 2 sec. with duty cycle 30%
-                TMR_tmr0Delay(2000);
+                TIMER_timer0Delay(2000);
 
                 if (u8_gs_appMode != APP_CAR_STOP) {
                     u8_gs_appMode = APP_CAR_ROT_90_DEG;

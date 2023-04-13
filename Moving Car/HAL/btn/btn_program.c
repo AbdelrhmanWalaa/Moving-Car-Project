@@ -1,7 +1,7 @@
 /*
  * BTN_Program.c
  *
- *   Created on: Nov 20, 2022
+ *   Created on: Apr 11, 2023
  *       Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
  *  Description: This file contains all Button (BTN) functions' implementation.
  */
@@ -82,4 +82,4 @@ u8 BTN_getBtnState(u8 u8_a_btnId, u8 *u8ptr_a_returnedBtnState) {
     return Loc_u8ErrorState;
 }
 
-/*******************************************************************************************************************************************************************/
+/* ***********************************************************************************************/
