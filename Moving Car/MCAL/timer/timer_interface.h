@@ -72,6 +72,7 @@ typedef enum {
 /* **********************************************************************/
 /*  TMR Functions' prototypes                                           */
 /* **********************************************************************/
+
 /**
  * @brief Initializes timer0 at normal mode
  *
@@ -82,7 +83,7 @@ typedef enum {
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
-/* ****************************************************************/
+
 /**
  * @brief Creates a delay using timer_0 in overflow mode
  *
@@ -93,7 +94,7 @@ EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr0Delay(u16 interval);
-/* ****************************************************************/
+
 /**
  * @brief Start the timer by setting the desired prescaler.
  *
@@ -104,7 +105,7 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 interval);
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler);
-/* ****************************************************************/
+
 /**
  * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.
  *
@@ -170,13 +171,15 @@ EN_TMR_ERROR_T TMR_tmr2Start(u16 u16_a_prescaler);
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr2Delay(u16 interval);
+
+EN_TMR_ERROR_T TMR_ovfSetCallback(void (*void_a_pfOvfInterruptAction) (void));
+
 //EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue );
 
 //EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
 //EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler);
 //void TMR_tmr1Stop(void);
 //EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle);
-EN_TMR_ERROR_T TMR_u8OVFSetCallback(void (*Cpy_pfOVFInterruptAction) (void));
 
 /*******************************************************************************************************************************************************************/
 

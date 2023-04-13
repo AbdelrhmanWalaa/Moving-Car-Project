@@ -23,7 +23,7 @@ u16 u16_g_overflowTicks = 0;
 u16 u16_g_overflow2Ticks = 0;
 u16 u16_g_overflow2Numbers = 0;
 
-void (*Glb_ApfOVFInterruptsAction)(void) = NULL;
+void (*void_g_pfOvfInterruptAction)(void) = NULL;
 
 /*******************************************************************************************************************************************************************/
 /* ***************************************************************************************************************** */
@@ -453,14 +453,14 @@ void TMR_tmr2Stop(void)
  *
  * @return void
  */
-void TMR_tmr1CleareCompMatInit(void)
+/*void TMR_tmr1CleareCompMatInit(void)
 {
-	/*Enable CTCA and CTCB interrupt  OCIE1A = 4, OCIE1B = 3*/
+	*//*Enable CTCA and CTCB interrupt  OCIE1A = 4, OCIE1B = 3*//*
 	SET_BIT(TMR_U8_TIMSK_REG, TMR_U8_OCIE1A_BIT);
 	SET_BIT(TMR_U8_TIMSK_REG, TMR_U8_OCIE1B_BIT);
-	/*CTC mode WGM12 = 3*/
+	*//*CTC mode WGM12 = 3*//*
 	SET_BIT(TMR_U8_TCCR1B_REG, TMR_U8_WGM12_BIT);
-}
+}*/
 /*********************************************************************************************/
 /**
  * @brief Start the timer by setting the desired prescaler.
@@ -549,7 +549,7 @@ void TMR_tmr1Stop(void)
 
 /*******************************************************************************************************************************************************************/
 /*
- Name: TMR_u8OVFSetCallback
+ Name: void_g_pfOvfInterruptAction
  Input: Pointer to function OVFInterruptAction taking void and returning void
  Output: EN_TMR_ERROR_T Error or No Error
  Description: Function to receive an address of a function ( in APP Layer ) to be called back in ISR function of the passed Timer ( TimerId ),
@@ -557,38 +557,30 @@ void TMR_tmr1Stop(void)
 */
 
 
-EN_TMR_ERROR_T TMR_u8OVFSetCallback(void (*Cpy_pfOVFInterruptAction) (void))
+EN_TMR_ERROR_T TMR_ovfSetCallback(void (*void_a_pfOvfInterruptAction) (void))
 {
 	// Check if the Pointer to Function is not equal to NULL 
-	if (Cpy_pfOVFInterruptAction != NULL)
+	if (void_a_pfOvfInterruptAction != NULL)
 	{
 		// Store the passed address of function ( in APP Layer ) through pointer to function ( OVFInterruptAction ) into Global Array of Pointers to Functions ( OVFInterruptsAction ) in the passed index ( TimerId ). 
-		Glb_ApfOVFInterruptsAction = Cpy_pfOVFInterruptAction;
+		void_g_pfOvfInterruptAction = void_a_pfOvfInterruptAction;
 		return TIMER_OK;
 	}
 	else
 	{
 		return TIMER_ERROR;
 	}
-
 }
 
-
-ISR(TIMER2_OVF_vect)
+ISR(TMR_ovfVect)
 {
 	u16_g_overflow2Ticks++;
 	if (u16_g_overflow2Numbers > u16_g_overflow2Ticks)
 	{
 		u16_g_overflow2Ticks = 0;
 		TMR_tmr2Stop();
-		if (Glb_ApfOVFInterruptsAction != NULL)
-			Glb_ApfOVFInterruptsAction();
+		if (void_g_pfOvfInterruptAction != NULL)
+			void_g_pfOvfInterruptAction();
 	}
 
 }
-
-
-/*******************************************************************************************************************************************************************/
-/*******************************************************************************************************************************************************************/
-/*******************************************************************************************************************************************************************/
-

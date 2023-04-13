@@ -50,7 +50,7 @@ EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig)
 		}
 
 	}
-	TMR_u8OVFSetCallback(DCM_updateStopFlag);
+    TMR_ovfSetCallback(DCM_updateStopFlag);
     return DCM_OK;
 }
 
@@ -100,6 +100,7 @@ EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
 		}
 		DCM_g_stopFlag = FALSE;
 	}
+    return DCM_OK;
 }
 
 /****************************************************************************************************************************************/
@@ -114,5 +115,6 @@ EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed)
 	DCM_changeDCMDirection(ST_g_carMotors, MOTOR_RIGHT);
 	DCM_u8SetDutyCycleOfPWM(ROTATION_DUTY_CYCLE);
 	DCM_changeDCMDirection(ST_g_carMotors, MOTOR_RIGHT);
+    return DCM_OK;
 }
 /****************************************************************************************************************************************/
