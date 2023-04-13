@@ -13,12 +13,14 @@
 #include "timer_config.h"
 #include "timer_interface.h"
 
-/*******************************************************************************************************************************************************************/
+/* ****************************************************************/
 /* Declaration and Initialization */
+u16 u16_g_overflowNumbers = 0;
+u8 u8_g_tmr0InitialVal = 0;
+u16 u16_g_overflowTicks = 0;
 
 
-/*******************************************************************************************************************************************************************/
-/* ***************************************************************************************************************** */
+/* ****************************************************************/
 
 
 /**
@@ -36,21 +38,20 @@ EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable)
 	{
 	case ENABLED:
 		/* select the normal mode for the timer, timer is not start yet.*/
-		CLEARE_BIT(TMR_U8_TCCR0_REG, WGM00);
-		CLEARE_BIT(TMR_U8_TCCR0_REG, WGM01);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM00_BIT);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM01_BIT);
 		/*Enable the global interrupt enable bit.*/
-		SET_BIT(SREG, GLOBAL_INTERRUPT_ENABLE_BIT);
+		SET_BIT(TMR_U8_SREG_REG, GLOBAL_INTERRUPT_ENABLE_BIT); // todo remove ? we use GLI Module instead
 		/* Enable the interrupt for timer0 overflow.*/
-		SET_BIT(TMR_U8_TIMSK_REG, TOIE0);
+		SET_BIT(TMR_U8_TIMSK_REG, TMR_U8_TOIE0_BIT);
 		break;
 	case DISABLED:
 		/* select the normal mode for the timer, timer is not start yet.*/
-		CLEARE_BIT(TMR_U8_TCCR0_REG, WGM00);
-		CLEARE_BIT(TMR_U8_TCCR0_REG, WGM01);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM00_BIT);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM01_BIT);
 		break;
 	default:
 		return TIMER_ERROR;
-		break;
 	}
 	return TIMER_OK;
 }
@@ -76,23 +77,23 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 u16_a_interval)
 		/* Clear the TCCR Register*/
 		TMR_U8_TCCR0_REG = 0x00;
 		/*Get the time in second*/
-		dbl d32_a_delay = (u16_a_interval / SECOND_OPERATOR);
+		f64 f64_l_delay = (u16_a_interval / SECOND_OPERATOR);
 		/*Compare the desired delay by the maximum delay for each overflow*/
-		if (d32_a_delay < MAX_DELAY)
+		if (f64_l_delay < MAX_DELAY)
 		{
 			/*just on overflow is required*/
-			TMR_U8_TCNT0_REG = (u8)((MAX_DELAY - d32_a_delay) / TICK_TIME);
+			TMR_U8_TCNT0_REG = (u8)((MAX_DELAY - f64_l_delay) / TICK_TIME);
 			u16_g_overflowNumbers = 1;
 		}
-		else if (d32_a_delay == MAX_DELAY)
+		else if (f64_l_delay == MAX_DELAY)
 		{
 			TMR_U8_TCNT0_REG = 0x00;
 			u16_g_overflowNumbers = 1;
 		}
 		else
 		{
-			u16_g_overflowNumbers = ceil(d32_a_delay / MAX_DELAY);
-			TMR_U8_TCNT0_REG = (u8)(MAX_COUNTS - ((d32_a_delay / TICK_TIME) / u16_g_overflowNumbers));
+			u16_g_overflowNumbers = ceil(f64_l_delay / MAX_DELAY);
+			TMR_U8_TCNT0_REG = (u8)(MAX_COUNTS - ((f64_l_delay / TICK_TIME) / u16_g_overflowNumbers));
 			u8_g_tmr0InitialVal = TMR_U8_TCNT0_REG;
 		}
 		u16_g_overflowTicks = 0;
@@ -101,7 +102,7 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 u16_a_interval)
 		while (u16_g_overflowNumbers > u16_g_overflowTicks)
 		{
 			while ((TMR_U8_TIFR_REG & (1 << 0)) == 0);
-			TMR_U8_TIFR_REG |= (1 << 0); +
+			TMR_U8_TIFR_REG |= (1 << 0);
 				u16_g_overflowTicks++;
 		}
 		/*stop the timer*/
@@ -110,7 +111,6 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 u16_a_interval)
 	return TIMER_OK;
 }
 
-/***************************************************************************************************/
 /**
  * @brief Start the timer by setting the desired prescaler.
  *
@@ -126,38 +126,37 @@ EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler)
 	switch (u16_a_prescaler)
 	{
 	case 1:
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
-		SET_BIT(TMR_U8_TCCR0_REG, CS00);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS01_BIT);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS02_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS00_BIT);
 		break;
 	case 8:
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS00);
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
-		SET_BIT(TMR_U8_TCCR0_REG, CS01);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS00_BIT);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS02_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS01_BIT);
 		break;
 	case 64:
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
-		SET_BIT(TMR_U8_TCCR0_REG, CS01);
-		SET_BIT(TMR_U8_TCCR0_REG, CS00);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS02_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS01_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS00_BIT);
 		break;
 	case 256:
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS00);
-		SET_BIT(TMR_U8_TCCR0_REG, CS02);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS01_BIT);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS00_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS02_BIT);
 		break;
 	case 1024:
-		CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
-		SET_BIT(TMR_U8_TCCR0_REG, CS02);
-		SET_BIT(TMR_U8_TCCR0_REG, CS00);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS01_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS02_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS00_BIT);
 		break;
 	default:
 		return TIMER_ERROR;
-		break;
 	}
 	return TIMER_OK;
 
 }
-/**************************************************************************************************/
+
 /**
  * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.
  *
@@ -166,16 +165,14 @@ EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler)
  *
  * @return void
  */
-
-
 void TMR_tmr0Stop(void)
 {
 	/* Stop the timer by clearing the prescaler*/
-	CLEARE_BIT(TMR_U8_TCCR0_REG, CS00);
-	CLEARE_BIT(TMR_U8_TCCR0_REG, CS01);
-	CLEARE_BIT(TMR_U8_TCCR0_REG, CS02);
+	CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS00_BIT);
+	CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS01_BIT);
+	CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_CS02_BIT);
 }
-/**************************************************************************************************/
+
 /**
  * @brief timer compare match mode.
  *
@@ -198,10 +195,10 @@ EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue)
 		/*initial value for the timer/counter register.*/
 		TMR_U8_TCNT0_REG = 0x00;
 		/* select the CTC mode for the timer0.*/
-		CLEARE_BIT(TMR_U8_TCCR0_REG, WGM00);
-		SET_BIT(TMR_U8_TCCR0_REG, WGM01);
+		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM00_BIT);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM01_BIT);
 		/*must be set for the non_PWM mode;*/
-		SET_BIT(TMR_U8_TCCR0_REG, FOC0);
+		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_FOC0_BIT);
 	}
 	return TIMER_OK;
 
