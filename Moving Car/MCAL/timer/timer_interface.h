@@ -51,10 +51,10 @@
 #define OC0_PIN                              3
 #define GLOBAL_INTERRUPT_ENABLE_BIT      7
 
-#define MAX_TIMER_DELAY					 (MAX_DELAY * MAX_COUNTS)
-#define MAX_DELAY				 		 (0.032768f)
-#define MAX_COUNTS						   65535
-#define TICK_TIME						 (0.000128f)
+#define MAX_TIMER_DELAY					 (MAX_DELAY * 65535)
+#define MAX_DELAY				 		 (0.032768f) // in sec
+#define MAX_COUNTS						   255
+#define TICK_TIME						 (0.000128f) // in sec
 #define SECOND_OPERATOR					 (1000.0f)
 
 #define NO_PRESCALER						1 
