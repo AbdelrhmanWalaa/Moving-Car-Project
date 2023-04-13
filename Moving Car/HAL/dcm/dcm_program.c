@@ -37,12 +37,12 @@ u8 DCM_u8RotateDCMInOneDirection ( u16 Cpy_u16RotateSpeed )
 		switch ( DCM_U8_ROT_MODE_SELECT )
 		{
 			case DCM_U8_NORMAL_MODE:
-				DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CTRL_PIN , DIO_U8_PIN_HIGH );
+				DIO_write( DCM_U8_CTRL_PIN,DCM_U8_CTRL_PORT, DIO_U8_PIN_HIGH );
 			break;
 				
 			case DCM_U8_SPEED_MODE :
 				/* Step 1: Set Rotate Speed */
-				TMR_u8SetCompareMatchValue( DCM_U8_ONE_DIR_TMR, TMR_U8_NO_CHANNEL, Cpy_u16RotateSpeed );		
+				TMR_u8SetCompareMatchValue( DCM_U8_ONE_DIR_TMR, TMR_U8_NO_CHANNEL, Cpy_u16RotateSpeed );
 				/* Step 2: Start Rotating Counter Clockwise */
 				TMR_u8EnableCOMPPin( DCM_U8_ONE_DIR_TMR, TMR_U8_NO_CHANNEL, TMR_U8_CLR_OCR_PIN );
 			break;
@@ -81,13 +81,13 @@ u8 DCM_u8RotateDCMInTwoDirections( u8 Cpy_u8RotateDirection, u16 Cpy_u16RotateSp
 				switch( Cpy_u8RotateDirection )
 				{
 					case DCM_U8_CLOCKWISE_DIRECTION:
-						DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CCW_CTRL_PIN, DIO_U8_PIN_LOW  );
-						DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CW_CTRL_PIN , DIO_U8_PIN_HIGH );
+						DIO_write( DCM_U8_CCW_CTRL_PIN, DCM_U8_CTRL_PORT, DIO_U8_PIN_LOW  );
+						DIO_write( DCM_U8_CW_CTRL_PIN , DCM_U8_CTRL_PORT, DIO_U8_PIN_HIGH );
 					break;
 					
 					case DCM_U8_COUNTER_CLOCKWISE_DIRECTION:
-						DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CW_CTRL_PIN , DIO_U8_PIN_LOW  );
-						DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CCW_CTRL_PIN, DIO_U8_PIN_HIGH );
+						DIO_write( DCM_U8_CW_CTRL_PIN , DCM_U8_CTRL_PORT, DIO_U8_PIN_LOW  );
+						DIO_write( DCM_U8_CCW_CTRL_PIN, DCM_U8_CTRL_PORT, DIO_U8_PIN_HIGH );
 					break;
 				}
 			break;
@@ -259,13 +259,13 @@ vd DCM_vdStopDCM         ( void )
 			{
 				/* Case 1: One-Direction Mode */
 				case DCM_U8_ONE_DIR_MODE:
-					DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CTRL_PIN , DIO_U8_PIN_LOW );
+					DIO_write( DCM_U8_CTRL_PIN , DCM_U8_CTRL_PORT, DIO_U8_PIN_LOW );
 				break;
 
 				/* Case 2: Two-Direction Mode */
 				case DCM_U8_TWO_DIR_MODE:
-					DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CW_CTRL_PIN , DIO_U8_PIN_LOW );
-					DIO_u8SetPinValue( DCM_U8_CTRL_PORT, DCM_U8_CCW_CTRL_PIN, DIO_U8_PIN_LOW );
+					DIO_write( DCM_U8_CW_CTRL_PIN , DCM_U8_CTRL_PORT, DIO_U8_PIN_LOW );
+					DIO_write( DCM_U8_CCW_CTRL_PIN, DCM_U8_CTRL_PORT, DIO_U8_PIN_LOW );
 				break;
 			}
 		break;

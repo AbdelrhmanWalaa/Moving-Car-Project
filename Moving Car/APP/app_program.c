@@ -24,7 +24,7 @@ void APP_initialization( void )
 {
 	/* HAL Initialization */
 	LED_arrayInit( PORT_A, DIO_MASK_BITS_0_1_2_3 );
-		
+
 	/* MCAL Initialization */
 	GLI_enableGIE();
 		

@@ -52,12 +52,12 @@
 #define DCM_U8_DIR_MODE_SELECT			DCM_U8_ONE_DIR_MODE
 
 /* DCM Port */
-/* Options: DIO_U8_PORTA
- *			DIO_U8_PORTB
- *			DIO_U8_PORTC
- *			DIO_U8_PORTD
+/* Options: 0 // PORT A
+			1 // PORT B
+			2 // PORT C
+			3 // PORT D
  */
-#define DCM_U8_CTRL_PORT				DIO_U8_PORTA
+#define DCM_U8_CTRL_PORT				0
 
 /********************************************/
 
@@ -66,16 +66,16 @@
  */
 
 /* DCM One-Direction Mode Ctrl Pin */
-/* Options: DIO_U8_PIN0			// Normal mode only.
- *			DIO_U8_PIN1			// Normal mode only.
- *			DIO_U8_PIN2			// Normal mode only.
- *			DIO_U8_PIN3			// Both Normal and Speed modes, Can generate PWM using TMR0 ( In case PORTB is selected ).
- *			DIO_U8_PIN4			// Both Normal and Speed modes. Can generate PWM using TMR1 channel B ( In case PORTD is selected ).
- *			DIO_U8_PIN5			// Both Normal and Speed modes. Can generate PWM using TMR1 channel A ( In case PORTD is selected ).
- *			DIO_U8_PIN6			// Normal mode only.
- *			DIO_U8_PIN7			// Both Normal and Speed modes. Can generate PWM using TMR2 ( In case PORTD is selected ).
+/* Options: 0 // DIO_U8_PIN0			// Normal mode only.
+ *			1 // DIO_U8_PIN1			// Normal mode only.
+ *			2 // DIO_U8_PIN2			// Normal mode only.
+ *			3 // DIO_U8_PIN3			// Both Normal and Speed modes, Can generate PWM using TMR0 ( In case PORTB is selected ).
+ *			4 // DIO_U8_PIN4			// Both Normal and Speed modes. Can generate PWM using TMR1 channel B ( In case PORTD is selected ).
+ *			5 // DIO_U8_PIN5			// Both Normal and Speed modes. Can generate PWM using TMR1 channel A ( In case PORTD is selected ).
+ *			6 // DIO_U8_PIN6			// Normal mode only.
+ *			7 // DIO_U8_PIN7			// Both Normal and Speed modes. Can generate PWM using TMR2 ( In case PORTD is selected ).
  */
-#define DCM_U8_CTRL_PIN					DIO_U8_PIN0
+#define DCM_U8_CTRL_PIN					0
 
 /* DCM One-Direction TMR ( In case Speed Mode is selected ) */
 /* Options: TMR_U8_TMR0
@@ -92,17 +92,17 @@
  */
 
 /* DCM Two-Direction Mode Ctrl Pins */
-/* Options: DIO_U8_PIN0			// Normal mode only.
- *			DIO_U8_PIN1			// Normal mode only.
- *			DIO_U8_PIN2			// Normal mode only.
- *			DIO_U8_PIN3			// Both Normal and Speed modes, Can generate PWM using TMR0 ( In case PORTB is selected ).
- *			DIO_U8_PIN4			// Both Normal and Speed modes. Can generate PWM using TMR1 channel B ( In case PORTD is selected ).
- *			DIO_U8_PIN5			// Both Normal and Speed modes. Can generate PWM using TMR1 channel A ( In case PORTD is selected ).
- *			DIO_U8_PIN6			// Normal mode only.
- *			DIO_U8_PIN7			// Both Normal and Speed modes. Can generate PWM using TMR2 ( In case PORTD is selected ).
+/* Options: 0 // DIO_U8_PIN0			// Normal mode only.
+ *			1 // DIO_U8_PIN1			// Normal mode only.
+ *			2 // DIO_U8_PIN2			// Normal mode only.
+ *			3 // DIO_U8_PIN3			// Both Normal and Speed modes, Can generate PWM using TMR0 ( In case PORTB is selected ).
+ *			4 // DIO_U8_PIN4			// Both Normal and Speed modes. Can generate PWM using TMR1 channel B ( In case PORTD is selected ).
+ *			5 // DIO_U8_PIN5			// Both Normal and Speed modes. Can generate PWM using TMR1 channel A ( In case PORTD is selected ).
+ *			6 // DIO_U8_PIN6			// Normal mode only.
+ *			7 // DIO_U8_PIN7			// Both Normal and Speed modes. Can generate PWM using TMR2 ( In case PORTD is selected ).
  */
-#define DCM_U8_CW_CTRL_PIN				DIO_U8_PIN0
-#define DCM_U8_CCW_CTRL_PIN				DIO_U8_PIN1
+#define DCM_U8_CW_CTRL_PIN				0
+#define DCM_U8_CCW_CTRL_PIN				1
 
 /* DCM Two-Direction TMR ( In case Speed Mode is selected ) */
 #define DCM_U8_TWO_DIR_TMR				TMR_U8_TMR1

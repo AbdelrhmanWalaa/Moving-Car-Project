@@ -50,7 +50,7 @@
  *
  * @note The values defined in this region assume that a byte is 8 bits wide.
  */
-#pragma region Bit Masking Macros
+//region MASK OPTIONS
 #define DIO_NO_MASK  					    0xFF
 #define DIO_MASK_BITS_0 					0x1
 #define DIO_MASK_BITS_0_1 					0x3
@@ -306,7 +306,7 @@
 #define DIO_MASK_BITS_6 					0x40
 #define DIO_MASK_BITS_6_7 					0xC0
 #define DIO_MASK_BITS_7 					0x80
-#pragma endregion
+//endregion
 
 /**
  * @brief Enumeration of possible DIO ports

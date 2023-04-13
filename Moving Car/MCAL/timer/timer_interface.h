@@ -11,14 +11,17 @@
 #ifndef TMR_INTERFACE_H_
 #define TMR_INTERFACE_H_
 
-/*******************************************************************************************************************************************************************/
+/* ****************************************************************/
 /* TMR Includes */
 
-/* SRVL */
+/* STD LIB */
+#include <math.h>
+
+/* LIB */
 #include "../../LIB/std.h"
 #include "../../LIB/bit_math.h"
 
-/*******************************************************************************************************************************************************************/
+/* ****************************************************************/
 /* TMR Macros */
 
 /* The 3 Timers counted from 0 to 2 */
@@ -41,7 +44,7 @@
 #define TMR_U8_CLR_OCR_PIN					1
 #define TMR_U8_SET_OCR_PIN					2
 
-/*******************************************************************************************************************************************************************/
+/* ****************************************************************/
 
 
 #define OC0_PIN_DIR                         DDRB
@@ -55,7 +58,7 @@
 #define SECOND_OPERATOR					 (1000.0f)
 
 #define NO_PRESCALER						1 
-/********************************************************************************/
+/* ****************************************************************/
 	/*error definitions*/
 typedef enum {
 	TIMER_OK,
@@ -66,9 +69,9 @@ typedef enum {
 	ENABLED,
 	DISABLED
 }EN_TMR_INTERRPUT_T;
-/************************************************************************/
-/*  TMR Functions' prototypes                                            */
-/************************************************************************/
+/* **********************************************************************/
+/*  TMR Functions' prototypes                                           */
+/* **********************************************************************/
 /**
  * @brief Initializes timer0 at normal mode
  *
@@ -79,7 +82,7 @@ typedef enum {
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
-/**************************************************************************************************/
+/* ****************************************************************/
 /**
  * @brief Creates a delay using timer_0 in overflow mode
  *
@@ -90,7 +93,7 @@ EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr0Delay(u16 interval);
-/**************************************************************************************************/
+/* ****************************************************************/
 /**
  * @brief Start the timer by setting the desired prescaler.
  *
@@ -101,7 +104,7 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 interval);
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler);
-/**************************************************************************************************/
+/* ****************************************************************/
 /**
  * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.
  *
@@ -113,7 +116,7 @@ EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler);
 
 void TMR_tmr0Stop(void);
 
-/**************************************************************************************************/
+/* ****************************************************************/
 /**
  * @brief timer compare match mode.
  *
