@@ -53,7 +53,7 @@
 
 #define MAX_TIMER_DELAY					 (MAX_DELAY * 65535)
 #define MAX_DELAY				 		 (0.032768f) // in sec
-#define MAX_COUNTS						   255
+#define MAX_COUNTS						   256
 #define TICK_TIME						 (0.000128f) // in sec
 #define SECOND_OPERATOR					 (1000.0f)
 

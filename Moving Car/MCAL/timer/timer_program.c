@@ -17,8 +17,6 @@
 /*******************************************************************************************************************************************************************/
 /* Declaration and Initialization */
 
-u8 u8_g_tmr0InitialVal = 0;
-u8 u8_g_tmr2InitialVal = 0;
 u16 u16_g_overflowNumbers = 0;
 u16 u16_g_overflowTicks = 0;
 
@@ -97,8 +95,8 @@ EN_TMR_ERROR_T TMR_tmr0Delay(u16 u16_a_interval)
 		else
 		{
 			u16_g_overflowNumbers = ceil(d64_a_delay / MAX_DELAY);
-			TMR_U8_TCNT0_REG = (u8)(MAX_COUNTS - ((d64_a_delay / TICK_TIME) / u16_g_overflowNumbers));
-			u8_g_tmr0InitialVal = TMR_U8_TCNT0_REG;
+//            u8_g_tmr0InitialVal = (u8)(MAX_COUNTS - ((d64_a_delay / TICK_TIME) / u16_g_overflowNumbers));
+            TMR_U8_TCNT0_REG = (u8)((MAX_COUNTS) - ((d64_a_delay - (MAX_DELAY * (u16_g_overflowNumbers - 1.0))) / TICK_TIME)); // in decimal  (0 - 255)
 		}
 		u16_g_overflowTicks = 0;
 		TMR_tmr0Start(1024);
@@ -286,8 +284,7 @@ EN_TMR_ERROR_T TMR_tmr2Delay(u16 u16_a_interval)
 		else
 		{
 			u16_g_overflowNumbers = ceil(d64_a_delay / MAX_DELAY);
-			TMR_U8_TCNT2_REG = (u8)(MAX_COUNTS - ((d64_a_delay / TICK_TIME) / u16_g_overflowNumbers));
-			u8_g_tmr2InitialVal = TMR_U8_TCNT2_REG;
+            TMR_U8_TCNT2_REG = (u8)((MAX_COUNTS) - ((d64_a_delay - (MAX_DELAY * (u16_g_overflowNumbers - 1.0))) / TICK_TIME)); // in decimal  (0 - 255)
 		}
 		u16_g_overflowTicks = 0;
 		TMR_tmr2Start(1024);
