@@ -25,7 +25,7 @@
  * LED_ERROR otherwise.
  */
 EN_LED_ERROR_t LED_init(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_ledPin) {
-    EN_DIO_ERROR_T dioError = DIO_init(u8_a_ledPin, en_a_ledPort, DIO_OUT);
+    EN_DIO_ERROR_T dioError = DIO_init(u8_a_ledPin, en_a_ledPort, DIO_U8_PORT_HIGH);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
@@ -69,7 +69,7 @@ return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
  *         LED_ERROR if the operation fails.
  */
 EN_LED_ERROR_t LED_arrayInit(EN_DIO_PORT_T en_a_ledPort, u8 u8_a_mask) {
-    EN_DIO_ERROR_T dioError = DIO_portInit(en_a_ledPort, DIO_OUT, u8_a_mask);
+    EN_DIO_ERROR_T dioError = DIO_portInit(en_a_ledPort, DIO_U8_PORT_HIGH, u8_a_mask);
     return dioError == DIO_ERROR ? LED_ERROR : LED_OK;
 }
 
