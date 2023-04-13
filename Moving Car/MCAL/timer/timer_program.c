@@ -160,7 +160,6 @@ EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler)
 		break;
 	default:
 		return TIMER_ERROR;
-		break;
 	}
 	return TIMER_OK;
 
@@ -193,7 +192,7 @@ void TMR_tmr0Stop(void)
  * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue)
+/*EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue)
 {
 	if (u8_a_outCompValue > MAX_COUNTS)
 	{
@@ -201,19 +200,19 @@ EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue)
 	}
 	else
 	{
-		/*load the out compare value with the OCR0*/
+		*//*load the out compare value with the OCR0*//*
 		TMR_U8_OCR0_REG = u8_a_outCompValue;
-		/*initial value for the timer/counter register.*/
+		*//*initial value for the timer/counter register.*//*
 		TMR_U8_TCNT0_REG = 0x00;
-		/* select the CTC mode for the timer0.*/
+		*//* select the CTC mode for the timer0.*//*
 		CLR_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM00_BIT);
 		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_WGM01_BIT);
-		/*must be set for the non_PWM mode;*/
+		*//*must be set for the non_PWM mode;*//*
 		SET_BIT(TMR_U8_TCCR0_REG, TMR_U8_FOC0_BIT);
 	}
 	return TIMER_OK;
 
-}
+}*/
 
 /**************************************************************************************************/
 
@@ -246,7 +245,6 @@ EN_TMR_ERROR_T TMR_tmr2NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable)
 		break;
 	default:
 		return TIMER_ERROR;
-		break;
 	}
 	return TIMER_OK;
 }
@@ -379,7 +377,7 @@ void TMR_tmr2Stop(void)
  * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue)
+/*EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue)
 {
 	if (u8_a_outCompValue > MAX_COUNTS)
 	{
@@ -387,19 +385,19 @@ EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue)
 	}
 	else
 	{
-		/*load the out compare value with the OCR0*/
+		*//*load the out compare value with the OCR0*//*
 		TMR_U8_OCR2_REG = u8_a_outCompValue;
-		/*initial value for the timer/counter register.*/
+		*//*initial value for the timer/counter register.*//*
 		TMR_U8_TCNT2_REG = 0x00;
-		/* select the CTC mode for the timer0.*/
+		*//* select the CTC mode for the timer0.*//*
 		CLR_BIT(TMR_U8_TCCR2_REG, TMR_U8_WGM20_BIT);
 		SET_BIT(TMR_U8_TCCR2_REG, TMR_U8_WGM21_BIT);
-		/*must be set for the non_PWM mode;*/
+		*//*must be set for the non_PWM mode;*//*
 		SET_BIT(TMR_U8_TCCR2_REG, TMR_U8_FOC2_BIT);
 	}
 	return TIMER_OK;
 
-}
+}*/
 
 /**************************************************************************************************/
 
@@ -412,31 +410,31 @@ EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue)
  * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable)
+/*EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable)
 {
 	switch (TMR_a_interrputEnable)
 	{
 	case ENABLED:
-		/* select the normal mode for the timer, timer is not start yet.*/
+		*//* select the normal mode for the timer, timer is not start yet.*//*
 		CLR_BIT(TMR_U8_TCCR1A_REG, TMR_U8_WGM10_BIT);
 		CLR_BIT(TMR_U8_TCCR1A_REG, TMR_U8_WGM11_BIT);
 		CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_WGM12_BIT);
 		CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_WGM13_BIT);
-		/*must be set for the non_PWM mode*/
+		*//*must be set for the non_PWM mode*//*
 		SET_BIT(TMR_U8_TCCR1A_REG, TMR_U8_FOC1A_BIT);
 		SET_BIT(TMR_U8_TCCR1A_REG, TMR_U8_FOC1B_BIT);
-		/*Enable the global interrupt enable bit.*/
+		*//*Enable the global interrupt enable bit.*//*
 		SET_BIT(TMR_U8_SREG_REG, GLOBAL_INTERRUPT_ENABLE_BIT);
-		/* Enable the interrupt for timer0 overflow.*/
+		*//* Enable the interrupt for timer0 overflow.*//*
 		SET_BIT(TMR_U8_TIMSK_REG, TMR_U8_TOIE1_BIT);
 		break;
 	case DISABLED:
-		/* select the normal mode for the timer, timer is not start yet.*/
+		*//* select the normal mode for the timer, timer is not start yet.*//*
 		CLR_BIT(TMR_U8_TCCR1A_REG, TMR_U8_WGM10_BIT);
 		CLR_BIT(TMR_U8_TCCR1A_REG, TMR_U8_WGM11_BIT);
 		CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_WGM12_BIT);
 		CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_WGM13_BIT);
-		/*must be set for the non_PWM mode*/
+		*//*must be set for the non_PWM mode*//*
 		SET_BIT(TMR_U8_TCCR1A_REG, TMR_U8_FOC1A_BIT);
 		SET_BIT(TMR_U8_TCCR1A_REG, TMR_U8_FOC1B_BIT);
 		break;
@@ -444,7 +442,8 @@ EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable)
 		return TIMER_ERROR;
 	}
 	return TIMER_OK;
-}
+}*/
+
 /**********************************************************************************************************************/
 /**
  * @brief timer_1 compare match mode.
@@ -472,9 +471,9 @@ void TMR_tmr1CleareCompMatInit(void)
  * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler)
+/*EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler)
 {
-	/*select the required prescaler value*/
+	*//*select the required prescaler value*//*
 	switch (u16_a_prescaler)
 	{
 	case 1:
@@ -506,19 +505,22 @@ EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler)
 		return TIMER_ERROR;
 	}
 	return TIMER_OK;
-}
+}*/
 /**************************************************************************************************/
+/*
 void TMR_tmr1Stop(void)
 {
-	/* Stop the timer by clearing the prescaler*/
+ Stop the timer by clearing the prescaler
+
 	CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_CS10_BIT);
 	CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_CS11_BIT);
 	CLR_BIT(TMR_U8_TCCR1B_REG, TMR_U8_CS12_BIT);
 }
+*/
 
 /******************** Inside the DC Motor Module***************************************/
 
-EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle)
+/*EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle)
 {
 	if (u8_a_dutyCycle > MAX_COUNTS)
 	{
@@ -532,7 +534,7 @@ EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle)
 		{
 			u8_a_dutyCycle = 100;
 		}
-		/*macros*/
+		*//*macros*//*
 		f64 val = (u8_a_dutyCycle / 100.0);
 		u16 max = (1 << 16) - 1;
 		f64 res = val * max;
@@ -540,13 +542,14 @@ EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle)
 		TMR_U16_OCR1B_REG = max;
 	}
 	return TIMER_OK;
-}
+}*/
+
 /*******************************************************************************************************************************************************************/
 
 
 /*******************************************************************************************************************************************************************/
 /*
- Name: TMR_u8OVFSetCallBack
+ Name: TMR_u8OVFSetCallback
  Input: Pointer to function OVFInterruptAction taking void and returning void
  Output: EN_TMR_ERROR_T Error or No Error
  Description: Function to receive an address of a function ( in APP Layer ) to be called back in ISR function of the passed Timer ( TimerId ),
@@ -554,7 +557,7 @@ EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle)
 */
 
 
-EN_TMR_ERROR_T TMR_u8OVFSetCallBack(void (*Cpy_pfOVFInterruptAction) (void))
+EN_TMR_ERROR_T TMR_u8OVFSetCallback(void (*Cpy_pfOVFInterruptAction) (void))
 {
 	// Check if the Pointer to Function is not equal to NULL 
 	if (Cpy_pfOVFInterruptAction != NULL)
@@ -574,7 +577,6 @@ EN_TMR_ERROR_T TMR_u8OVFSetCallBack(void (*Cpy_pfOVFInterruptAction) (void))
 ISR(TIMER2_OVF_vect)
 {
 	u16_g_overflow2Ticks++;
-	TMR_U8_TCNT2_REG = u8_g_tmr2InitialVal;
 	if (u16_g_overflow2Numbers > u16_g_overflow2Ticks)
 	{
 		u16_g_overflow2Ticks = 0;

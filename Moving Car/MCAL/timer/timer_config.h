@@ -13,6 +13,9 @@
 /*******************************************************************************************************************************************************************/
 /* TMR Configurations' Definitions */
 
+#define ISR(INT_VECT)	void INT_VECT(void) __attribute__((signal,used));\
+void INT_VECT(void)
+
 /*
  * 8-bit Timer/Counter0 Configurations' Definitions
  */

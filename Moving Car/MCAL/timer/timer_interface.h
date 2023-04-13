@@ -126,7 +126,7 @@ void TMR_tmr0Stop(void);
  * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue );
+//EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue );
 
 
 
@@ -170,15 +170,13 @@ EN_TMR_ERROR_T TMR_tmr2Start(u16 u16_a_prescaler);
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TMR_ERROR_T TMR_tmr2Delay(u16 interval);
-EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue );
+//EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue );
 
-EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
-void TMR_tmr1CleareCompMatchInit(void);
-EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler);
-void TMR_tmr1Stop(void);
-EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle);
-
-
+//EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
+//EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler);
+//void TMR_tmr1Stop(void);
+//EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle);
+EN_TMR_ERROR_T TMR_u8OVFSetCallback(void (*Cpy_pfOVFInterruptAction) (void));
 
 /*******************************************************************************************************************************************************************/
 

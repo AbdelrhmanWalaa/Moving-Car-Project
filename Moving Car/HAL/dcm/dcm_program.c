@@ -50,7 +50,8 @@ EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig)
 		}
 
 	}
-	TMR_u8OVFSetCallBack(DCM_updateStopFlag);
+	TMR_u8OVFSetCallback(DCM_updateStopFlag);
+    return DCM_OK;
 }
 
 /*******************************************************************************************************************************************************************/
