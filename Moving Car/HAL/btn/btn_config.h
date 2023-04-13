@@ -13,31 +13,31 @@
 /* BTN(s) Configurations */
 
 /* The Port connected to BTN(s) */
-/* Options: DIO_U8_PORTA
-			DIO_U8_PORTB
-			DIO_U8_PORTC
-			DIO_U8_PORTD
+/* Options: 0 // PORT A
+			1 // PORT B
+			2 // PORT C
+			3 // PORT D
  */
-#define BTN_U8_PORT			DIO_U8_PORTA
+#define BTN_U8_PORT			0 // enum -> EN_DIO_PORT_T.PORT_A in MCAL/dio/dio_interface.h
 
 /* The Pins connected to BTN(s) */
-/* Options: DIO_U8_PIN0
-			DIO_U8_PIN1
-			DIO_U8_PIN2
-			DIO_U8_PIN3
-			DIO_U8_PIN4
-			DIO_U8_PIN5
-			DIO_U8_PIN6
-			DIO_U8_PIN7
+/* Options: 0 // DIO_U8_PIN0
+			1 // DIO_U8_PIN1
+			2 // DIO_U8_PIN2
+			3 // DIO_U8_PIN3
+			4 // DIO_U8_PIN4
+			5 // DIO_U8_PIN5
+			6 // DIO_U8_PIN6
+			7 // DIO_U8_PIN7
  */
-#define BTN_U8_1_PIN		DIO_U8_PIN0
-#define BTN_U8_2_PIN		DIO_U8_PIN1
-#define BTN_U8_3_PIN		DIO_U8_PIN2
-#define BTN_U8_4_PIN		DIO_U8_PIN3
-#define BTN_U8_5_PIN		DIO_U8_PIN4
-#define BTN_U8_6_PIN		DIO_U8_PIN5
-#define BTN_U8_7_PIN		DIO_U8_PIN6
-#define BTN_U8_8_PIN		DIO_U8_PIN7
+#define BTN_U8_1_PIN		0//DIO_U8_PIN0
+#define BTN_U8_2_PIN		1//DIO_U8_PIN1
+#define BTN_U8_3_PIN		2//DIO_U8_PIN2
+#define BTN_U8_4_PIN		3//DIO_U8_PIN3
+#define BTN_U8_5_PIN		4//DIO_U8_PIN4
+#define BTN_U8_6_PIN		5//DIO_U8_PIN5
+#define BTN_U8_7_PIN		6//DIO_U8_PIN6
+#define BTN_U8_8_PIN		7//DIO_U8_PIN7
 
 /* End of Configurations */
 

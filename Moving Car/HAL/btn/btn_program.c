@@ -7,8 +7,8 @@
  */
 
 /* HAL */
-#include "BTN_Config.h"
-#include "BTN_Interface.h"
+#include "btn_config.h"
+#include "btn_interface.h"
 
 /*******************************************************************************************************************************************************************/
 /*
@@ -28,14 +28,14 @@ u8 BTN_u8GetBTNState( u8 Cpy_u8BTNId, u8 *Cpy_pu8ReturnedBTNState )
 		/* Check 1.1: Required BTNId */
 		switch( Cpy_u8BTNId )
 		{
-			case BTN_U8_1: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_1_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_2: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_2_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_3: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_3_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_4: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_4_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_5: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_5_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_6: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_6_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_7: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_7_PIN, Cpy_pu8ReturnedBTNState ); break;
-			case BTN_U8_8: DIO_u8GetPinValue( BTN_U8_PORT, BTN_U8_8_PIN, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_1: DIO_read( BTN_U8_1_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_2: DIO_read( BTN_U8_2_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_3: DIO_read( BTN_U8_3_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_4: DIO_read( BTN_U8_4_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_5: DIO_read( BTN_U8_5_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_6: DIO_read( BTN_U8_6_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_7: DIO_read( BTN_U8_7_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
+			case BTN_U8_8: DIO_read( BTN_U8_8_PIN, BTN_U8_PORT, Cpy_pu8ReturnedBTNState ); break;
 		}		
 	}
 	/* Check 2: BTNId is not in the valid range, or Pointer is equal to NULL */

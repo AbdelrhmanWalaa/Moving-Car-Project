@@ -26,13 +26,13 @@ void APP_initialization( void )
 		//LED_vdInitialization();
 		
 		/* MCAL Initialization */
-		GLI_vdEnableGIE();
+		GLI_enableGIE();
 		
-		EXI_u8INTSetCallBack( EXI_U8_INT0, &APP_stopCar );
-		EXI_u8EnablePIE( EXI_U8_INT0, EXI_U8_SENSE_FALLING_EDGE );
+		EXI_intSetCallBack( EXI_U8_INT0, &APP_stopCar );
+		EXI_enablePIE( EXI_U8_INT0, EXI_U8_SENSE_FALLING_EDGE );
 		
-		EXI_u8INTSetCallBack( EXI_U8_INT1, &APP_startCar );
-		EXI_u8EnablePIE( EXI_U8_INT1, EXI_U8_SENSE_FALLING_EDGE );	
+		EXI_intSetCallBack( EXI_U8_INT1, &APP_startCar );
+		EXI_enablePIE( EXI_U8_INT1, EXI_U8_SENSE_FALLING_EDGE );	
 }
 
 /*******************************************************************************************************************************************************************/
@@ -92,7 +92,7 @@ void APP_startProgram  ( void )
 */
 void APP_startCar	   ( void )
 {
-	u8_gs_appMode = APP_CAR_START	
+	u8_gs_appMode = APP_CAR_START;	
 }
 
 /*******************************************************************************************************************************************************************/

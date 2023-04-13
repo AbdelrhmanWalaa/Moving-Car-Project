@@ -19,8 +19,8 @@
 #include "../../LIB/bit_math.h"
 
 /* MCAL */
-#include "../../MCAL/dio/DIO_Interface.h"
-#include "../../MCAL/timer/TMR_Interface.h"
+#include "../../MCAL/dio/dio_interface.h"
+#include "../../MCAL/timer/timer_interface.h"
 
 /*******************************************************************************************************************************************************************/
 /* DCM Macros */
@@ -37,15 +37,15 @@
 /*******************************************************************************************************************************************************************/
 /* DCM Functions' Prototypes */
 
-EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed);
-
-EN_DCM_ERROR_T DCM_changeDCMDirection(void);
-
-EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue);
-
-EN_DCM_ERROR_T DCM_vdStopDCM(void);
-
-EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig);
+//EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed);
+//
+//EN_DCM_ERROR_T DCM_changeDCMDirection(void);
+//
+//EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue);
+//
+//EN_DCM_ERROR_T DCM_vdStopDCM(void);
+//
+//EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig);
 
 
 //u8 DCM_u8GetDutyCycleOfPWM(u8* Cpy_pu8ReturnedDutyCycleValue);
