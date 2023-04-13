@@ -27,13 +27,18 @@ u8 BTN_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber) {
     return STD_NOK;
 }
 
-/*
- Name: BTN_u8GetBTNState
- Input: u8 BTNId and Pointer to u8 ReturnedBTNState
- Output: u8 Error or No Error
- Description: Function to get BTN state.
-*/
-
+/**
+ * @brief Get the current state of a specified button
+ *
+ * This function reads the current state of a specified button by calling the DIO_read() function.
+ * The button ID is specified as an input parameter, and the current state is returned in an output parameter.
+ * If the button ID is out of range or the output parameter pointer is NULL, the function returns an error state (STD_NOK).
+ *
+ * @param u8_a_btnId The ID of the button to read (BTN_U8_1 to BTN_U8_8).
+ * @param u8ptr_a_returnedBtnState A pointer to an 8-bit unsigned integer where the button state will be stored.
+ *
+ * @return STD_OK if the button state was read successfully, STD_NOK otherwise.
+ */
 u8 BTN_getBtnState(u8 u8_a_btnId, u8 *u8ptr_a_returnedBtnState) {
     /* Define local variable to set the error state = OK */
     u8 Loc_u8ErrorState = STD_OK;
