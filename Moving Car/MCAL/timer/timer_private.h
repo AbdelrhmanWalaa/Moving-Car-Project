@@ -1,17 +1,23 @@
 /*
- * TMR_Private.h
+ * timer_private.h
  *
- *     Created on: Jul 27, 2021
- *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
- *    Description: This file contains all Timers (TMR) registers' locations and description.
- *  MCU Datasheet: AVR ATmega32 - https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
+ *     Created on: Apr 10, 2023
+ *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy
+ *    Description: This file contains all Timer (TMR) registers' locations.
+ *		MCU Datasheet: AVR ATmega32
+ *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
  */
 
 #ifndef TMR_PRIVATE_H_
 #define TMR_PRIVATE_H_
 
-/*******************************************************************************************************************************************************************/
-/* TMR Registers' Locations */
+ /**********************************************************/
+ /**           DIO PORTS Registers Locations              **/
+ /**********************************************************/
+
+
+ /*******************************************************************************************************************************************************************/
+ /* TMR Registers' Locations */
 
 #define	TMR_U8_TIMSK_REG		* ( ( volatile  u8 * ) 0x59 )
 #define	TMR_U8_TIFR_REG			* ( ( volatile  u8 * ) 0x58 )
@@ -25,15 +31,15 @@
 #define	TMR_U8_TCNT0_REG		* ( ( volatile  u8 * ) 0x52 )
 #define	TMR_U8_OCR0_REG			* ( ( volatile  u8 * ) 0x5C )
 
-/*
- * 16-bit Timer/Counter1
- */
+ /*
+  * 16-bit Timer/Counter1
+  */
 
 #define	TMR_U8_TCCR1A_REG		*( ( volatile  u8 * ) 0x4F )
 #define	TMR_U8_TCCR1B_REG		*( ( volatile  u8 * ) 0x4E )
 #define	TMR_U8_TCNT1H_REG		*( ( volatile  u8 * ) 0x4D )
 #define	TMR_U8_TCNT1L_REG		*( ( volatile  u8 * ) 0x4C )
-/* DataType is u16 * in order to get both registers ( i.e. TCNT1L and TCNT1H respectively ) locations in memory */
+  /* DataType is u16 * in order to get both registers ( i.e. TCNT1L and TCNT1H respectively ) locations in memory */
 #define TMR_U16_TCNT1_REG		*( ( volatile  u16 * ) 0x4C )
 #define	TMR_U8_OCR1AH_REG		*( ( volatile  u8 * ) 0x4B )
 #define	TMR_U8_OCR1AL_REG		*( ( volatile  u8 * ) 0x4A )
@@ -57,11 +63,11 @@
 #define	TMR_U8_OCR2_REG			*( ( volatile  u8 * ) 0x43 )
 #define	TMR_U8_ASSR_REG			*( ( volatile  u8 * ) 0x42 )
 
-/*******************************************************************************************************************************************************************/
-/* TMR Registers' Description */
+ /*******************************************************************************************************************************************************************/
+ /* TMR Registers' Description */
 
-/* Timer/Counter Interrupt Mask Register - TIMSK */
-/* Bit 7 - OCIE2: Timer/Counter2 Output Compare Match Interrupt Enable */
+ /* Timer/Counter Interrupt Mask Register - TIMSK */
+ /* Bit 7 - OCIE2: Timer/Counter2 Output Compare Match Interrupt Enable */
 #define TMR_U8_OCIE2_BIT		7
 /* Bit 6 - TOIE2: Timer/Counter2 Overflow Interrupt Enable */
 #define TMR_U8_TOIE2_BIT		6
@@ -109,8 +115,8 @@
  *  8-bit Timer/Counter0 Registers' Description
  */
 
-/* Timer/Counter Control Register - TCCR0 */
-/* Bit 7 - FOC0: Force Output Compare */
+ /* Timer/Counter Control Register - TCCR0 */
+ /* Bit 7 - FOC0: Force Output Compare */
 #define TMR_U8_FOC0_BIT			7
 /* Bit 6, 3 - WGM01:0: Waveform Generation Mode */
 #define TMR_U8_WGM01_BIT		3
@@ -128,8 +134,8 @@
  * 16-bit Timer/Counter1 Registers' Description
  */
 
-/* Timer/Counter1 Control Register A - TCCR1A */
-/* Bit 7:6 - COM1A1:0: Compare Output Mode for Channel A */
+ /* Timer/Counter1 Control Register A - TCCR1A */
+ /* Bit 7:6 - COM1A1:0: Compare Output Mode for Channel A */
 #define TMR_U8_COM1A1_BIT		7
 #define TMR_U8_COM1A0_BIT		6
 /* Bit 5:4 - COM1B1:0: Compare Output Mode for Channel B */
@@ -162,8 +168,8 @@
  * 8-bit Timer/Counter2 Registers' Description
  */
 
-/* Timer/Counter Control Register - TCCR2 */
-/* Bit 7 - FOC2: Force Output Compare */
+ /* Timer/Counter Control Register - TCCR2 */
+ /* Bit 7 - FOC2: Force Output Compare */
 #define TMR_U8_FOC2_BIT			7
 /* Bit 6, 3 - WGM21:0: Waveform Generation Mode */
 #define TMR_U8_WGM21_BIT		3

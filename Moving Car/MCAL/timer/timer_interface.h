@@ -1,10 +1,11 @@
 /*
  * TMR_Interface.h
  *
- *     Created on: Jul 27, 2021
- *         Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
+ *     Created on: Apr 11, 2023
+ *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy
  *    Description: This file contains all Timers (TMR) functions' prototypes and definitions (Macros) to avoid magic numbers.
- *  MCU Datasheet: AVR ATmega32 - https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
+ *		MCU Datasheet: AVR ATmega32
+ *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
  */
 
 #ifndef TMR_INTERFACE_H_
@@ -41,35 +42,140 @@
 #define TMR_U8_SET_OCR_PIN					2
 
 /*******************************************************************************************************************************************************************/
-/* TMR Functions' prototypes */
 
-vd TMR_vdTMR0Initialization  ( void );
-vd TMR_vdTMR1Initialization  ( void );
-vd TMR_vdTMR2Initialization  ( void );
 
-u8 TMR_u8EnableTMR		     ( u8 Cpy_u8TimerId );
-u8 TMR_u8DisableTMR		     ( u8 Cpy_u8TimerId );
+#define OC0_PIN_DIR                         DDRB
+#define OC0_PIN                              3
+#define GLOBAL_INTERRUPT_ENABLE_BIT      7
 
-u8 TMR_u8EnableTMRInterrupt  ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy_u8InterruptType );
-u8 TMR_u8DisableTMRInterrupt ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy_u8InterruptType );
+#define MAX_TIMER_DELAY					 (MAX_DELAY * MAX_COUNTS)
+#define MAX_DELAY				 		 (0.032768f)
+#define MAX_COUNTS						   255
+#define TICK_TIME						 (0.000128f)
+#define SECOND_OPERATOR					 (1000.0f)
 
-u8 TMR_u8EnableCOMPPin	     ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u8 Cpy_u8COMPMode );
-u8 TMR_u8DisableCOMPPin		 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId );
+#define NO_PRESCALER						1 
+/********************************************************************************/
+	/*error definitions*/
+typedef enum {
+	TIMER_OK,
+	TIMER_ERROR
+}EN_TMR_ERROR_T;
 
-u8 TMR_u8GetNumberOfOVF		 ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedNumberOfOVF );
-u8 TMR_u8GetOVFFlagStatus	 ( u8 Cpy_u8TimerId, u8 *Cpy_pu8FlagStatus );
-u8 TMR_u8ClearOVFFlag		 ( u8 Cpy_u8TimerId );
+typedef enum {
+	ENABLED,
+	DISABLED
+}EN_TMR_INTERRPUT_T;
+/************************************************************************/
+/*  TMR Functions' prototypes                                            */
+/************************************************************************/
+/**
+ * @brief Initializes timer0 at normal mode
+ *
+ * This function initializes/selects the timer_0 normal mode for the timer, and enable the ISR for this timer.
+ * @param[in] EN_TMR_INTERRPUT_T TMR_a_interrputEnable value to set the interrupt bit for timer_0 in the TIMSK reg.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr0NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
+/**************************************************************************************************/
+/**
+ * @brief Creates a delay using timer_0 in overflow mode
+ *
+ * This function Creates the desired delay on timer_0 normal mode.
+ * @param[in] u16 u16_a_interval value to set the desired delay.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr0Delay(u16 interval);
+/**************************************************************************************************/
+/**
+ * @brief Start the timer by setting the desired prescaler.
+ *
+ * This function set the prescaler for timer_0.
+ * @param[in] u16 u16_a_prescaler value to set the desired prescaler.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr0Start(u16 u16_a_prescaler);
+/**************************************************************************************************/
+/**
+ * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.
+ *
+ * This function Clear the prescaler for timer_0.
+ * @param[in] void.
+ *
+ * @return void
+ */
 
-u8 TMR_u8OVFSetCallBack	     ( u8 Cpy_u8TimerId, void ( *Cpy_pfOVFInterruptAction ) ( void ) );
-u8 TMR_u8COMPSetCallBack	 ( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, void ( *Cpy_pfCOMPInterruptAction ) ( void ) );
+void TMR_tmr0Stop(void);
 
-u8 TMR_u8GetCounterValue	 ( u8 Cpy_u8TimerId, u16 *Cpy_pu16ReturnedCounterValue );
+/**************************************************************************************************/
+/**
+ * @brief timer compare match mode.
+ *
+ * This function set the compare value for timer_0.
+ * @param[in] u8 u8_a_outCompValue value at which the matching will occur.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr0CleareCompMatInit(u8 u8_a_outCompValue );
 
-u8 TMR_u8SetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 Cpy_u16CompareMatchValue );
-u8 TMR_u8GetCompareMatchValue( u8 Cpy_u8TimerId, u8 Cpy_u8Timer1ChannelId, u16 *Cpy_pu16ReturnedCompareMatchValue );
 
-vd TMR_vdSetInputCaptureValue( u16 Cpy_u16InputCaptureValue );
-u8 TMR_u8GetInputCaptureValue( u16 *Cpy_pu16ReturnedInputCaptureValue );
+
+
+/**
+ * @brief Initializes timer2 at normal mode
+ *
+ * This function initializes/selects the timer_2 normal mode for the timer, and enable the ISR for this timer.
+ * @param[in] EN_TMR_INTERRPUT_T TMR_a_interrputEnable value to set the interrupt bit for timer_2 in the TIMSK reg.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr2NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable );
+/**
+ * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.
+ *
+ * This function Clear the prescaler for timer_2.
+ * @param[in] void.
+ *
+ * @return void
+ */
+void TMR_tmr2Stop(void);
+/**
+ * @brief Start the timer by setting the desired prescaler.
+ *
+ * This function set the prescaler for timer_2.
+ * @param[in] u16 u16_a_prescaler value to set the desired prescaler.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr2Start(u16 u16_a_prescaler);
+/**
+ * @brief Creates a delay using timer_2 in overflow mode
+ *
+ * This function Creates the desired delay on timer_2 normal mode.
+ * @param[in] u16 u16_a_interval value to set the desired delay.
+ *
+ * @return An EN_TMR_ERROR_T value indicating the success or failure of the operation
+ *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
+ */
+EN_TMR_ERROR_T TMR_tmr2Delay(u16 interval);
+EN_TMR_ERROR_T TMR_tmr2CleareCompMatInit(u8 u8_a_outCompValue );
+
+EN_TMR_ERROR_T TMR_tmr1NormalModeInit(EN_TMR_INTERRPUT_T TMR_a_interrputEnable);
+void TMR_tmr1CleareCompMatchInit(void);
+EN_TMR_ERROR_T TMR_tmr1Start(u16 u16_a_prescaler);
+void TMR_tmr1Stop(void);
+EN_TMR_ERROR_T TMR_tmr1CreatePWM(u8 u8_a_dutyCycle);
+
+
 
 /*******************************************************************************************************************************************************************/
 

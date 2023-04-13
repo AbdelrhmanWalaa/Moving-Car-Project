@@ -1,12 +1,12 @@
-/*
- * DCM_Interface.h
- *
- *   Created on: Nov 20, 2022
- *       Author: Abdelrhman Walaa - https://github.com/AbdelrhmanWalaa
- *  Description: This file contains all Direct Current Motor (DCM) functions' prototypes and definitions (Macros) to avoid magic numbers.
- *    Datasheet: https://datasheetspdf.com/pdf/917207/KYSAN/RF-300CA-11440/1
- *    Model No.: RF-300CA-11440 - DCM
- */
+ /*
+  * DCM_Interface.h
+  *
+  *     Created on: Apr 11, 2023
+  *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy
+  *    Description: This file contains all Direct Current Motor (DCM) functions' prototypes and definitions (Macros) to avoid magic numbers.
+  *		MCU Datasheet: AVR ATmega32
+  *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
+  */
 
 #ifndef DCM_INTERFACE_H_
 #define DCM_INTERFACE_H_
@@ -37,15 +37,31 @@
 /*******************************************************************************************************************************************************************/
 /* DCM Functions' Prototypes */
 
-u8 DCM_u8RotateDCMInOneDirection ( u16 Cpy_u16RotateSpeed );
-u8 DCM_u8RotateDCMInTwoDirections( u8 Cpy_u8RotateDirection, u16 Cpy_u16RotateSpeed );
+EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed);
 
-vd DCM_vdChangeDCMDirection      ( void );
+EN_DCM_ERROR_T DCM_changeDCMDirection(void);
 
-u8 DCM_u8SetDutyCycleOfPWM       ( u16 Cpy_u16DutyCycleValue );
-u8 DCM_u8GetDutyCycleOfPWM       ( u8 *Cpy_pu8ReturnedDutyCycleValue );
+EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue);
 
-vd DCM_vdStopDCM                 ( void );
+EN_DCM_ERROR_T DCM_vdStopDCM(void);
+
+EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig);
+
+
+//u8 DCM_u8GetDutyCycleOfPWM(u8* Cpy_pu8ReturnedDutyCycleValue);
+/**************************************************************************************************************************************************************************/
+typedef struct {
+	u8 DCM_g_mot0EnPinNumber0;
+	u8 DCM_g_mot0EnPinNumber1;
+	u8 DCM_g_mot0PWMPinNumber0;
+	u8 DCM_g_mot1EnPinNumber0;
+	u8 DCM_g_mot1EnPinNumber1;
+	u8 DCM_g_mot1PWMPinNumber1;
+	u8 DCM_g_initialDutyCycleValue;
+}ST_DCM_g_Config_t;
+
+
+
 
 /*******************************************************************************************************************************************************************/
 
