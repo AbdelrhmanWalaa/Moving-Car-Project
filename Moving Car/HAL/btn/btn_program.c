@@ -34,8 +34,8 @@ u8 BTN_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber) {
  * The button ID is specified as an input parameter, and the current state is returned in an output parameter.
  * If the button ID is out of range or the output parameter pointer is NULL, the function returns an error state (STD_NOK).
  *
- * @param u8_a_btnId The ID of the button to read (BTN_U8_1 to BTN_U8_8).
- * @param u8ptr_a_returnedBtnState A pointer to an 8-bit unsigned integer where the button state will be stored.
+ * @param [in]u8_a_btnId The ID of the button to read (BTN_U8_1 to BTN_U8_8).
+ * @param [out]u8ptr_a_returnedBtnState A pointer to an 8-bit unsigned integer where the button state will be stored.
  *
  * @return STD_OK if the button state was read successfully, STD_NOK otherwise.
  */
