@@ -1,5 +1,5 @@
 /*
- * DCM_Interface.h
+ * DCM_connfig.h
  *
  *     Created on: Apr 11, 2023
  *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy
@@ -15,7 +15,7 @@
  /* ***********************************************************************************************/
  /* ATmega32(L) interfacing with DCM: */
  /*
-								 One-Dirction Mode											Two-Dirction Mode
+								 One-Direction Mode											Two-Direction Mode
 				  --------------                   ----------				 --------------                   ----------
 				 |   ATmega32   |                 |   DCM    |				|   ATmega32   |                 |   DCM    |
 				 |              |                 |          |				|              |                 |          |

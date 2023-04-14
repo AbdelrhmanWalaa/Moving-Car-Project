@@ -16,11 +16,13 @@
 #include "../LIB/bit_math.h"
 
 /* MCAL */
+#include "../MCAL/dio/dio_interface.h"
 #include "../MCAL/gli/gli_interface.h"
 #include "../MCAL/exi/exi_interface.h"
 #include "../MCAL/timer/timer_interface.h"
 
 /* HAL */
+#include "../HAL/btn/btn_interface.h"
 #include "../HAL/led/led_interface.h"
 #include "../HAL/dcm/dcm_interface.h"
 
@@ -33,6 +35,10 @@
 #define APP_CAR_MOVE_FWD_LD		2
 #define APP_CAR_ROT_90_DEG		3
 #define APP_CAR_MOVE_FWD_SD		4
+
+/* Diagonals Values */
+#define APP_SHORT_DGNL			0
+#define APP_LONG_DGNL			1
 
 /* ***********************************************************************************************/
 /* APP Functions' Prototypes */

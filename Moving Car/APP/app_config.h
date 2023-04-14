@@ -12,7 +12,15 @@
 /* ***********************************************************************************************/
 /* APP Configurations */
 
+/* BTNs Config */
+#define APP_STOP_BTN			2
+#define APP_START_BTN			3
 
+/* LEDs Config */
+#define APP_MOVE_FWD_LD_LED		0
+#define APP_MOVE_FWD_SD_LED		1
+#define APP_ROTATE_LED			2
+#define APP_STOP_LED			3
 
 /* End of Configurations */
 

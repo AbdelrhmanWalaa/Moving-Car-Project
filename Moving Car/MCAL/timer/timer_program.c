@@ -71,8 +71,9 @@ EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputE
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TIMER_ERROR_T TIMER_timer0Delay(u16 u16_a_interval) {
-    if (u16_a_interval > MAX_TIMER_DELAY)
-        return TIMER_ERROR;
+    if ( ( u16_a_interval / SECOND_OPERATOR ) > ( MAX_TIMER_DELAY ) ) {
+	    return TIMER_ERROR;
+    }
     else {
         /* Clear the TCCR Register*/
         TIMER_U8_TCCR0_REG = 0x00;
@@ -242,8 +243,9 @@ EN_TIMER_ERROR_T TIMER_timer2NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputE
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TIMER_ERROR_T TIMER_timer2Delay(u16 u16_a_interval) {
-    if (u16_a_interval > MAX_TIMER_DELAY)
-        return TIMER_ERROR;
+    if ( ( u16_a_interval / SECOND_OPERATOR ) > ( MAX_TIMER_DELAY ) ) {
+		 return TIMER_ERROR;
+	}       
     else {
         /* Clear the TCCR Register*/
         TIMER_U8_TCCR2_REG = 0x00;
@@ -258,8 +260,8 @@ EN_TIMER_ERROR_T TIMER_timer2Delay(u16 u16_a_interval) {
             TIMER_U8_TCNT2_REG = 0x00;
             u16_g_overflow2Numbers = 1;
         } else {
-            u16_g_overflowNumbers = ceil(d64_a_delay / MAX_DELAY);
-            TIMER_U8_TCNT2_REG = (u8) ((MAX_COUNTS) - ((d64_a_delay - (MAX_DELAY * (u16_g_overflowNumbers - 1.0))) /
+            u16_g_overflow2Numbers = ceil(d64_a_delay / MAX_DELAY);
+            TIMER_U8_TCNT2_REG = (u8) ((MAX_COUNTS) - ((d64_a_delay - (MAX_DELAY * (u16_g_overflow2Numbers - 1.0))) /
                                                        TICK_TIME)); // in decimal  (0 - 255)
         }
         u16_g_overflow2Ticks = 0;
@@ -540,12 +542,18 @@ EN_TIMER_ERROR_T TIMER_ovfSetCallback(void (*void_a_pfOvfInterruptAction)(void))
  *
  * @return void
  */
-ISR(TIMER_ovfVect) {
-    u16_g_overflow2Ticks++;
-    if (u16_g_overflow2Numbers > u16_g_overflow2Ticks) {
-        u16_g_overflow2Ticks = 0;
-        TIMER_timer2Stop();
-        if (void_g_pfOvfInterruptAction != NULL)
-            void_g_pfOvfInterruptAction();
-    }
+//__attribute__((optimize("O0")))
+//ISR(TMR_ovfVect)
+
+void __vector_5(void) __attribute__((signal));
+void __vector_5(void)
+{
+	u16_g_overflow2Ticks++;
+	if (u16_g_overflow2Ticks >= u16_g_overflow2Numbers)
+	{
+		u16_g_overflow2Ticks = 0;
+		TIMER_timer2Stop();
+		if (void_g_pfOvfInterruptAction != NULL)
+			void_g_pfOvfInterruptAction();
+	}
 }
