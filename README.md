@@ -11,7 +11,7 @@
 > Embedded C application controlling a four-driving wheel robot, and moving it in a rectangular shape.
 
 ## Quick Links
-> - `Project Documentation` 👉 [LED Sequence V3.0 - Design.pdf](Docs/LED%20Sequence%20V3.0%20-%20Design.pdf)
+> - `Project Documentation` 👉 [Moving Car Documentation](https://docs.google.com/document/d/1bXYYHoOgidVj3zUbWvrPtRIPm7UxENJLMehARkkGyD0/edit#heading=h.xlj9vuuaezep)
 > - `Video` 👉 [Youtube - To be added]
 > - `Team Backlog` 👉 [Hacker Kermit - Moving Car Team Backlog](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/)
 > - `Test Protocol` 👉 [Hacker Kermit - Moving Car Test Protocol](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/edit#gid=1200153160)
