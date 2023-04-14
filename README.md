@@ -17,8 +17,11 @@
 > - `Test Protocol` 👉 [Hacker Kermit - Moving Car Test Protocol](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/edit?usp=sharing#gid=1200153160)
 > - ---
 > ### Technical
-> - `Proteus Simulation` 👉 [Moving-Car-Project.pdsprj](Simulation/Moving-Car-Project.pdsprj) 
-> - `Project Hex` 👉 [To be added]
+> - `Proteus Simulation (Proteus 8.15)` 👉 [Moving-Car-Project.pdsprj](Simulation/Moving-Car-Project.pdsprj)
+> #### for older proteus version you can import the proteus clip file (pdsclip) and update the MC hex file:
+> - `Proteus clip file` 👉 [MovingCar.pdsclip](Simulation/MovingCar.pdsclip)
+> - `Project Hex` 👉 [MovingCar.hex](Simulation/MovingCar.hex)
+
 
 ### Requirements
 #### Suppose you have a four-diving wheel robot, you are required to design the system so that the car moves in a rectangular shape
