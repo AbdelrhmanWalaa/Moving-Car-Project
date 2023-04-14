@@ -162,6 +162,7 @@ void APP_startProgram(void)
 
 void APP_startCar( void )
 {
+    if(u8_gs_appMode != APP_CAR_STOP) return;
 	/* Update appMode to "CAR_START" mode */
     u8_gs_diagonalFlag = APP_LONG_DGNL;
     u8_g_suddenBreakFlag = APP_BREAK_FLAG_DOWN;
