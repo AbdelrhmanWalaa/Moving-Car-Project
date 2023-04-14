@@ -14,7 +14,7 @@
 /* Declaration and Initialization */
 
 /* Global variable to store appMode */
-static u8 u8_gs_appMode = APP_CAR_MOVE_FWD_LD;
+static u8 u8_gs_appMode = APP_CAR_STOP;
 
 /* *******************************************************************************************************************/
 
@@ -61,6 +61,7 @@ void APP_startProgram(void)
 				break;
 
             case APP_CAR_START:
+			
                 /* Step B1: Delay 1 sec. */
                 TIMER_timer0Delay(1000);
 
@@ -78,7 +79,7 @@ void APP_startProgram(void)
 				LED_arrayOff( PORT_A, DIO_MASK_BITS_1_2_3 );
 				LED_on( PORT_A, 0 );
 				/* Step C2: Car moves for 3 sec. with 50% of speed */
-				TIMER_timer2Delay( 10 );
+				TIMER_timer2Delay( 3000 );
 				DCM_setDutyCycleOfPWM( 50 );
 				DCM_stopDCM();
 
