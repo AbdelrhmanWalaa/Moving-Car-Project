@@ -28,6 +28,14 @@ u8 * u8_g_shutdownFlag = NULL;
 
 /* ***********************************************************************************************/
 
+/**
+ * @brief Initialize the DC Motors by initializing their pins.
+ *
+ * @param u8_a_shutdownFlag Pointer to the Shutdown flag variable that acts as a main kill switch.
+ *
+ * @return EN_DCM_ERROR_T Returns DCM_OK if initialization is successful, or DCM_ERROR if initialization failed.
+ *
+ */
 EN_DCM_ERROR_T DCM_motorInit(u8 ** u8_a_shutdownFlag)
 {
     u8_g_shutdownFlag = *u8_a_shutdownFlag;
@@ -62,7 +70,12 @@ EN_DCM_ERROR_T DCM_motorInit(u8 ** u8_a_shutdownFlag)
 }
 
 
-/*******************************************************************************************************************************************************************/
+/**
+ * @brief Changes the direction of the motor rotation for the specified motor.
+ *
+ * @param en_a_motorNum The motor number whose direction needs to be changed.
+ * @return EN_DCM_ERROR_T DCM_OK if the operation is successful, DCM_ERROR otherwise.
+ */
 EN_DCM_ERROR_T DCM_changeDCMDirection(EN_DCM_MOTORSIDE en_a_motorNum)
 {
 	//if (en_a_motorNum > 2)
@@ -79,8 +92,10 @@ EN_DCM_ERROR_T DCM_changeDCMDirection(EN_DCM_MOTORSIDE en_a_motorNum)
 	//}
 	return DCM_OK;
 }
-/* ***********************************************************************************************/
 
+/**
+ * @brief Stops the DC motors by setting the PWM output pins to low and resetting the stop flag.
+ */
 void DCM_stopDCM(void)
 {
 	DIO_write(st_g_carMotors[0].DCM_g_motPWMPinNumber, st_g_carMotors[0].DCM_g_motPWMPortNumber, DIO_U8_PIN_LOW);
@@ -90,6 +105,18 @@ void DCM_stopDCM(void)
 
 /* ***********************************************************************************************/
 
+/**
+ * @brief Sets the duty cycle of the PWM for the motor.
+ *
+ * This function sets the duty cycle of the PWM for the motor. The duty cycle value
+ * provided should be between 0 and 100, where 0 indicates a duty cycle of 0% and 100
+ * indicates a duty cycle of 100%.
+ *
+ * @param u8_a_dutyCycleValue The duty cycle value for the motor.
+ * @return EN_DCM_ERROR_T The error status of the function.
+ *      - DCM_OK: The function executed successfully.
+ *      - DCM_ERROR: The duty cycle value provided was out of range.
+ */
 EN_DCM_ERROR_T DCM_setDutyCycleOfPWM(u8 u8_a_dutyCycleValue)
 {
 
@@ -113,13 +140,27 @@ EN_DCM_ERROR_T DCM_setDutyCycleOfPWM(u8 u8_a_dutyCycleValue)
     return DCM_OK;
 }
 
-/* ***********************************************************************************************/
+/**
+ * @brief Updates the stop flag.
+ *
+ * This function is called by the timer overflow callback function to update the stop flag.
+ * It sets the `en_g_stopFlag` variable to TRUE, which is used by other functions to stop the
+ * motor movement.
+ */
 void DCM_updateStopFlag(void)
 {
 	en_g_stopFlag = TRUE;
 }
-/* ***********************************************************************************************/
 
+/**
+ * @brief Rotates the DC motor.
+ *
+ * This function rotates the DC motor by changing its direction to right,
+ * setting the duty cycle of the PWM signal to a predefined value,
+ * and then changing the direction of the motor again to right.
+ *
+ * @return EN_DCM_ERROR_T DCM_OK if the operation is successful, DCM_ERROR otherwise.
+ */
 EN_DCM_ERROR_T DCM_rotateDCM()
 {
     if(u8_g_shutdownFlag != NULL && *u8_g_shutdownFlag == 1) return DCM_ERROR;
@@ -128,4 +169,3 @@ EN_DCM_ERROR_T DCM_rotateDCM()
 	DCM_changeDCMDirection(MOTOR_RIGHT);
     return DCM_OK;
 }
-/* ***********************************************************************************************/
