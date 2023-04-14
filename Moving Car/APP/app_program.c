@@ -152,6 +152,8 @@ void APP_startProgram(void)
 void APP_startCar( void )
 {
 	/* Update appMode to "CAR_START" mode */
+	u8_g_suddenBreakFlag = 0;
+	u8_gs_diagonalFlag = APP_LONG_DGNL;
     u8_gs_appMode = APP_CAR_START;
 }
 
