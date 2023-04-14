@@ -15,7 +15,7 @@
  /* ***********************************************************************************************/
  /* ATmega32(L) interfacing with DCM: */
  /*
-								 One-Dirction Mode											Two-Dirction Mode
+								 One-Direction Mode											Two-Direction Mode
 				  --------------                   ----------				 --------------                   ----------
 				 |   ATmega32   |                 |   DCM    |				|   ATmega32   |                 |   DCM    |
 				 |              |                 |          |				|              |                 |          |

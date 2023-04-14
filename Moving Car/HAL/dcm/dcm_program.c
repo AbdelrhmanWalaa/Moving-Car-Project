@@ -18,8 +18,8 @@
 
 ST_DCM_g_Config_t ST_g_carMotors[2] =
 {
-	{  	 MOT0_EN_PIN_NUMBER_0 ,  MOT0_EN_PIN_NUMBER_1, MOT0_PWM_PIN_NUMBER, MOT0_EN_PORT_NUMBER, MOT0_PWM_PORT_NUMBER},
-	{  	 MOT1_EN_PIN_NUMBER_0,  MOT1_EN_PIN_NUMBER_1, MOT1_PWM_PIN_NUMBER, MOT1_EN_PORT_NUMBER, MOT1_PWM_PORT_NUMBER}
+	{ MOT0_EN_PIN_NUMBER_0, MOT0_EN_PIN_NUMBER_1, MOT0_PWM_PIN_NUMBER, MOT0_EN_PORT_NUMBER, MOT0_PWM_PORT_NUMBER },
+	{ MOT1_EN_PIN_NUMBER_0, MOT1_EN_PIN_NUMBER_1, MOT1_PWM_PIN_NUMBER, MOT1_EN_PORT_NUMBER, MOT1_PWM_PORT_NUMBER }
 };
 
 EN_DCM_FLAG DCM_g_stopFlag = FALSE;
@@ -45,8 +45,15 @@ EN_DCM_ERROR_T DCM_motorInit()
         DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motPWMPinNumber,
             ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
             DIO_OUT);
+			
+		DIO_write(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber0,
+			ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
+			DIO_U8_PIN_HIGH);
+		DIO_write(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber1,
+			ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
+			DIO_U8_PIN_LOW);	
+			
     }
-
 //	}
     TIMER_ovfSetCallback(DCM_updateStopFlag);
     return DCM_OK;
@@ -54,7 +61,7 @@ EN_DCM_ERROR_T DCM_motorInit()
 
 
 /*******************************************************************************************************************************************************************/
-EN_DCM_ERROR_T DCM_changeDCMDirection( EN_DCM_MOTORSIDE DCM_a_motorNum)
+EN_DCM_ERROR_T DCM_changeDCMDirection(EN_DCM_MOTORSIDE DCM_a_motorNum)
 {
 	//if (DCM_a_motorNum > 2)
 		//return DCM_ERROR;
@@ -74,7 +81,6 @@ EN_DCM_ERROR_T DCM_changeDCMDirection( EN_DCM_MOTORSIDE DCM_a_motorNum)
 
 void DCM_stopDCM(void)
 {
-	DCM_g_stopFlag = FALSE;
 	DIO_write(ST_g_carMotors[0].DCM_g_motPWMPinNumber, ST_g_carMotors[0].DCM_g_motEnPortNumber, DIO_U8_PIN_LOW);
 	DIO_write(ST_g_carMotors[1].DCM_g_motPWMPinNumber, ST_g_carMotors[1].DCM_g_motEnPortNumber, DIO_U8_PIN_LOW);
 }

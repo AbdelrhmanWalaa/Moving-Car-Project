@@ -36,6 +36,10 @@
 #define APP_CAR_ROT_90_DEG		3
 #define APP_CAR_MOVE_FWD_SD		4
 
+/* Diagonals Values */
+#define APP_SHORT_DGNL			0
+#define APP_LONG_DGNL			1
+
 /* ***********************************************************************************************/
 /* APP Functions' Prototypes */
 
