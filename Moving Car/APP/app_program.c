@@ -19,7 +19,7 @@ static u8 u8_gs_appMode = APP_CAR_STOP;
 static u8 u8_gs_diagonalFlag = APP_LONG_DGNL;
 
 u8 u8_g_suddenBreakFlag = APP_BREAK_FLAG_DOWN;
-u8 *ptr = &u8_g_suddenBreakFlag;
+u8 *u8Ptr_g_suddenBreakPtr = &u8_g_suddenBreakFlag;
 
 /* *******************************************************************************************************************/
 
@@ -34,14 +34,14 @@ void APP_initialization(void)
 	EXI_intSetCallBack( EXI_U8_INT1, &APP_startCar );
 	EXI_enablePIE( EXI_U8_INT1, EXI_U8_SENSE_FALLING_EDGE );
 
-	TIMER_timer0NormalModeInit( DISABLED, &ptr);
-	TIMER_timer2NormalModeInit( ENABLED, &ptr);
+	TIMER_timer0NormalModeInit( DISABLED, &u8Ptr_g_suddenBreakPtr);
+	TIMER_timer2NormalModeInit( ENABLED, &u8Ptr_g_suddenBreakPtr);
 	
 	/* HAL Initialization */
 	BTN_init( APP_STOP_BTN , PORT_D );
 	BTN_init( APP_START_BTN, PORT_D );
 	LED_arrayInit( PORT_A, DIO_MASK_BITS_0_1_2_3 );
-	DCM_motorInit(&ptr);
+	DCM_motorInit(&u8Ptr_g_suddenBreakPtr);
 	
 	u8_gs_appMode = APP_CAR_STOP;
 }
