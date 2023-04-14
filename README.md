@@ -11,10 +11,10 @@
 > Embedded C application controlling a four-driving wheel robot, and moving it in a rectangular shape.
 
 ## Quick Links
-> - `Project Documentation` 👉 [Moving Car Documentation](https://docs.google.com/document/d/1bXYYHoOgidVj3zUbWvrPtRIPm7UxENJLMehARkkGyD0/edit#heading=h.xlj9vuuaezep)
+> - `Project Documentation` 👉 [Moving Car Documentation](https://docs.google.com/document/d/1bXYYHoOgidVj3zUbWvrPtRIPm7UxENJLMehARkkGyD0/edit?usp=sharing)
 > - `Video` 👉 [Youtube - To be added]
-> - `Team Backlog` 👉 [Hacker Kermit - Moving Car Team Backlog](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/)
-> - `Test Protocol` 👉 [Hacker Kermit - Moving Car Test Protocol](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/edit#gid=1200153160)
+> - `Team Backlog` 👉 [Hacker Kermit - Moving Car Team Backlog](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/edit?usp=sharing)
+> - `Test Protocol` 👉 [Hacker Kermit - Moving Car Test Protocol](https://docs.google.com/spreadsheets/d/1TEFmVHJRjowdOIW17CrRRDPIgnifnU0cA95UgYCEQuI/edit?usp=sharing#gid=1200153160)
 > - ---
 > ### Technical
 > - `Proteus Simulation` 👉 [Moving-Car-Project.pdsprj](Simulation/Moving-Car-Project.pdsprj) 
