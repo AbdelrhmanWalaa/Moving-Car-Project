@@ -58,7 +58,7 @@ typedef enum {
 /* ***********************************************************************************************/
 /* DCM Functions' Prototypes */
 
-EN_DCM_ERROR_T DCM_motorInit(void);
+EN_DCM_ERROR_T DCM_motorInit(u8 ** u8_a_shutdownFlag);
 
 EN_DCM_ERROR_T DCM_rotateDCM(void);
 

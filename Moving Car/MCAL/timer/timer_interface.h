@@ -80,7 +80,7 @@ typedef enum {
  * @return An EN_TIMER_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable);
+EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable, u8 ** u8_a_shutdownFlag);
 
 /**
  * @brief Creates a delay using timer_0 in overflow mode
@@ -138,7 +138,7 @@ void TIMER_timer0Stop(void);
  * @return An EN_TIMER_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TIMER_ERROR_T TIMER_timer2NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable);
+EN_TIMER_ERROR_T TIMER_timer2NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable, u8 ** u8_a_shutdownFlag);
 
 /**
  * @brief Stop the timer by setting the prescaler to be 000--> timer is stopped.

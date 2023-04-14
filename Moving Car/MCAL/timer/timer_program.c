@@ -23,6 +23,8 @@ u16 u16_g_overflowTicks = 0;
 u16 u16_g_overflow2Ticks = 0;
 u16 u16_g_overflow2Numbers = 0;
 
+u8 * u8_g_shutdownFlag = NULL;
+
 void (*void_g_pfOvfInterruptAction)(void) = NULL;
 
 /* ***********************************************************************************************/
@@ -37,7 +39,9 @@ void (*void_g_pfOvfInterruptAction)(void) = NULL;
  * @return An EN_TIMER_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable) {
+EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable, u8 ** u8_a_shutdownFlag) {
+    u8_g_shutdownFlag = *u8_a_shutdownFlag;
+
     switch (en_a_interrputEnable) {
         case ENABLED:
             /* select the normal mode for the timer, timer is not start yet.*/
@@ -55,7 +59,6 @@ EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputE
             break;
         default:
             return TIMER_ERROR;
-            break;
     }
     return TIMER_OK;
 }
@@ -96,7 +99,8 @@ EN_TIMER_ERROR_T TIMER_timer0Delay(u16 u16_a_interval) {
         u16_g_overflowTicks = 0;
         TIMER_timer0Start(1024);
         /*Polling the overflowNumbers and the overflow flag bit*/
-        while (u16_g_overflowNumbers > u16_g_overflowTicks) {
+        while (u16_g_overflowNumbers > u16_g_overflowTicks && (u8_g_shutdownFlag == NULL || *u8_g_shutdownFlag == 0))
+        {
             while ((TIMER_U8_TIFR_REG & (1 << 0)) == 0);
             TIMER_U8_TIFR_REG |= (1 << 0);
             u16_g_overflowTicks++;
@@ -209,7 +213,9 @@ void TIMER_timer0Stop(void) {
  * @return An EN_TIMER_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
-EN_TIMER_ERROR_T TIMER_timer2NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable) {
+EN_TIMER_ERROR_T TIMER_timer2NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputEnable, u8 ** u8_a_shutdownFlag) {
+    u8_g_shutdownFlag = *u8_a_shutdownFlag;
+
     switch (en_a_interrputEnable) {
         case ENABLED:
             /* select the normal mode for the timer, timer is not start yet.*/
@@ -549,7 +555,7 @@ void __vector_5(void) __attribute__((signal));
 void __vector_5(void)
 {
 	u16_g_overflow2Ticks++;
-	if (u16_g_overflow2Ticks >= u16_g_overflow2Numbers)
+	if (u16_g_overflow2Ticks >= u16_g_overflow2Numbers || (u8_g_shutdownFlag != NULL && *u8_g_shutdownFlag == 1))
 	{
 		u16_g_overflow2Ticks = 0;
 		TIMER_timer2Stop();
