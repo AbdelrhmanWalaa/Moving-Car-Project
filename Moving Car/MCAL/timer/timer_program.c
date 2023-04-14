@@ -74,6 +74,7 @@ EN_TIMER_ERROR_T TIMER_timer0NormalModeInit(EN_TIMER_INTERRPUT_T en_a_interrputE
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
  */
 EN_TIMER_ERROR_T TIMER_timer0Delay(u16 u16_a_interval) {
+    if((u8_g_timerShutdownFlag != NULL && *u8_g_timerShutdownFlag == 1)) return TIMER_ERROR; // sudden break flag
     if ( ( u16_a_interval / SECOND_OPERATOR ) > ( MAX_TIMER_DELAY ) ) {
 	    return TIMER_ERROR;
     }

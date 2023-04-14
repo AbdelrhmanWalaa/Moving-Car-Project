@@ -83,8 +83,9 @@ EN_DCM_ERROR_T DCM_changeDCMDirection(EN_DCM_MOTORSIDE DCM_a_motorNum)
 
 void DCM_stopDCM(void)
 {
-	DIO_write(ST_g_carMotors[0].DCM_g_motPWMPinNumber, ST_g_carMotors[0].DCM_g_motEnPortNumber, DIO_U8_PIN_LOW);
-	DIO_write(ST_g_carMotors[1].DCM_g_motPWMPinNumber, ST_g_carMotors[1].DCM_g_motEnPortNumber, DIO_U8_PIN_LOW);
+	DIO_write(ST_g_carMotors[0].DCM_g_motPWMPinNumber, ST_g_carMotors[0].DCM_g_motPWMPortNumber, DIO_U8_PIN_LOW);
+	DIO_write(ST_g_carMotors[1].DCM_g_motPWMPinNumber, ST_g_carMotors[1].DCM_g_motPWMPortNumber, DIO_U8_PIN_LOW);
+    DCM_g_stopFlag = FALSE;
 }
 
 /* ***********************************************************************************************/
@@ -100,7 +101,7 @@ EN_DCM_ERROR_T DCM_setDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
 		u16 u16_onTime = DCM_a_mappedDuty;
 		u16 u16_offTime = 10 - DCM_a_mappedDuty;
 
-		while (DCM_g_stopFlag != TRUE && *u8_g_shutdownFlag == 0)
+		while (DCM_g_stopFlag != TRUE && (u8_g_shutdownFlag == NULL || *u8_g_shutdownFlag == 0))
 		{
 			DIO_portWrite(ST_g_carMotors[0].DCM_g_motEnPortNumber, DIO_U8_PORT_HIGH, DIO_MASK_BITS_0_1);
 			TIMER_timer0Delay(u16_onTime);
@@ -121,7 +122,7 @@ void DCM_updateStopFlag(void)
 
 EN_DCM_ERROR_T DCM_rotateDCM()
 {
-    if(*u8_g_shutdownFlag == 1) return DCM_ERROR;
+    if(u8_g_shutdownFlag != NULL && *u8_g_shutdownFlag == 1) return DCM_ERROR;
 	DCM_changeDCMDirection(MOTOR_RIGHT);
 	DCM_setDutyCycleOfPWM (ROTATION_DUTY_CYCLE);
 	DCM_changeDCMDirection(MOTOR_RIGHT);
