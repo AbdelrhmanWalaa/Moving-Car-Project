@@ -543,9 +543,8 @@ EN_TIMER_ERROR_T TIMER_ovfSetCallback(void (*void_a_pfOvfInterruptAction)(void))
 //__attribute__((optimize("O0")))
 //ISR(TMR_ovfVect)
 
-void __vector_11( void )	__attribute__((signal));
- 
- void __vector_11( void )
+void __vector_5(void) __attribute__((signal));
+void __vector_5(void)
 {
 	u16_g_overflow2Ticks++;
 	if (u16_g_overflow2Ticks >= u16_g_overflow2Numbers)

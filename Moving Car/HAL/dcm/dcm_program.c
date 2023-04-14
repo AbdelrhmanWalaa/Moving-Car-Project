@@ -29,25 +29,25 @@ EN_DCM_FLAG DCM_g_stopFlag = FALSE;
 
 EN_DCM_ERROR_T DCM_motorInit()
 {
-	if (ST_g_carMotors == NULL)
+	/*if (ST_g_carMotors == NULL)
 		return DCM_ERROR;
 	else
-	{
-		u8 u8_a_loopCounter;
-		for (u8_a_loopCounter = 0; u8_a_loopCounter < MOTORS_NUMBER; u8_a_loopCounter++)
-		{
-			DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber0,
-				ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
-				DIO_OUT);
-			DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber1,
-				ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
-				DIO_OUT);
-			DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motPWMPinNumber,
-				ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
-				DIO_OUT);
-		}
+	{*/
+    u8 u8_a_loopCounter;
+    for (u8_a_loopCounter = 0; u8_a_loopCounter < MOTORS_NUMBER; u8_a_loopCounter++)
+    {
+        DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber0,
+            ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
+            DIO_OUT);
+        DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber1,
+            ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
+            DIO_OUT);
+        DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motPWMPinNumber,
+            ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
+            DIO_OUT);
+    }
 
-	}
+//	}
     TIMER_ovfSetCallback(DCM_updateStopFlag);
     return DCM_OK;
 }
