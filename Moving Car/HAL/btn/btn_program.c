@@ -11,7 +11,7 @@
 #include "btn_interface.h"
 
 /**
- * @brief Initialize a GPIO pin as an input pin
+ * @brief Initialize a GPIO pin as an input pin for button (pull up enabled by default)
  *
  * This function initializes a specified GPIO pin as an input pin using the DIO_init() function.
  *
@@ -22,6 +22,8 @@
  */
 u8 BTN_init(u8 u8_a_pinNumber, EN_DIO_PORT_T en_a_portNumber) {
     if (DIO_init(u8_a_pinNumber, en_a_portNumber, DIO_IN) == DIO_OK) {
+        // enable pull up resistor
+        DIO_write(u8_a_pinNumber, en_a_portNumber, DIO_U8_PIN_HIGH);
         return STD_OK;
     }
     return STD_NOK;

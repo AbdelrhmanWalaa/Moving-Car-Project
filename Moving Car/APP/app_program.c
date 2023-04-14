@@ -41,6 +41,7 @@ void APP_initialization(void)
 	BTN_init( APP_START_BTN, PORT_D );
 	LED_arrayInit( PORT_A, DIO_MASK_BITS_0_1_2_3 );
 	DCM_motorInit(&ptr);
+	u8_gs_appMode = APP_CAR_STOP;
 }
 
 
@@ -152,6 +153,8 @@ void APP_startProgram(void)
 void APP_startCar( void )
 {
 	/* Update appMode to "CAR_START" mode */
+    u8_gs_diagonalFlag = APP_LONG_DGNL;
+    u8_g_suddenBreakFlag = 0;
     u8_gs_appMode = APP_CAR_START;
 }
 
