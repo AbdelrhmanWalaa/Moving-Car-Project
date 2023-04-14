@@ -37,8 +37,8 @@ void APP_initialization(void)
 	TIMER_timer2NormalModeInit( ENABLED, &ptr);
 	
 	/* HAL Initialization */
-	BTN_init( APP_STOP_BTN , PORT_D);
-	BTN_init( APP_START_BTN, PORT_D);
+	BTN_init( APP_STOP_BTN , PORT_D );
+	BTN_init( APP_START_BTN, PORT_D );
 	LED_arrayInit( PORT_A, DIO_MASK_BITS_0_1_2_3 );
 	DCM_motorInit(&ptr);
 }
