@@ -8,10 +8,7 @@
  *                  https://ww1.microchip.com/downloads/en/DeviceDoc/Atmega32A-DataSheet-Complete-DS40002072A.pdf
  */
 
-
-
-
- /* HAL */
+/* HAL */
 #include "dcm_config.h"
 #include "dcm_interface.h"
 
@@ -24,28 +21,29 @@ ST_DCM_g_Config_t ST_g_carMotors[2] =
 	{  	 MOT0_EN_PIN_NUMBER_0 ,  MOT0_EN_PIN_NUMBER_1, MOT0_PWM_PIN_NUMBER, MOT0_EN_PORT_NUMBER, MOT0_PWM_PORT_NUMBER},
 	{  	 MOT1_EN_PIN_NUMBER_0,  MOT1_EN_PIN_NUMBER_1, MOT1_PWM_PIN_NUMBER, MOT1_EN_PORT_NUMBER, MOT1_PWM_PORT_NUMBER}
 };
+
 EN_DCM_FLAG DCM_g_stopFlag = FALSE;
 
 
 /* ***********************************************************************************************/
 
-EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig)
+EN_DCM_ERROR_T DCM_motorInit()
 {
-	if (DCM_a_ptrToConfig == NULL)
+	if (ST_g_carMotors == NULL)
 		return DCM_ERROR;
 	else
 	{
 		u8 u8_a_loopCounter;
 		for (u8_a_loopCounter = 0; u8_a_loopCounter < MOTORS_NUMBER; u8_a_loopCounter++)
 		{
-			DIO_init(DCM_a_ptrToConfig[u8_a_loopCounter].DCM_g_motEnPinNumber0,
-				DCM_a_ptrToConfig[u8_a_loopCounter].DCM_g_motEnPortNumber,
+			DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber0,
+				ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
 				DIO_OUT);
-			DIO_init(DCM_a_ptrToConfig[u8_a_loopCounter].DCM_g_motEnPinNumber1,
-				DCM_a_ptrToConfig[u8_a_loopCounter].DCM_g_motEnPortNumber,
+			DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPinNumber1,
+				ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
 				DIO_OUT);
-			DIO_init(DCM_a_ptrToConfig[u8_a_loopCounter].DCM_g_motPWMPinNumber,
-				DCM_a_ptrToConfig[u8_a_loopCounter].DCM_g_motEnPortNumber,
+			DIO_init(ST_g_carMotors[u8_a_loopCounter].DCM_g_motPWMPinNumber,
+				ST_g_carMotors[u8_a_loopCounter].DCM_g_motEnPortNumber,
 				DIO_OUT);
 		}
 
@@ -54,33 +52,36 @@ EN_DCM_ERROR_T DCM_motorInit(ST_DCM_g_Config_t* DCM_a_ptrToConfig)
     return DCM_OK;
 }
 
-/* ***********************************************************************************************/
-EN_DCM_ERROR_T DCM_changeDCMDirection(ST_DCM_g_Config_t* DCM_a_ptrToConfig, EN_DCM_MOTORSIDE DCM_a_motorNum)
-{
-	if (DCM_a_ptrToConfig == NULL)
-		return DCM_ERROR;
-	else
-	{
 
-		DIO_toggle(DCM_a_ptrToConfig[DCM_a_motorNum].DCM_g_motEnPinNumber0,
-			DCM_a_ptrToConfig[DCM_a_motorNum].DCM_g_motEnPortNumber
+/*******************************************************************************************************************************************************************/
+EN_DCM_ERROR_T DCM_changeDCMDirection( EN_DCM_MOTORSIDE DCM_a_motorNum)
+{
+	//if (DCM_a_motorNum > 2)
+		//return DCM_ERROR;
+	//else
+	//{
+
+		DIO_toggle(ST_g_carMotors[DCM_a_motorNum].DCM_g_motEnPinNumber0,
+			ST_g_carMotors[DCM_a_motorNum].DCM_g_motEnPortNumber
 		);
-		DIO_toggle(DCM_a_ptrToConfig[DCM_a_motorNum].DCM_g_motEnPinNumber1,
-			DCM_a_ptrToConfig[DCM_a_motorNum].DCM_g_motEnPortNumber
+		DIO_toggle(ST_g_carMotors[DCM_a_motorNum].DCM_g_motEnPinNumber1,
+			ST_g_carMotors[DCM_a_motorNum].DCM_g_motEnPortNumber
 		);
-	}
+	//}
 	return DCM_OK;
 }
 /* ***********************************************************************************************/
 
-void DCM_vdStopDCM(void)
+void DCM_stopDCM(void)
 {
-	DIO_write(0, PORT_B, DIO_U8_PIN_LOW);
+	DCM_g_stopFlag = FALSE;
+	DIO_write(ST_g_carMotors[0].DCM_g_motPWMPinNumber, ST_g_carMotors[0].DCM_g_motEnPortNumber, DIO_U8_PIN_LOW);
+	DIO_write(ST_g_carMotors[1].DCM_g_motPWMPinNumber, ST_g_carMotors[1].DCM_g_motEnPortNumber, DIO_U8_PIN_LOW);
 }
 
 /* ***********************************************************************************************/
 
-EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
+EN_DCM_ERROR_T DCM_setDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
 {
 
 	if (DCM_a_dutyCycleValue > MAX_DUTY_CYCLE)
@@ -93,10 +94,10 @@ EN_DCM_ERROR_T DCM_u8SetDutyCycleOfPWM(u8 DCM_a_dutyCycleValue)
 
 		while (DCM_g_stopFlag != TRUE)
 		{
-			DIO_write(0, PORT_B, DIO_U8_PIN_HIGH);
-			TIMER_timer2Delay(u16_onTime);
-			DIO_write(0, PORT_B, DIO_U8_PIN_LOW);
-			TIMER_timer2Delay(u16_offTime);
+			DIO_portWrite(ST_g_carMotors[0].DCM_g_motEnPortNumber, DIO_U8_PORT_HIGH, DIO_MASK_BITS_0_1);
+			TIMER_timer0Delay(u16_onTime);
+			DIO_portWrite(ST_g_carMotors[0].DCM_g_motEnPortNumber, DIO_U8_PORT_LOW, DIO_MASK_BITS_0_1);
+			TIMER_timer0Delay(u16_offTime);
 		}
 		DCM_g_stopFlag = FALSE;
 	}
@@ -110,11 +111,11 @@ void DCM_updateStopFlag(void)
 }
 /* ***********************************************************************************************/
 
-EN_DCM_ERROR_T DCM_rotateDCM(u8 DCM_a_rotateDirection, u16 DCM_a_rotateSpeed)
+EN_DCM_ERROR_T DCM_rotateDCM()
 {
-	DCM_changeDCMDirection(ST_g_carMotors, MOTOR_RIGHT);
-	DCM_u8SetDutyCycleOfPWM(ROTATION_DUTY_CYCLE);
-	DCM_changeDCMDirection(ST_g_carMotors, MOTOR_RIGHT);
+	DCM_changeDCMDirection(MOTOR_RIGHT);
+	DCM_setDutyCycleOfPWM (ROTATION_DUTY_CYCLE);
+	DCM_changeDCMDirection(MOTOR_RIGHT);
     return DCM_OK;
 }
 /* ***********************************************************************************************/

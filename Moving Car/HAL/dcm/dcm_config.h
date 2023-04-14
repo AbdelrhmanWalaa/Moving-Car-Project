@@ -1,5 +1,5 @@
 /*
- * DCM_Interface.h
+ * DCM_connfig.h
  *
  *     Created on: Apr 11, 2023
  *         Author: Mahmoud Mowafey - https://github.com/Mahmoud-Mowafy

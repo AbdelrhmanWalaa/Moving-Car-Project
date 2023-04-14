@@ -540,12 +540,19 @@ EN_TIMER_ERROR_T TIMER_ovfSetCallback(void (*void_a_pfOvfInterruptAction)(void))
  *
  * @return void
  */
-ISR(TIMER_ovfVect) {
-    u16_g_overflow2Ticks++;
-    if (u16_g_overflow2Numbers > u16_g_overflow2Ticks) {
-        u16_g_overflow2Ticks = 0;
-        TIMER_timer2Stop();
-        if (void_g_pfOvfInterruptAction != NULL)
-            void_g_pfOvfInterruptAction();
-    }
+//__attribute__((optimize("O0")))
+//ISR(TMR_ovfVect)
+
+void __vector_11( void )	__attribute__((signal));
+ 
+ void __vector_11( void )
+{
+	u16_g_overflow2Ticks++;
+	if (u16_g_overflow2Ticks >= u16_g_overflow2Numbers)
+	{
+		u16_g_overflow2Ticks = 0;
+		TIMER_timer2Stop();
+		if (void_g_pfOvfInterruptAction != NULL)
+			void_g_pfOvfInterruptAction();
+	}
 }

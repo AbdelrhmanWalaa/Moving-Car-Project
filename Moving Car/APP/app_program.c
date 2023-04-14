@@ -14,85 +14,117 @@
 /* Declaration and Initialization */
 
 /* Global variable to store appMode */
-static u8 u8_gs_appMode = APP_CAR_STOP;
+static u8 u8_gs_appMode = APP_CAR_MOVE_FWD_LD;
 
 /* *******************************************************************************************************************/
 
-void APP_initialization(void) {
-    /* HAL Initialization */
-    LED_arrayInit(PORT_A, DIO_MASK_BITS_0_1_2_3);
-
+void APP_initialization(void) 
+{
+	/* HAL Initialization */
+	BTN_init( 2, PORT_D);
+	BTN_init( 3, PORT_D);
+	LED_arrayInit( PORT_A, DIO_MASK_BITS_0_1_2_3 );
+	DCM_motorInit();
+	
     /* MCAL Initialization */
     GLI_enableGIE();
 
-    EXI_intSetCallBack(EXI_U8_INT0, &APP_stopCar);
-    EXI_enablePIE(EXI_U8_INT0, EXI_U8_SENSE_FALLING_EDGE);
+    EXI_intSetCallBack( EXI_U8_INT0, &APP_stopCar );
+    EXI_enablePIE( EXI_U8_INT0, EXI_U8_SENSE_FALLING_EDGE );
 
-    EXI_intSetCallBack(EXI_U8_INT1, &APP_startCar);
-    EXI_enablePIE(EXI_U8_INT1, EXI_U8_SENSE_FALLING_EDGE);
+    EXI_intSetCallBack( EXI_U8_INT1, &APP_startCar );
+    EXI_enablePIE( EXI_U8_INT1, EXI_U8_SENSE_FALLING_EDGE );
+
 
     TIMER_timer0NormalModeInit(DISABLED);
+	TIMER_timer2NormalModeInit( ENABLED );	
+
 }
 
 
-void APP_startProgram(void) {
+void APP_startProgram(void) 
+{
     /* Toggle forever */
-    while (1) {
-        switch (u8_gs_appMode) {
+    while (1)
+	 {
+		/* Check 1: Required appMode */
+        switch ( u8_gs_appMode ) 
+		{
             case APP_CAR_STOP:
-
-                // stop Car
-                LED_arrayOn(PORT_A, DIO_MASK_BITS_3);
-
-                break;
+	
+				/* Step A1: Turn on red LED, and turn off other LEDs */
+				LED_arrayOff( PORT_A, DIO_MASK_BITS_0_1_2 );
+				LED_on( PORT_A, 3 );             
+				/* Step A2: Stop both motors */
+				DCM_stopDCM();
+				
+				break;
 
             case APP_CAR_START:
-
-                // delay 1 sec.
-                TIMER_timer0Delay(1000);
-                // start Car
-
-                if (u8_gs_appMode != APP_CAR_STOP) {
+                /* Step B1: Delay 1 sec. */
+                //TMR_tmr0Delay( 1000 );
+				
+				/* Check 1.1: appMode is not "CAR_STOP" mode */
+                if ( u8_gs_appMode != APP_CAR_STOP ) 
+				{
+					/* Step B2: Update appMode to "CAR_MOVE_FWD_LD" mode */
                     u8_gs_appMode = APP_CAR_MOVE_FWD_LD;
                 }
                 break;
 
             case APP_CAR_MOVE_FWD_LD:
 
-                LED_arrayOn(PORT_A, DIO_MASK_BITS_0);
-                // move fwd for 3 sec. with duty cycle 50%
-                //DCM_rotateDCM()
+                /* Step C1: Turn on green(LD) LED, and turn off other LEDs */
+				LED_arrayOff( PORT_A, DIO_MASK_BITS_1_2_3 );
+				LED_on( PORT_A, 0 );
+				/* Step C2: Car moves for 3 sec. with 50% of speed */
+				TIMER_timer2Delay( 10 );
+				DCM_setDutyCycleOfPWM( 50 );
+				DCM_stopDCM();
 
-                if (u8_gs_appMode != APP_CAR_STOP) {
+				/* Check 1.2: appMode is not "CAR_STOP" mode */
+                if ( u8_gs_appMode != APP_CAR_STOP ) 
+				{
+					/* Step C3: Update appMode to "CAR_ROT_90_DEG" mode */
                     u8_gs_appMode = APP_CAR_ROT_90_DEG;
                 }
                 break;
 
             case APP_CAR_ROT_90_DEG:
+			
+				/* Step D1: Turn on yellow LED, and turn off other LEDs */
+               	LED_arrayOff( PORT_A, DIO_MASK_BITS_0_1_3 );
+				LED_on( PORT_A, 2 );
+                /* Step D2: Delay 0.5 sec. */
+                TIMER_timer0Delay( 500 );
+				/* Step D3: Car rotates for 620 msec. with 50% of speed */
+                TIMER_timer2Delay( 620 );
+				DCM_rotateDCM();
+				DCM_stopDCM();
+                /* Step D4: Delay 0.5 sec. */
+                TIMER_timer0Delay( 500 );
 
-                LED_arrayOn(PORT_A, DIO_MASK_BITS_2);
-                // delay 0.5 sec.
-                TIMER_timer0Delay(500);
-
-                // rotate 90 degrees
-                TIMER_timer0Delay(620);
-
-                // delay 0.5 sec.
-                TIMER_timer0Delay(500);
-
-                if (u8_gs_appMode != APP_CAR_STOP) {
+				/* Check 1.3: appMode is not "CAR_STOP" mode */
+                if ( u8_gs_appMode != APP_CAR_STOP ) 
+				{
+					/* Step D5: Update appMode to "CAR_MOVE_FWD_SD" mode */
                     u8_gs_appMode = APP_CAR_MOVE_FWD_SD;
                 }
                 break;
 
             case APP_CAR_MOVE_FWD_SD:
-
-                LED_arrayOn(PORT_A, DIO_MASK_BITS_1);
-
-                // move fwd for 2 sec. with duty cycle 30%
-                TIMER_timer0Delay(2000);
-
-                if (u8_gs_appMode != APP_CAR_STOP) {
+	
+				/* Step E1: Turn on green(SD) LED, and turn off other LEDs */
+                LED_arrayOff( PORT_A, DIO_MASK_BITS_0_2_3 );
+                LED_on( PORT_A, 1 );
+                /* Step E2: Car moves for 2 sec. with 30% of speed */
+                TIMER_timer2Delay( 2000 );
+				DCM_setDutyCycleOfPWM( 50 );
+				
+				/* Check 1.4: appMode is not "CAR_STOP" mode */
+                if ( u8_gs_appMode != APP_CAR_STOP ) 
+				{
+					/* Step E3: Update appMode to "CAR_ROT_90_DEG" mode */
                     u8_gs_appMode = APP_CAR_ROT_90_DEG;
                 }
                 break;
@@ -101,11 +133,15 @@ void APP_startProgram(void) {
 }
 
 
-void APP_startCar(void) {
+void APP_startCar( void ) 
+{
+	/* Update appMode to "CAR_START" mode */
     u8_gs_appMode = APP_CAR_START;
 }
 
 
-void APP_stopCar(void) {
+void APP_stopCar( void )
+{
+	/* Update appMode to "CAR_STOP" mode */
     u8_gs_appMode = APP_CAR_STOP;
 }
