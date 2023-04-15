@@ -62,7 +62,7 @@
 ---------
 
 ## Circuit Schematic
-![Proteus Simulation](Documents/img/MovingCarSchematic.BMP)
+![Proteus Simulation](Documents/img/MovingCar_Schematic.BMP)
 
 ## Layered Architecture
 ![Layered Architecture](Documents/img/LayeredArchitecture.drawio.png)
