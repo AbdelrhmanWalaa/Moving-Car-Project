@@ -1,0 +1,79 @@
+<mxfile host="Electron" modified="2023-04-05T05:13:08.945Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="0BQDMro2lvDUknX4ZDAR" version="21.1.2" type="device">
+  <diagram name="Page-1" id="-CargAOVByAoLxOXnS4A">
+    <mxGraphModel dx="1477" dy="1871" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-143" y="-993" width="714" height="581" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-2" value="Microcontroller Abstraction Layer (MCAL)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="45" y="-648" width="485" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-8" value="Hardware Abstraction Layer (HAL)" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="45" y="-762" width="485" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-13" value="Application Layer" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="45" y="-875" width="485" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-14" value="Library" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-72" y="-875" width="95" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-15" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Layered Architecture&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="86" y="-961" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-16" value="Microcontroller" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fad9d5;strokeColor=#ae4132;" vertex="1" parent="1">
+          <mxGeometry x="45" y="-535" width="485" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-17" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-199" y="1" width="714" height="581" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-18" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="-11" y="346" width="485" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-19" value="" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="-11" y="232" width="485" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-20" value="Application Layer" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="-11" y="119" width="485" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-21" value="Library" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="-128" y="119" width="95" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-22" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;System Modules&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="30" y="33" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-23" value="Microcontroller" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;fillColor=#fad9d5;strokeColor=#ae4132;" vertex="1" parent="1">
+          <mxGeometry x="-11" y="459" width="485" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-29" value="LED" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#ff9e42;fontColor=#000000;strokeColor=#C73500;" vertex="1" parent="1">
+          <mxGeometry x="41" y="264.5" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-31" value="HAL" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#ff9e42;fontColor=#000000;strokeColor=#C73500;" vertex="1" parent="1">
+          <mxGeometry x="451" y="257" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-32" value="BTN" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#ff9e42;fontColor=#000000;strokeColor=#C73500;" vertex="1" parent="1">
+          <mxGeometry x="178" y="264.5" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-33" value="DCM" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#ff9e42;fontColor=#000000;strokeColor=#C73500;" vertex="1" parent="1">
+          <mxGeometry x="314" y="264.5" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-35" value="MCAL" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="451" y="371" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-36" value="DIO" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="41" y="377" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-37" value="TMR" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="314" y="377" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-38" value="EXI" style="rounded=1;whiteSpace=wrap;html=1;fontSize=16;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" vertex="1" parent="1">
+          <mxGeometry x="178" y="377" width="100" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="wgH91Bwnna8UG3z6ClUc-39" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="wgH91Bwnna8UG3z6ClUc-38" target="wgH91Bwnna8UG3z6ClUc-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
