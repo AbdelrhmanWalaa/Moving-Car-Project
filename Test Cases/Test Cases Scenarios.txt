@@ -1,0 +1,33 @@
+Moving Car Project Test Cases Scenarios:
+-----------------------------
+
+1. Run the project in its Normal mode.
+
+-- Expected Result: The default flow of the application.
+
+------------------------------------
+
+2. Run the project, while trying to use the Stop Button.
+
+--Expected Result: The car stops and the red LED turns on.
+
+------------------------------------
+
+3. Run the project, while trying to use the Start Button again during application flow.
+
+--Expected Result: Nothing happens.
+
+------------------------------------
+
+4. Run the project, while trying to double press the Stop Button.
+
+--Expected Result: Nothing happens.
+
+------------------------------------
+
+5. Run the project, while trying to double press the Start Button.
+
+--Expected Result: Nothing happens.
+
+------------------------------------
+	
