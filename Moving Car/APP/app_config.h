@@ -22,6 +22,19 @@
 #define APP_ROTATE_LED			2
 #define APP_STOP_LED			3
 
+/* Delays/Timing Config */
+#define APP_STARTING_DELAY      1000
+#define APP_FWD_LD_DURATION     3000
+#define APP_FWD_LD_DUTY         50
+#define APP_ROTATION_DELAY      500
+#define APP_ROTATION_DURATION   620
+#define APP_FWD_SD_DURATION     2000
+#define APP_FWD_SD_DUTY         30
+
+/* APP_BREAK_FLAG */
+#define APP_BREAK_FLAG_UP       1
+#define APP_BREAK_FLAG_DOWN     0
+
 /* End of Configurations */
 
 /* ***********************************************************************************************/

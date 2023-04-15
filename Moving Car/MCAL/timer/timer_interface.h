@@ -76,6 +76,7 @@ typedef enum {
  *
  * This function initializes/selects the timer_0 normal mode for the timer, and enable the ISR for this timer.
  * @param[in] EN_TIMER_INTERRPUT_T en_a_interrputEnable value to set the interrupt bit for timer_0 in the TIMSK reg.
+ * @param[in] **u8_a_shutdownFlag double pointer, acts as a main switch for timer 0 operations.
  *
  * @return An EN_TIMER_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
@@ -134,6 +135,7 @@ void TIMER_timer0Stop(void);
  *
  * This function initializes/selects the timer_2 normal mode for the timer, and enable the ISR for this timer.
  * @param[in] EN_TIMER_INTERRPUT_T en_a_interrputEnable value to set the interrupt bit for timer_2 in the TIMSK reg.
+ * @param[in] **u8_a_shutdownFlag double pointer, acts as a main switch for timer 2 operations.
  *
  * @return An EN_TIMER_ERROR_T value indicating the success or failure of the operation
  *         (TIMER_OK if the operation succeeded, TIMER_ERROR otherwise)
