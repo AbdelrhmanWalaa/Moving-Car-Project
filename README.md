@@ -24,7 +24,7 @@
 
 
 ### Requirements
-#### Suppose you have a four-diving wheel robot, you are required to design the system so that the car moves in a rectangular shape
+#### Suppose you have a four-driving wheel robot, you are required to design the system so that the car moves in a rectangular shape
 
 ### Detailed Requirements
 #### Create a backlog for the team
