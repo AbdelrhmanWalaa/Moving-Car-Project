@@ -126,7 +126,7 @@ EN_DCM_ERROR_T DCM_setDutyCycleOfPWM(u8 u8_a_dutyCycleValue)
 	{
 		u8 DCM_a_mappedDuty = u8_a_dutyCycleValue / PERIOD_TIME;
 		u16 u16_onTime = DCM_a_mappedDuty;
-		u16 u16_offTime = 10 - DCM_a_mappedDuty;
+		u16 u16_offTime = PERIOD_TIME - DCM_a_mappedDuty;
 
 		while (en_g_stopFlag != TRUE && (u8_g_shutdownFlag == NULL || *u8_g_shutdownFlag == 0))
 		{
